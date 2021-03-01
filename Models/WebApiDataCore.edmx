@@ -92,6 +92,7 @@
           <Property Name="GhiChu" Type="nvarchar(max)" />
           <Property Name="LoaiDonVi" Type="nvarchar(max)" />
           <Property Name="IDDVCha" Type="int" />
+          <Property Name="IDDVQuanLy" Type="int" />
           <Property Name="NhomLoai" Type="nvarchar(max)" />
           <Property Name="SoDiemTruong" Type="nvarchar(max)" />
           <Property Name="TenLanhDao" Type="nvarchar(max)" />
@@ -300,6 +301,7 @@
           <Property Name="Ghichu" Type="nvarchar(max)" />
           <Property Name="IdDonvi" Type="int" />
           <Property Name="Loai" Type="int" />
+          <Property Name="SearchKey" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblDoituongKhenthuong">
           <Key>
@@ -1852,6 +1854,7 @@
           <Property Name="ThongTinKhac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FInUse" Type="Boolean" />
           <Property Name="TTGui" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDDVQuanLy" Type="Int32" />
         </EntityType>
         <EntityType Name="FILE_DINH_KEM">
           <Key>
@@ -2044,6 +2047,7 @@
           <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdDonvi" Type="Int32" />
           <Property Name="Loai" Type="Int32" />
+          <Property Name="SearchKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblDoituongKhenthuong">
           <Key>
@@ -2292,6 +2296,7 @@
           <EntitySetMapping Name="DMDonVis">
             <EntityTypeMapping TypeName="WebApiDataModel.DMDonVi">
               <MappingFragment StoreEntitySet="DMDonVi">
+                <ScalarProperty Name="IDDVQuanLy" ColumnName="IDDVQuanLy" />
                 <ScalarProperty Name="TTGui" ColumnName="TTGui" />
                 <ScalarProperty Name="FInUse" ColumnName="FInUse" />
                 <ScalarProperty Name="ThongTinKhac" ColumnName="ThongTinKhac" />
@@ -2502,6 +2507,7 @@
           <EntitySetMapping Name="tblDoituongs">
             <EntityTypeMapping TypeName="WebApiDataModel.tblDoituong">
               <MappingFragment StoreEntitySet="tblDoituong">
+                <ScalarProperty Name="SearchKey" ColumnName="SearchKey" />
                 <ScalarProperty Name="Loai" ColumnName="Loai" />
                 <ScalarProperty Name="IdDonvi" ColumnName="IdDonvi" />
                 <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />

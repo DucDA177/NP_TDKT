@@ -371,21 +371,20 @@ angular.module('WebApiApp').controller("ModalHoSoDonViHandlerController", functi
     };
 
 });
-angular.module('WebApiApp').controller("ModalCanBoNhanVienHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $timeout) {
+angular.module('WebApiApp').controller("ModalDMCacThanhVienHandlerController", function ($rootScope, $scope, $http, $uibModalInstance, $timeout) {
     $scope.item = $scope.$resolve.item;
     $scope.type = $scope.$resolve.type;
     $scope.check = $scope.$resolve.check;
-    $scope.LoadProvin('30', '0', '0')
-
-    if ($scope.item == null || $scope.item == undefined || $scope.item == '') {
+   
+    if (!$scope.item) {
         $scope.item = {
-            FInUse: true,
+            IdDonvi: $scope.check,
         }
     }
     else {
         if ($scope.item.Ngaysinh)
             $scope.item.Ngaysinh = new Date($scope.item.Ngaysinh);
-
+        $scope.item.Hovaten = $scope.item.Hodem + ' ' + $scope.item.Ten;
     }
     $scope.cancelModal = function () {
         $uibModalInstance.dismiss('close');
@@ -399,19 +398,16 @@ angular.module('WebApiApp').controller("ModalCanBoNhanVienHandlerController", fu
         }
         $http({
             method: "POST",
-            url: 'api/CanBoNhanVien/Save',
+            url: 'api/DMCacThanhVien/Save',
             data: $scope.item,
         }).then(
             function successCallback(response) {
                 toastr.success("Lưu dữ liệu thành công!", "Thông báo");
                 $scope.item = response.data;
-                if (isNew == 1) {
-                    $scope.item = {
-                        FInUse: true,
-                    }
-                } else $scope.cancelModal();
-
-                $rootScope.LoadCanBoNhanVien();
+                $rootScope.Load();
+                $scope.cancelModal();
+                if (isNew == 1) 
+                    $scope.openModal('', 'DMCacThanhVien', $scope.check)
             },
             function errorCallback(response) {
                 //console.log(response)
@@ -421,8 +417,10 @@ angular.module('WebApiApp').controller("ModalCanBoNhanVienHandlerController", fu
     };
     $scope.Validate = function () {
         if (!$scope.item.Hovaten) return "Họ và tên bắt buộc nhập!";
-        if (!$scope.item.Macap) return "Đơn vị trực thuộc bắt buộc chọn!";
         if (!$scope.item.Chucvu) return "Chức vụ bắt buộc nhập!";
+
+        $scope.item.Hodem = $scope.item.Hovaten.split(" ").slice(0, -1).join(" ");
+        $scope.item.Ten = $scope.item.Hovaten.split(" ").slice(-1).join(" ");
         return 1;
     };
 

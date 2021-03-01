@@ -49,11 +49,12 @@
 
             </div>
             <div class="row  margin-bottom-5">
-                <label class="control-label col-md-2">Quản lý: </label>
+                <label class="control-label col-md-2">Quản lý bởi: </label>
                 <div class="col-md-4">
-
-                    <select ng-model="item.NhomLoai" class="form-control input-sm select2">
-                        <option ng-repeat="nl in LoaiVanHoa" value="{{nl.Code}}">{{nl.Name}}</option>
+                    <select ng-model="item.IDDVQuanLy" 
+                            ng-disabled="item.LoaiDonVi != 'CS'"
+                            class="form-control input-sm select2" convert-to-number>
+                        <option ng-repeat="nl in DonVi" value={{nl.Id}}>{{nl.TenDonVi}}</option>
                     </select>
                 </div>
                 <label class="control-label col-md-2">Lãnh đạo: </label>

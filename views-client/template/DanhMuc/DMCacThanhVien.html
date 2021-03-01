@@ -1,22 +1,37 @@
 ﻿
 <div class="col-md-12">
-    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> DANH SÁCH CÁN BỘ NHÂN VIÊN</label></h4>
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> DANH SÁCH CÁC THÀNH VIÊN THUỘC CÁC ĐƠN VỊ CƠ SỞ</label></h4>
 </div>
 <div class="form-body form-horizontal col-md-12">
-   
+
 
     <div class="form-group ">
-        <div class="col-md-8">
-            <a class="btn btn-primary btn-sm" ng-click="openModal('','CanBoNhanVien')"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+        <div class="col-md-4">
+            <button class="btn btn-primary btn-sm"
+               ng-disabled="!Paging.IdDonvi"
+               ng-click="openModal('','DMCacThanhVien',Paging.IdDonvi)"><i class="fa fa-plus-circle"></i> Thêm mới</button>
+            <i class="font-red" ng-hide="Paging.IdDonvi">Chọn đơn vị trước khi nhấn thêm mới</i>
         </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn đơn vị: </span>
+                <select class="form-control input-sm select2" ng-model="Paging.IdDonvi"
+                        convert-to-number
+                        ng-change="Load()">
+                    <option value="0">---Tất cả các đơn vị---</option>
+                    <option ng-repeat="ldv in ListDonVi" value="{{ldv.Id}}">{{ldv.TenDonVi}}</option>
 
+                </select>
+            </div>
+        </div>
         <div class="col-md-4">
             <div class="input-group " style="margin-top:-3px">
                 <input type="text" ng-model="Paging.searchKey"
                        ng-model-options="{updateOn: 'change'}"
+                       ng-change="Load()"
                        class="form-control input-sm " placeholder="Nhập từ khóa để tìm kiếm...">
                 <span class="input-group-btn">
-                    <a class="btn btn-default input-sm" ng-click="LoadCanBoNhanVien()">
+                    <a class="btn btn-default input-sm" ng-click="Load()">
                         <i class="fa fa-search"></i>
                     </a>
                 </span>
@@ -37,35 +52,34 @@
                             <th><div style="text-align:center">Ngày sinh</div>  </th>
                             <th> <div style="text-align:center">Giới tính</div> </th>
                             <th><div style="text-align:center">Chức vụ</div>  </th>
+                            <th><div style="text-align:center">Vị trí</div>  </th>
                             <th><div style="text-align:center">Thuộc đơn vị</div>  </th>
-                            <th><div style="text-align:center">#</div>  </th>
-                            <th><div style="text-align:center">#</div> </th>
+                            <th width="1px"><div style="text-align:center">#</div>  </th>
+                            <th width="1px"><div style="text-align:center">#</div> </th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX" ng-repeat="dm in CanBoNhanVien">
+                        <tr class="odd gradeX" ng-repeat="dm in ThanhVien">
                             <td align="center" width="1%"> {{$index + Paging.pageStart}} </td>
-                            <td> <a ng-click="openModal(dm,'CanBoNhanVien')"> {{dm.Hovaten}}</a> </td>
+                            <td> <a ng-click="openModal(dm,'DMCacThanhVien')"> {{dm.Hodem}} {{dm.Ten}}</a> </td>
                             <td>
                                 {{dm.Ngaysinh | date:'dd/MM/yyyy'}}
                             </td>
                             <td> {{dm.Gioitinh}}</td>
                             <td>{{dm.Chucvu}}</td>
+                            <td>{{dm.Vitri}}</td>
                             <td>
-
                                 <div style="text-align:center">
-                                    <select ng-model="dm.Macap" disabled style="
+                                    <select ng-model="dm.IdDonvi" convert-to-number disabled style="
                                                                     font-weight:bold;
                                                                     color: black;
                                                                     -webkit-appearance: none;">
-                                        <option value="0">SỞ VHTT&DL Hải Dương</option>
-                                        <option ng-repeat="lvh in LoaiVanHoa" value={{lvh.Code}}>Phòng {{lvh.Name}} - SỞ VHTT&DL Hải Dương</option>
-                                        <option ng-repeat="nl in District" value={{nl.FCode}}> Phòng VH {{nl.FName}}</option>
+                                        <option ng-repeat="ldv in ListDonVi" value="{{ldv.Id}}">{{ldv.TenDonVi}}</option>
                                     </select>
                                 </div>
                             </td>
-                            <td><a ng-click="openModal(dm,'CanBoNhanVien')" title="Sửa"><i class="fa fa-edit"></i></a></td>
+                            <td><a ng-click="openModal(dm,'DMCacThanhVien')" title="Sửa"><i class="fa fa-edit"></i></a></td>
                             <td><a ng-click="Del(dm.Id)" title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
 
                         </tr>
@@ -81,7 +95,7 @@
                 <span class="input-group-addon"> Hiển thị </span>
                 <select ng-model="Paging.pageSize"
                         ng-options="template.value as template.text for template in displayPage"
-                        ng-change="LoadCanBoNhanVien()" class="form-control select2"></select>
+                        ng-change="Load()" class="form-control select2"></select>
 
             </div>
         </div>
@@ -95,7 +109,7 @@
                         Trang
                         <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
                             <i class="fa fa-angle-left"></i>
-                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadCanBoNhanVien()" ng-model-options="{updateOn: 'change'}">
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="Load()" ng-model-options="{updateOn: 'change'}">
                         <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
                         <span class="pagination-panel-total">{{Paging.totalPage}}</span>
                     </div>

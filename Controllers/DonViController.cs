@@ -152,6 +152,14 @@ namespace WebApiCore.Controllers
 
         }
         [HttpGet]
+        [Route("api/DonVi/GetDonViTheoLoai")]
+        public IHttpActionResult GetDonViTheoLoai(string LoaiDV)
+        {
+            var dt = db.DMDonVis.Where(t => t.FInUse == true && t.LoaiDonVi == LoaiDV).ToList();
+            return Ok(dt);
+
+        }
+        [HttpGet]
         [Route("api/DonVi/GetDonVi")]
         public List GetDonVi(int pageNumber, int pageSize, string searchKey, string LoaiDonVi, string DVCha, string LoaiTruong)//, string year, string plan, string FInspection, string Org, string TypeTT, string KieuTT)
         {
@@ -201,6 +209,7 @@ namespace WebApiCore.Controllers
             public string GhiChu { get; set; }
             public string LoaiDonVi { get; set; }
             public Nullable<int> IDDVCha { get; set; }
+            public Nullable<int> IDDVQuanLy { get; set; }
             public string NhomLoai { get; set; }
             public string SoDiemTruong { get; set; }
             public string TenLanhDao { get; set; }

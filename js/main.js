@@ -82,9 +82,9 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
     
         $scope.LoaiDonVi = [
             { Code: 'ADMIN', Name: 'Quản trị hệ thống' },
-            { Code: 'SO', Name: 'Đơn vị cấp Sở' },
-            { Code: 'PHONG', Name: 'Đơn vị cấp Phòng' },
-            { Code: 'TRUONG', Name: 'Đơn vị cấp Trường' },
+            { Code: 'XD', Name: 'Đơn vị cấp xét duyệt' },
+            { Code: 'QL', Name: 'Đơn vị cấp quản lý' },
+            { Code: 'CS', Name: 'Đơn vị cấp cơ sở' },
         ];
         $scope.TypeArea = [
             { Code: 'XA', Name: 'Xã/Phường' },

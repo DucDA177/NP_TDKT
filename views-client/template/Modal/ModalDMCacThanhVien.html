@@ -1,0 +1,140 @@
+﻿
+<div ng-init="OnLoad()">
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin thành viên {{item.Hovaten}} </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+
+            <div class="row margin-bottom-5">
+
+                <div>
+                    <label class="control-label col-md-2 ">Họ và tên<span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+                        <input type="text" id="Hovaten" autofocus placeholder="Nhập Họ và tên..." maxlength="100"
+                               class=" form-control input-sm " ng-model="item.Hovaten">
+                    </div>
+                </div>
+
+
+
+                <label class="control-label col-md-2">Giới tính:</label>
+                <div class="col-md-4">
+
+                    <select ng-model="item.Gioitinh" class="form-control input-sm select2 select2-selection--single">
+                        <option ng-repeat="n in GioiTinh" value="{{n.Name}}">{{n.Name}}</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+
+
+
+                <label class="control-label col-md-2">Ngày sinh: </label>
+                <div class="col-md-4">
+                    <input type="text"
+                           datetime="dd/MM/yyyy"
+                           class="form-control input-sm"
+                           ng-model="item.Ngaysinh"
+                           datetime-separator=",.-/" />
+                </div>
+                <label class="control-label col-md-2">Dân tộc: </label>
+                <div class="col-md-4">
+                    <input type="text"
+                           class="form-control input-sm"
+                           ng-model="item.Dantoc" />
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+
+                <label class="control-label col-md-2">Số CMND/CCCD:</label>
+                <div class="col-md-4">
+                    <input placeholder="Nhập số CMND/CCCD..." type="text" class="form-control input-sm" ng-model="item.SoCMND">
+
+                </div>
+                <label class="control-label col-md-2">Điện thoại:</label>
+                <div class="col-md-4">
+                    <input placeholder="Nhập số điện thoại..." type="tel" class="form-control input-sm" ng-model="item.Sdt">
+
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+
+                <label class="control-label col-md-2">Fax: </label>
+                <div class="col-md-4">
+                    <input placeholder="Nhập số fax..." type="text" class="form-control input-sm " ng-model="item.Fax">
+                </div>
+                <label class="control-label col-md-2">Email:</label>
+                <div class="col-md-4">
+                    <input placeholder="Nhập Email..." type="tel" class="form-control input-sm" ng-model="item.Email">
+
+                </div>
+            </div>
+
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Địa chỉ:</label>
+                <div class="col-md-10">
+                    <input type="text" placeholder="Nhập địa chỉ hiện tại..." class="form-control input-sm" ng-model="item.Diachi">
+                </div>
+
+            </div>
+            <div class="row margin-bottom-5">
+                <label class="control-label col-md-2 ">Chức vụ<span style="color:red">*</span>:</label>
+                <div class="col-md-4">
+                    <input type="text" id="Chucvu" placeholder="Nhập chức vụ hiện tại..."
+                           class=" form-control input-sm " ng-model="item.Chucvu">
+                </div>
+                <label class="control-label col-md-2 ">Vị trí:</label>
+                <div class="col-md-4">
+                    <input type="text" id="Vitri" placeholder="Nhập vị trí làm việc hiện tại..."
+                           class=" form-control input-sm " ng-model="item.Vitri">
+                </div>
+
+            </div>
+          
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Ghi chú:</label>
+                <div class="col-md-10">
+                    <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                </div>
+
+
+            </div>
+           
+            <div class="row">
+
+                <label class="control-label col-md-2"><i>Lưu ý: </i></label>
+
+                <div class="col-md-4">
+                    <div style="margin-top:7px"><i><span style="color:red">*</span> Bắt buộc nhập</i></div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save()"><i class="fa fa-save"></i> Lưu </a>
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save(1)"><i class="fa fa-save"></i> Lưu và thêm </a>
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+
+

@@ -423,6 +423,7 @@
     <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\AutoIDsController.cs" />
     <Compile Include="Controllers\DanhMuc\DanhMucChungController.cs" />
+    <Compile Include="Controllers\DanhMuc\DMCacThanhVienController.cs" />
     <Compile Include="Controllers\DonViController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
@@ -2986,7 +2987,7 @@
     <Content Include="js\ckeditor.js" />
     <Content Include="js\controllers\AccountController.js" />
     <Content Include="js\controllers\AreasController.js" />
-    <Content Include="js\controllers\DanhMuc\CanBoNhanVienController.js" />
+    <Content Include="js\controllers\DanhMuc\DMCacThanhVienController.js" />
     <Content Include="js\controllers\DanhMuc\DMChungController.js" />
     <Content Include="js\controllers\DashboardController.js" />
     <Content Include="js\controllers\DanhMuc\DMDiaBanController.js" />
@@ -3443,7 +3444,7 @@
     <Content Include="views-client\dashboard.html" />
     <Content Include="views-client\profile\account.html" />
     <Content Include="views-client\template\Areas.html" />
-    <Content Include="views-client\template\DanhMuc\CanBoNhanVien.html" />
+    <Content Include="views-client\template\DanhMuc\DMCacThanhVien.html" />
     <Content Include="views-client\template\DanhMuc\DMChung.html" />
     <Content Include="views-client\template\DanhMuc\DMDiaBan.html" />
     <Content Include="views-client\template\DanhMuc\DMDonVi.html" />
@@ -3456,6 +3457,7 @@
     <Content Include="views-client\template\Group.html" />
     <Content Include="views-client\template\MainMenu.html" />
     <Content Include="views-client\template\Menu.html" />
+    <Content Include="views-client\template\Modal\ModalDMCacThanhVien.html" />
     <Content Include="views-client\template\Modal\ModalChonOCung.html" />
     <Content Include="views-client\template\Modal\ModalConfig.html" />
     <Content Include="views-client\template\Modal\ModalDeleteBak.html" />

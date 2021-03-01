@@ -30,5 +30,6 @@ namespace WebApiCore.Models
         public string Ghichu { get; set; }
         public Nullable<int> IdDonvi { get; set; }
         public Nullable<int> Loai { get; set; }
+        public string SearchKey { get; set; }
     }
 }

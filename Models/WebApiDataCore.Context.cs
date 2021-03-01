@@ -134,7 +134,6 @@ namespace WebApiCore.Models
         public virtual DbSet<UnreadMe> UnreadMes { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
     
-        
         [DbFunction("WebApiDataEntities", "SplitStringToTable")]
         public virtual IQueryable<string> SplitStringToTable(string myString, string deliminator)
         {

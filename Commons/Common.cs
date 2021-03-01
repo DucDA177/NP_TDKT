@@ -692,6 +692,22 @@ namespace WebApiCore.Commons
             var base64EncodedBytes = System.Convert.FromBase64String(text);
             return Encoding.UTF8.GetString(base64EncodedBytes);
         }
-       
+        public static string RenderSearchKey(string Hodem, string Ten, string Mahoso, string Sohieu, string Sovaoso)
+        {
+            string Ho = Hodem.Split(' ')[0];
+            string searchName = Hodem + " " + Ten + " " + Common.ReplaceUnicode(Hodem + " " + Ten) + " "
+                + Ho + " " + Ten + " " + Common.ReplaceUnicode(Ho + " " + Ten);
+            string otherSearch = " " + Mahoso + " " + Sohieu + " " + Sovaoso;
+
+            return searchName + otherSearch;
+        }
+        public static string RenderSearchKey(string Hodem, string Ten)
+        {
+            string Ho = Hodem.Split(' ')[0];
+            string searchName = Hodem + " " + Ten + " " + Common.ReplaceUnicode(Hodem + " " + Ten) + " "
+                + Ho + " " + Ten + " " + Common.ReplaceUnicode(Ho + " " + Ten);
+
+            return searchName;
+        }
     }
 }
