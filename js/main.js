@@ -101,7 +101,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             { Code: 'CSTD', Name: 'Chiến sỹ thi đua' },
             { Code: 'LDTT', Name: 'Lao động tiên tiến' },
         ];
-        "abcd123"
+        
         $scope.optionsEditor = {
             height: 150,
             toolbar: [
