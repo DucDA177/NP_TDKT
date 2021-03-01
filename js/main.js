@@ -1021,9 +1021,5 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
 
             });
         }
-
-
-
-    
-
+        
     }]);
