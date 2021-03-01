@@ -102,14 +102,6 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             { Code: 'LDTT', Name: 'Lao động tiên tiến' },
         ];
         
-        $scope.optionsEditor = {
-            height: 150,
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline']],
-                ['para', ['ul', 'ol']]
-            ]
-        };
-
         $scope.DefaultArea = '30' // Tỉnh Hải Dương
         $scope.isHidePagebar = 0;
 

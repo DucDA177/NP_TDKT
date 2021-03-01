@@ -2989,6 +2989,7 @@
     <Content Include="js\controllers\AreasController.js" />
     <Content Include="js\controllers\DanhMuc\DMCacThanhVienController.js" />
     <Content Include="js\controllers\DanhMuc\DMChungController.js" />
+    <Content Include="js\controllers\DanhMuc\ThietLapGiayToController.js" />
     <Content Include="js\controllers\DashboardController.js" />
     <Content Include="js\controllers\DanhMuc\DMDiaBanController.js" />
     <Content Include="js\controllers\DanhMuc\DMDonViController.js" />
@@ -3448,6 +3449,7 @@
     <Content Include="views-client\template\DanhMuc\DMChung.html" />
     <Content Include="views-client\template\DanhMuc\DMDiaBan.html" />
     <Content Include="views-client\template\DanhMuc\DMDonVi.html" />
+    <Content Include="views-client\template\DanhMuc\ThietLapGiayTo.html" />
     <Content Include="views-client\template\EditArea.html" />
     <Content Include="views-client\template\EditGroup.html" />
     <Content Include="views-client\template\EditMainMenu.html" />
