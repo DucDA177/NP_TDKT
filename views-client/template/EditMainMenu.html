@@ -1,0 +1,42 @@
+﻿<div class="modal-header bg-color">
+    <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+    <h3 class="modal-title">Chỉnh sửa danh mục tổng</h3>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal">
+        <div class="form-group" style="display:none">
+            <label class="control-label col-md-3">Mã</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" disabled="disabled" ng-model="itemMainMenu.Id" name="Id">
+            </div>
+        </div>
+
+        <div class="form-group {{itemRoleError.ModelState.FCode[1]}}">
+            <label class="control-label col-md-3">Mã Danh mục</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" ng-model="itemMainMenu.FCode" name="FCode" id="FCode">
+                <span class="help-block"> {{ itemRoleError.ModelState.FCode[0] }} </span>
+            </div>
+        </div>
+
+        <div class="form-group {{itemRoleError.ModelState.FName[1]}}">
+            <label class="control-label col-md-3">Tên Danh mục</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" ng-model="itemMainMenu.FName" name="FName" id="FName">
+                <span class="help-block"> {{ itemRoleError.ModelState.FName[0] }} </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3">Mô tả Danh mục</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" ng-model="itemMainMenu.FDescription" name="FName">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn green-haze btn-outline sbold" ng-click="SaveModal()"> Cập nhật </button>
+    <button class="btn green-haze btn-outline sbold" ng-click="cancelModal()"> Thoát </button>
+</div>

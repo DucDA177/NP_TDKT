@@ -1,0 +1,110 @@
+﻿
+<div class="page-quick-sidebar" ng-controller="ChatController">
+    <div class="nav-justified">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active">
+                <a href="#quick_sidebar_tab_1" data-toggle="tab">
+                    - NHẮN TIN - <span ng-show="SelectedUser == null && MessageUnread != '0'" class="badge badge-danger">{{MessageUnread}}</span>
+                    <span class="font-green-haze">{{SelectedUser.HoTen}}</span>
+
+                </a>
+            </li>
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+                <div class="page-quick-sidebar-chat-users" data-rail-color="#ddd" data-wrapper-class="page-quick-sidebar-list">
+                    <h3 class="list-heading font-green-haze" ng-show="UserOnline.length > 0">Đang hoạt động</h3>
+                    <ul class="media-list list-items">
+                        <li class="media" ng-repeat="us in UserOnline" ng-click="OnSelectUser(us)">
+                            <div class="media-status">
+                                <span class="badge badge-danger" ng-show="us.ConnId != '0'">{{us.ConnId}}</span>
+                                
+                            </div>
+                            <img class="media-object"
+                                 ng-src="{{us.Avatar != null ? '../FILE_DINH_KEM/' + us.Avatar : '../FILE_DINH_KEM/noavatar.jpg'}}"
+                                 alt="...">
+                            <div class="media-body">
+                                <h4 class="media-heading">{{us.HoTen}} <i class="fa fa-circle font-green"></i></h4>
+                                <div class="media-heading-sub">
+                                    {{us.ChucVu}}
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <h3 class="list-heading">Tất cả người dùng</h3>
+                    <ul class="media-list list-items">
+                        <li class="media" ng-repeat="uss in allUser |orderBy:'-ConnId'" ng-click="OnSelectUser(uss)">
+                            <div class="media-status">
+                                <span class="badge badge-danger" ng-show="uss.ConnId != '0'">{{uss.ConnId}}</span>
+                                
+                            </div>
+                            <img class="media-object"
+                                 ng-src="{{uss.Avatar != null ? '../FILE_DINH_KEM/' + uss.Avatar : '../FILE_DINH_KEM/noavatar.jpg'}}"
+                                 alt="...">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    {{uss.HoTen}}
+                                    <i class="fa fa-circle font-green"
+                                       ng-show="UserOnline.includes(uss)"></i>
+                                </h4>
+                                <div class="media-heading-sub">
+                                    {{uss.ChucVu}}
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="page-quick-sidebar-item">
+                    <div class="page-quick-sidebar-chat-user">
+                        <div class="page-quick-sidebar-nav">
+                            <a href="javascript:;"
+                               ng-click="CloseChat()"
+                               class="page-quick-sidebar-back-to-list"><i class="icon-arrow-left"></i>Trở về</a>
+                           
+                        </div>
+                        <div id="message_div" class="page-quick-sidebar-chat-user-messages">
+
+                            <div class="post {{m.type}}" ng-repeat="m in allMess " on-finish-render="ngRepeatFinished">
+                                <img class="avatar" alt="" ng-src="{{m.us_send.Avatar != null ? '../FILE_DINH_KEM/' + m.us_send.Avatar : '../FILE_DINH_KEM/noavatar.jpg'}}" />
+                                <div class="message">
+                                    <span class="arrow"></span>
+                                    <a href="javascript:;" class="name">{{m.us_send.HoTen}}</a>
+                                    <span class="datetime">| {{m.time | date:'HH:mm-dd/MM/yy'}}</span>
+                                    <span class="body">
+                                        {{m.message}}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="page-quick-sidebar-chat-user-form" style="margin-top:-15px">
+                            <i ng-show="isTyping">{{SelectedUser.HoTen}} đang nhập tin nhắn...</i>
+                            <i style="color:black" ng-show="!isTyping">...</i>
+
+                            <div class="input-group">
+                                <input type="text"
+                                       ng-model="inputMess"
+                                       ng-enter="sendChatMessage()"
+                                       id="inputMes"
+                                       ng-keypress="checkIsTyping(true)"
+                                       ng-keyup="checkIsTyping(false)"
+                                       class="form-control" placeholder="Nhập tin nhắn...">
+                                <div class="input-group-btn">
+                                    <button type="button"
+                                            ng-click="sendChatMessage()"
+                                            class="btn btn-sm blue">
+                                        <i class="fa fa-send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

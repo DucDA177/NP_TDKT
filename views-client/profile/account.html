@@ -1,0 +1,151 @@
+﻿
+<div class="row ">
+    <div class="col-md-12" ng-controller="AccountController" ng-init="OnLoad()">
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                                <i class="icon-globe theme-font hide"></i>
+                                <span class="caption-subject font-green bold uppercase">Hồ sơ tài khoản</span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#" data-target="#tab_1_1" data-toggle="tab">Thông tin cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-target="#tab_1_3" data-toggle="tab">Đổi mật khẩu</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <!-- PERSONAL INFO TAB -->
+                                <div class="tab-pane active" id="tab_1_1">
+                                    <form role="form" action="#">
+                                        <div class="col-md-6">
+                                            <br />
+                                            <div class="form-group">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                                                        <img src="../../FILE_DINH_KEM/{{user.Avatar}}" alt="" style="width: 200px; height: 200px;" ng-show="!isSetAvatar" />
+                                                        <img ng-src="{{image_source}}" alt="" style="width: 200px; height: 200px;" ng-show="isSetAvatar" />
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"> </div>
+                                                    <div>
+                                                        <span class="btn default btn-file">
+                                                            <input type="file" id="file1" name="file" onchange="angular.element(this).scope().setFile(this)"
+                                                                   accept=".jpg,.png" ng-files="getTheFiles($files)" />
+                                                        </span>
+                                                        <!--<a  class="btn btn-danger" ng-click="uploadFiles()"> Upload </a>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-6">
+
+                                            <div class="form-group">
+                                                <label class="control-label">Họ và tên / Tên hiển thị</label>
+                                                <input type="text" ng-model="user.HoTen" class="form-control input-sm" maxlength="45" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Chức vụ</label>
+                                                <input type="text" ng-model="user.ChucVu" ng-readonly="true" class="form-control input-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Số điện thoại</label>
+                                                <input maxlength="15" class="floatnumber form-control input-sm"
+                                                       ng-model="user.Mobile" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Email</label>
+                                                <input type="email" ng-model="user.Email" id="Email" class="form-control input-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Địa chỉ</label>
+                                                <input type="text" ng-model="user.DiaChi" class="form-control input-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Tỉnh/Thành phố</label>
+                                                <select ng-model="user.IDTinh" ng-change="LoadProvin(itemUser.IDTinh,'','')" placeholder="Chọn tỉnh/thành" class="form-control input-sm form_user">
+                                                    <option ng-repeat="m in Provin" value="{{m.FCode}}">{{ m.FName }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Quận/Huyện</label>
+                                                <select ng-model="user.IDHuyen" ng-change="LoadProvin(itemUser.IDTinh,itemUser.IDHuyen,'')" class="form-control input-sm form_user">
+                                                    <option ng-repeat="m in District" value="{{m.FCode}}">{{ m.FName }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Xã/Phường</label>
+                                                <select ng-model="user.IDXa" class="form-control input-sm select2">
+                                                    <option ng-repeat="nl in Ward" value={{nl.FCode}}>{{nl.FName}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Tự động khóa màn hình sau ...{{user.LockScreenTime}}... phút</label>
+                                                <input type="number" min="0" ng-model="user.LockScreenTime" class="form-control input-sm" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6">
+                                                <a ng-click="uploadFiles()" class="btn btn-sm green-haze"><i class="fa fa-save"></i> Lưu thay đổi </a>
+
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <!-- END PERSONAL INFO TAB -->
+                                <!-- CHANGE PASSWORD TAB -->
+                                <div class="tab-pane" id="tab_1_3">
+                                    <form action="#">
+                                        <div class="form-group {{itemError.ModelState.OldPassword[1]}}">
+                                            <label class="control-label">Mật khẩu cũ</label>
+                                            <input type="password" ng-model="item.OldPassword" id="OldPassword" class="form-control" />
+                                        </div>
+                                        <div class="form-group {{itemError.ModelState.NewPassword[1]}}">
+                                            <label class="control-label">Mật khẩu mới</label>
+                                            <input type="password" ng-model="item.NewPassword" id="NewPassword" class="form-control" />
+                                        </div>
+                                        <div class="form-group {{itemError.ModelState.ConfirmPassword[1]}}">
+                                            <label class="control-label">Nhập lại mật khẩu mới</label>
+                                            <input type="password" ng-model="item.ConfirmPassword" id="ConfirmPassword" class="form-control" />
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <a ng-click="ChangePass()" class="btn green-haze"> Đổi mật khẩu </a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- END CHANGE PASSWORD TAB -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    
+    $('.floatnumber').keypress(function (eve) {
+        if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0)) {
+            eve.preventDefault();
+        }
+
+        // this part is when left part of number is deleted and leaves a . in the leftmost position. For example, 33.25, then 33 is deleted
+        $('.floatnumber').keyup(function (eve) {
+            if ($(this).val().indexOf('.') == 0) {
+                $(this).val($(this).val().substring(1));
+            }
+        });
+    });
+</script>

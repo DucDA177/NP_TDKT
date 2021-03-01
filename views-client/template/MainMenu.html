@@ -1,0 +1,101 @@
+﻿<!-- BEGIN PAGE HEADER-->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a ui-sref="dashboard">Trang chủ</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a ui-sref="formtools">Quản lý danh mục tổng</a>
+            <i class="fa fa-circle"></i>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" dropdown-menu-hover data-delay="1000" data-close-others="true">
+                Actions
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li>
+                    <a href="#">
+                        <i class="icon-user"></i> New User
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-present"></i> New Event
+                        <span class="badge badge-success">4</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-basket"></i> New order
+                    </a>
+                </li>
+                <li class="divider"> </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-flag"></i> Pending Orders
+                        <span class="badge badge-danger">4</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-users"></i> Pending Users
+                        <span class="badge badge-warning">12</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h3 class="page-title">
+    Quản lý danh mục tổng
+</h3>
+<!-- END PAGE HEADER-->
+<div class="row" ng-controller="MainMenuController">
+    <div class="col-md-12">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
+                    <span class="caption-subject font-green bold uppercase">Danh sách</span>
+                    <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">click to view project list</span>
+                </div>
+                <div class="actions">
+                    <a href="javascript:;" class="btn green-haze btn-outline sbold" ng-click="openEditMainMenuModal()">
+                        <i class="fa fa-plus"></i>&nbsp; Thêm mới
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th align="center"> # </th>
+                            <th> Mã </th>
+                            <th> Tên </th>
+                            <th> Mô tả </th>
+                            <th> Ngày tạo </th>
+                            <th align="center"> # </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX" ng-repeat="Menu in MainMenu">
+                            <td align="center"><a ng-show="AuthorizationPermission('EDIT',$stateParams.param.FCode)" ng-click="openEditMainMenuModal(Menu)"> <i class="fa fa-edit"></i> </a></td>
+                            <td align="left"> {{ Menu.FCode }} </td>
+                            <td> {{ Menu.FName }} </td>
+                            <td> {{ Menu.FDescription }} </td>
+                            <td> {{ Menu.FCreateTime | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+                            <td align="center"> <a ng-show="AuthorizationPermission('DELETE',$stateParams.param.FCode)"><i class="fa fa-times font-red" ng-click="DeleteMainMenu(Menu.Id);"></i></a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END PORTLET-->
+    </div>
+</div>

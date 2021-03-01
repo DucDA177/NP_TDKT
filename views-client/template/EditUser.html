@@ -1,0 +1,136 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+    <h3 class="modal-title font-white">Quản lý người sử dụng</h3>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal margin-top-15">
+
+        <div class="row ">
+            <label class="control-label col-md-2">Tên đăng nhập: <span style="color:red">*</span></label>
+            <div class="col-md-4 {{itemUserError.ModelState.UserName[1]}}">
+                <input type="text" class="form-control input-sm"
+                       ng-model="itemUser.UserName" ng-disabled="disabled">
+                <span class="help-block"> {{ itemUserError.ModelState.UserName[0] }} </span>
+            </div>
+            <label class="control-label col-md-2">Họ & Tên:</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.HoTen">
+            </div>
+        </div>
+        <div class="row margin-bottom-5">
+            <label class="control-label col-md-2">Giới tính:</label>
+            <div class="col-md-4">
+                <select ng-model="itemUser.GioiTinh" class="form-control form_user input-sm">
+                    <option ng-repeat="gt in GioiTinh" value="{{gt.Name}}">{{gt.Name}}</option>
+                </select>
+            </div>
+            <label class="control-label col-md-2">Ngày sinh:</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.NgaySinh">
+            </div>
+        </div>
+        <div class="row margin-bottom-5">
+            <label class="control-label col-md-2">Số điện thoại: </label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.Mobile">
+
+            </div>
+            <label class="control-label col-md-2">Email: </label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.Email">
+
+            </div>
+        </div>
+        <div class="row margin-bottom-5 ">
+            <label class="control-label col-md-2">Địa chỉ:</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.DiaChi" name="Id">
+            </div>
+            <label class="control-label col-md-2">Tỉnh/thành phố:</label>
+            <div class="col-md-4">
+                <select ng-model="itemUser.IDTinh" ng-change="LoadProvin(itemUser.IDTinh,'','')" placeholder="Chọn tỉnh/thành" class="form-control input-sm form_user">
+                    <option ng-repeat="m in Provin" value="{{m.FCode}}">{{ m.FName }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row margin-bottom-5 ">
+            <label class="control-label col-md-2">Quận/Huyện:</label>
+            <div class="col-md-4">
+                <select ng-model="itemUser.IDHuyen" ng-change="LoadProvin(itemUser.IDTinh,itemUser.IDHuyen,'')" class="form-control input-sm form_user">
+                    <option ng-repeat="m in District" value="{{m.FCode}}">{{ m.FName }}</option>
+                </select>
+            </div>
+            <label class="control-label col-md-2">Xã/Phường:</label>
+            <div class="col-md-4">
+                <select ng-model="itemUser.IDXa"  class="form-control input-sm form_user">
+                    <option ng-repeat="m in Ward" value="{{m.FCode}}">{{ m.FName }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row margin-bottom-5 ">
+            <label class="control-label col-md-2">Đơn vị<span style="color:red">*</span>:</label>
+            <div class="col-md-4">
+                <select ng-model="itemUser.IDDonVi" id="DonVi" class="form-control form_user" 
+                        ng-disabled="user.DaiDien == true && checkAdmin == false" convert-to-number>
+                    <option ng-repeat="c in DonVi" value="{{c.Id}}">{{c.TenDonVi }}</option>
+                </select>
+            </div>
+            <label class="control-label col-md-2">Chức vụ: </label>
+            <div class="col-md-4">
+                <input type="text" class="form-control input-sm" ng-model="itemUser.ChucVu">
+
+            </div>
+        </div>
+        <div ng-hide="user.DaiDien == true && checkAdmin == false">
+            <div class="row  margin-top-10">
+
+                <label class="control-label col-md-2">Nhóm chức năng: </label>
+
+                <div class="col-md-4">
+                    <select ng-model="itemGroup" class="form-control  select-checkbox-fa" multiple ng-disabled="checkDisable">
+                        <option ng-repeat="c in Group" value="{{c.FCode}}">
+                            {{c.FName }}
+                        </option>
+                    </select>
+                    <i>(Nhấn giữ phím CTRL để chọn nhiều nhóm)</i>
+                </div>
+
+                <label class="control-label col-md-2">Đại diện đơn vị: </label>
+
+                <div class="col-md-4">
+                   
+                    <div class="input-group">
+                        <div class="icheck-inline">
+                            <label>
+                                <input ng-model="itemUser.DaiDien" type="checkbox" class="icheck">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+         
+        </div>
+        <div class="row" style="font-style:italic">
+
+            <label class="control-label col-md-2">Lưu ý: </label>
+
+            <div class="col-md-4">
+                <div style="margin-top:7px"><span style="color:red">*</span> Bắt buộc nhập</div>
+            </div>
+
+        </div>
+        <div class="form-group margin-top-10" style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-10 clearfix">
+                <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </a>
+                <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal(1)"><i class="fa fa-save"></i> Lưu và thêm </a>
+                <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+

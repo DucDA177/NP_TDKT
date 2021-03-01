@@ -1,0 +1,58 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+  
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+        <h4>
+            <label class=" uppercase font-white">
+                <i class="fa fa-history"></i> PHỤC HỒI DỮ LIỆU BẢN SAO LƯU MÃ {{ item.Id }} lúc {{item.TimeBackup | date :'HH:mm - dd/MM/yyyy'}}
+            </label>
+        </h4>
+
+    </div>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+
+                <label class="control-label bold">
+                    <input type="checkbox" ng-disabled="!item.LinkDatabase" ng-model="dtb" /> Phục hồi Cơ sở dữ liệu( {{item.LinkDatabase}} )
+                </label> <br />
+                <label class="control-label bold">
+                    <input type="checkbox" ng-disabled="!item.LinkDataNCC" ng-model="hsncc" /> Phục hồi Hồ sơ NCC( {{item.LinkDataNCC}} )
+                </label>
+
+            </div>
+        </div>
+        <div class="row margin-top-10" ng-show="progress">
+            <div class="col-md-12">
+                <i> {{progress < 100 ? 'Vui lòng đợi trong quá trình phục dữ liệu...' : 'Hoàn tất phục hồi dữ liệu...' }} </i>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}"
+                         aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+                        <b> {{progress}} % </b>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-sm btn-success" ng-click="Restore()"><i class="fa fa-history"></i> Tiến hành phục hồi </a>
+
+            <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+</script>

@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-ng-app="WebApiApp">
+<head>
+    <meta charset="utf-8">
+    <title>PHẦN MỀM QUẢN LÝ THI ĐUA KHEN THƯỞNG</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <link href="fonts/barcode128.css" rel="stylesheet" />
+    <link href="fonts/barcode39.css" rel="stylesheet" />
+    <link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+    <link id="ng_load_plugins_before" />
+    <!-- END DYMANICLY LOADED CSS FILES -->
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/pages/css/profile.css" rel="stylesheet" type="text/css" />
+    <link href="assets/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+    <link href="js/scripts/angular-ui-tree.min.css" rel="stylesheet" />
+    <link href="CSS/style-new.css" rel="stylesheet" />
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/global/plugins/jquery-multi-select/css/multi-select.css" />
+    <!-- BEGIN THEME STYLES -->
+    <link href="assets/global/plugins/angularjs/plugins/ui-select/select.min.css" rel="stylesheet" />
+
+    <link href="assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
+
+    <link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link id="style_color" href="assets/layouts/layout/css/themes/light2.css" rel="stylesheet" type="text/css" />
+    <link href="assets/layouts/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="assets/global/plugins/magnify/jquery.magnify.css" rel="stylesheet" />
+
+</head>
+
+<body ng-controller="AppController"
+      class="page-header-fixed page-quick-sidebar-over-content page-full-width">
+
+    <!-- BEGIN PAGE SPINNER -->
+    <div ng-spinner-bar="" class="page-spinner-bar">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+    <!-- END PAGE SPINNER -->
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <div data-ng-include="'tpl/header.html'" data-ng-controller="HeaderController"> </div>
+
+    </div>
+    <div class="clearfix">
+    </div>
+
+    <div class="page-container">
+        <div class="page-sidebar-wrapper">
+            <div data-ng-include="'tpl/sidebar.html'" data-ng-controller="SidebarController"> </div>
+
+        </div>
+        <div class="page-content-wrapper">
+            <div class="page-content" style="background-color:white !important">
+
+                <div class="row" style="margin-top: -20px">
+
+                    <div ui-view="" class="fade-in-up"> </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <a href="javascript:;" class="page-quick-sidebar-toggler" ng-click="toggleChat()"><i class="icon-close"></i></a>
+        <div class="page-quick-sidebar-wrapper">
+            <div data-ng-include="'tpl/quick-sidebar.html'" data-ng-controller="QuickSidebarController"
+                 onload="Onloaded()"></div>
+
+        </div>
+
+    </div>
+    <div class="clearfix">
+    </div>
+    <div class="page-footer">
+        <div data-ng-include="'tpl/footer.html'" data-ng-controller="FooterController" class="page-footer"> </div>
+    </div>
+
+    <script src="assets/global/plugins/pdfjs/pdf.min.js"></script>
+
+    <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+    <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <!-- END CORE JQUERY PLUGINS -->
+    <!-- BEGIN CORE ANGULARJS PLUGINS -->
+    <script src="assets/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-sanitize.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-cookies.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/angular-touch.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/angularjs/plugins/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+
+    <!--<script src="js/scripts/angular-summernote.min.js"></script>-->
+
+    <script src="js/main.js" type="text/javascript"></script>
+
+    <script src="js/customjs/angular-filter.js"></script>
+
+    <script src="js/dirPagination.js" type="text/javascript"></script>
+
+
+
+
+    <script src="js/ModelController.js"></script>
+
+    <script src="assets/global/plugins/angularjs/plugins/ui-select/select.min.js"></script>
+
+
+    <!-- END APP LEVEL ANGULARJS SCRIPTS -->
+    <!-- BEGIN APP LEVEL JQUERY SCRIPTS -->
+    <script src="assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+
+    <script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/ui-tree.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/components-select2.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/jstree/dist/jstree.min.js" type="text/javascript"></script>
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
+    <script src="assets/global/plugins/jquery.input-ip-address-control-1.0.min.js"></script>
+    <script src="assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="assets/global/plugins/select2/js/select2.min.js"></script>
+    <script src="assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+    <script src="assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/fullcalendar/lib/moment.min.js"></script>
+    <script src="assets/pages/scripts/ui-confirmations.js"></script>
+    <script src="assets/pages/scripts/ui-general.js" type="text/javascript"></script>
+    <script src="assets/pages/scripts/ui-blockui.js"></script>
+
+    <script src="assets/pages/scripts/form-input-mask.js"></script>
+    <script src="js/customjs/angular-datetime.js"
+            type="text/javascript"></script>
+    <script src="js/customjs/fn.js"></script>
+
+    <script src="js/scripts/FileSave.js"></script>
+
+
+    <script src="assets/global/plugins/datatables/datatables.min.js"></script>
+    <script src="assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+
+    <script src="js/customjs/ngStorage.js"></script>
+    <script src="js/customjs/ngStorage.min.js"></script>
+
+    <script src="js/customjs/select2.multi-checkboxes.js"></script>
+    <script src="assets/global/plugins/bootbox/bootbox.min.js"></script>
+
+    <script src="assets/global/plugins/amcharts4/core.js"></script>
+    <script src="assets/global/plugins/amcharts4/charts.js"></script>
+    <script src="assets/global/plugins/amcharts4/themes/animated.js"></script>
+    <!-- END APP LEVEL JQUERY SCRIPTS -->
+    <!-- END JAVASCRIPTS -->
+    <!-- Load Facebook SDK for JavaScript -->
+
+    <script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="assets/layouts/layout/scripts/demo.js" type="text/javascript"></script>
+    <script src="js/directives.js" type="text/javascript"></script>
+    <script src="js/controllers/ChatController.js"></script>
+
+    <script src="Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="signalr/hubs"></script>
+
+    <script src="assets/global/plugins/magnify/jquery.magnify.js"></script>
+
+</body>
+
+</html>

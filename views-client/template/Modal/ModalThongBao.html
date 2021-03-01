@@ -1,0 +1,100 @@
+﻿<div ng-init="OnLoad()">
+    <div class="modal-header bg-color" style="background-color:#ccc">
+        <div class="modal-title">
+            <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Tạo mới thông báo</label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row margin-bottom-5">
+
+                <div class="{{itemError.ModelState.NoiDung[1]}}">
+                    <label class="control-label col-md-2">Nội dung  <span style="color:red">*</span>:</label>
+                    <div class="col-md-10">
+
+                        <textarea rows="3" class="form-control input-sm" ng-model="item.NoiDung"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-bottom-5">
+
+                <div class="{{itemError.ModelState.DonViNhan[1]}}">
+                    <label class="control-label col-md-2">Người nhận:</label>
+                    <div class="col-md-10">
+                        <select multiple name="sel-02" id="sel-02" class="select2 select2-selection--multiple" 
+                                data-placeholder="Chọn các người dùng được nhận thông báo" ng-model="CacDonVi">
+
+                            <option ng-repeat="dv in allUser" value="{{dv.Id}}">
+                                {{dv.HoTen}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row margin-bottom-5">
+
+               
+                    <label class="control-label col-md-2"></label>
+                    <div class="col-md-10">
+                        <i> Bỏ trống nếu gửi đến tất cả các người dùng</i>
+                    </div>
+               
+
+
+            </div>
+            <div class="row">
+                <label class="control-label col-md-2">Hiển thị:</label>
+                <div class="col-md-1">
+                    <input type="checkbox" class="input-sm" ng-model="item.FInUse">
+                </div>
+                <label class="control-label col-md-2"><i>Lưu ý: </i></label>
+
+                <div class="col-md-4">
+                    <div style="margin-top:7px"><i><span style="color:red">*</span> Bắt buộc nhập</i></div>
+                </div>
+
+            </div>
+
+            <div class="form-group " style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10 clearfix">
+                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </a>
+                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveAndNew()"><i class="fa fa-save"></i> Lưu và thêm </a>
+                    <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.btn').addClass('input-sm');
+        $('.form-control').addClass('input-sm');
+
+    })
+    $('.floatnumber').keypress(function (eve) {
+        if ((eve.which != 46 || $(this).val().indexOf('.') != -1) && (eve.which < 48 || eve.which > 57) || (eve.which == 46 && $(this).caret().start == 0)) {
+            eve.preventDefault();
+        }
+
+        // this part is when left part of number is deleted and leaves a . in the leftmost position. For example, 33.25, then 33 is deleted
+        $('.floatnumber').keyup(function (eve) {
+            if ($(this).val().indexOf('.') == 0) {
+                $(this).val($(this).val().substring(1));
+            }
+        });
+    });
+</script>
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+</script>

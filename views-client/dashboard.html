@@ -1,0 +1,174 @@
+﻿
+<style>
+    #chartdivPhanLoaiHS {
+        width: 100%;
+        height: 400px;
+    }
+
+    #chartdivPhanLoaiPhieu {
+        width: 100%;
+        height: 400PX;
+    }
+
+    #chartdivPhanLoaiHoSoMuon {
+        width: 100%;
+        height: 400px;
+    }
+</style>
+
+<div class="col-md-12">
+
+    <h4> <label class=" col-md-12 uppercase font-green"><i class="fa fa-home"></i> TRANG CHỦ - PHẦN MỀM QUẢN LÝ THI ĐUA KHEN THƯỞNG</label></h4>
+
+</div>
+<!--<div class="col-md-12 margin-top-10" style="width:100%">
+    <div class="col-md-2">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-ticket"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.dki | number}}
+                </div>
+                <div class="desc">
+                    Hồ sơ đăng ký
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-ticket"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.hsm | number}}
+                </div>
+                <div class="desc">
+                    Hồ sơ đang mượn
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="dashboard-stat red-intense">
+            <div class="visual">
+                <i class="fa fa-paper-plane"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.hsdc | number}}
+                </div>
+                <div class="desc">
+                    Hồ sơ đã di chuyển
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="dashboard-stat green-haze">
+            <div class="visual">
+                <i class="fa fa-copy "></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.hssl | number}}
+                </div>
+                <div class="desc">
+                    Hồ sơ sao lục
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-ticket"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.tansuat | number}}
+                </div>
+                <div class="desc">
+                    Tần suất mượn/trả
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="dashboard-stat purple-plum">
+            <div class="visual">
+                <i class="fa fa-book"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    {{SoLuongHS.tong | number}}
+                </div>
+                <div class="desc">
+                    Tổng số hồ sơ
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>-->
+
+<div class="row">
+    <div class="col-md-12 margin-top-20">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">Từ ngày</span>
+                <input type="text"
+                       ng-enter="LoadPhanLoaiPhieu();LoadPhanLoaiHoSoMuon()"
+                       placeholder="Ngày/Tháng/Năm"
+                       datetime="dd/MM/yyyy"
+                       class="form-control input-sm"
+                       ng-model="Tungay"
+                       datetime-separator=",.-/" />
+            </div>
+        </div>
+        <div class=" col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">Đến ngày</span>
+                <input type="text"
+                       ng-enter="LoadPhanLoaiPhieu();LoadPhanLoaiHoSoMuon()"
+                       placeholder="Ngày/Tháng/Năm"
+                       datetime="dd/MM/yyyy"
+                       class="form-control input-sm"
+                       ng-model="Denngay"
+                       datetime-separator=",.-/" />
+                <span class="input-group-addon" ng-click="LoadPhanLoaiPhieu();LoadPhanLoaiHoSoMuon()">
+                    <a><i class="fa fa-search"></i></a>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="col-md-6 margin-top-40">
+        <div class="margin-top-15" id="chartdivPhanLoaiPhieu"></div>
+
+    </div>
+    <div class="col-md-6 margin-top-40">
+        <div id="chartdivPhanLoaiHoSoMuon"></div>
+
+    </div>
+
+</div>
+
+<div class="col-md-12 margin-top-40">
+    <div id="chartdivPhanLoaiHS"></div>
+</div>
+<!--<a ng-click="InMaVach('42M')">In lại Mã vạch</a>-->
+<!--<a ng-click="EditSaiTen()">Sửa sai tên</a>-->
+<!--<a ng-click="ImportMuonGanNhat()">Import Mượn gần nhất</a>-->
+<!--<a ng-click="ImportPhieu()">Import Phiếu</a> <br />
+<a ng-click="ImportHSM()">Import Hồ sơ mượn</a><br />
+<a ng-click="ImportKtraHoso()">Import Ktra hồ sơ</a><br />-->
+<!--<a ng-click="ImportListHoSo()">Import Hồ sơ mới</a>-->
+<script>
+   
+    ComponentsSelect2.init();
+</script>

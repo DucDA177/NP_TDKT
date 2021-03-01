@@ -1,0 +1,288 @@
+﻿<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> XỬ LÝ YÊU CẦU</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+    <div class="tabbable-custom portlet box margin-top-10">
+        <ul class="nav nav-tabs ">
+            <li class="active">
+                <a id="clickTab1" data-target="#tab_1" data-toggle="tab" aria-expanded="true" class="bold">
+                    Đặt lại mật khẩu
+                </a>
+            </li>
+            <li>
+                <a id="clickTab2" data-target="#tab_2" data-toggle="tab" aria-expanded="true" class="bold">
+                    Khóa/ Mở khóa hồ sơ
+                </a>
+            </li>
+
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active " id="tab_1" ng-controller="DatLaiMatKhauController">
+
+                <div class="row">
+                    <div class="portlet light " style="margin-bottom:0">
+
+                        <div class="form-body form-horizontal col-md-12">
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+
+                                    <div class="table-scrollable ">
+                                        <!-- BEGIN FORM-->
+                                        <table class="table table-striped table-bordered table-hover"
+                                               id="fixTable">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px">
+
+                                                    <th style="border:solid 1px"> <div style="text-align:center">STT</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Tài khoản</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Nội dung </div> </th>
+                                                    <th style="border:solid 1px"><div style="text-align:center">Thời gian</div>  </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Trạng thái</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd gradeX" ng-repeat="dm in ListYCDoiMK">
+
+                                                    <td style="border:solid 1px"> {{$index +1}} </td>
+                                                    <td style="border:solid 1px"> <a ng-click="ResetPass(dm)"> {{dm.NguoiGui}} </a></td>
+                                                    <td style="border:solid 1px">
+                                                        {{dm.NoiDung}}
+                                                    </td>
+                                                    <td style="border:solid 1px"> {{dm.NgayGui | date:'HH:mm - dd/MM/yyyy'}}</td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <label ng-show="dm.TrangThai == 1" class="label label-warning"> Tiếp nhận </label>
+                                                        <label ng-show="dm.TrangThai == 2" class="label label-success"> Đã xử lý </label>
+
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="ResetPass(dm)" title="Đặt lại mật khẩu"><i class="fa fa-history"></i></a>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a title="Xóa" ng-click="Del(dm.Id,LoadYCDoiMK)"><i class="fa fa-trash font-red"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="pull-left col-md-3">
+                                    <div class="input-group col-md-12">
+                                        <span class="input-group-addon"> Hiển thị </span>
+                                        <select ng-model="Paging.pageSize"
+                                                ng-options="template.value as template.text for template in displayPage"
+                                                ng-change="LoadYCDoiMK()" class="form-control select2"></select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <!--<div id="displayPage"></div>-->
+                                    <div class="pull-right" style="margin-top:-10px">
+                                        <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                                            <div class="pagination-panel">
+                                                Trang
+                                                <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                                           class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                                           maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadYCDoiMK()"
+                                                           ng-model-options="{updateOn: 'change'}">
+                                                <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                                                <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="tab_2" ng-controller="MoKhoaHoSoController">
+                <div class="row">
+                    <div class="portlet light " style="margin-bottom:0">
+                        <div class="form-body form-horizontal col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-2" style="margin-top:3px">
+                                    Loại HS
+                                    <select ng-model="Paging.MaLoaiHoSo" 
+                                            
+                                            class="form-control input-sm select2" ng-change="LoadYCMoKhoaHS()" id="LoaiHS">
+                                        <option value="0">---Tất cả---</option>
+                                        <option ng-repeat="nl in LoaiHoSo" value={{nl.Ma}}>{{nl.Ten}}</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-2" style="margin-top:3px">
+                                    Trạng thái hồ sơ
+                                    <select ng-model="Paging.IsLock" convert-to-number 
+                                            
+                                            class="form-control input-sm select2" ng-change="LoadYCMoKhoaHS()"
+                                            id="IsLock">
+                                        <option value="2">---Tất cả---</option>
+                                        <option value="0">Đang mở</option>
+                                        <option value="1">Đã khóa</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    Họ và tên đầy đủ
+
+                                    <input type="text" ng-model="Paging.HoTen"
+                                           class="form-control input-sm " placeholder="Nhập đầy đủ Họ đệm và tên..."
+                                           ng-enter="LoadYCMoKhoaHS()">
+
+                                </div>
+                                <div class="col-md-2">
+                                    Số hồ sơ
+                                    <input type="text" ng-model="Paging.SoHS"
+                                           class="form-control input-sm " placeholder="Nhập số hồ sơ..."
+                                           ng-enter="LoadYCMoKhoaHS()">
+                                </div>
+                                <div class="col-md-2">
+                                    Nguyên quán
+                                    <input type="text" ng-model="Paging.NguyenQuan"
+                                           class="form-control input-sm " placeholder="Nhập nguyên quán..."
+                                           ng-enter="LoadYCMoKhoaHS()">
+                                </div>
+                                <div class="col-md-2">
+                                    Người yêu cầu
+                                    <div class="input-group">
+                                        <input type="text" ng-model="Paging.NguoiGui"
+                                               class="form-control input-sm " placeholder="Nhập tên người yêu cầu ..."
+                                               ng-enter="LoadYCMoKhoaHS()">
+                                        <a class="input-group-addon" ng-click="LoadYCMoKhoaHS()">
+                                            <i class="fa fa-search font-blue"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="table-scrollable ">
+                                        <!-- BEGIN FORM-->
+                                        <table class="table table-striped table-bordered table-hover"
+                                               id="fixTable">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px">
+
+                                                    <th style="border:solid 1px"> <div style="text-align:center">STT</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Vị trí lưu</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Số hồ sơ</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Họ và tên</div> </th>
+                                                    <th style="border:solid 1px"><div style="text-align:center">Nguyên quán</div>  </th>
+                                                    <th style="border:solid 1px"><div style="text-align:center">Loại hồ sơ</div>  </th>
+                                                    <th style="border:solid 1px"><div style="text-align:center">TT Hồ sơ</div>  </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Người yêu cầu</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">TT Yêu cầu</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd gradeX" ng-repeat="dm in ListYCMoKhoaHS">
+
+                                                    <td style="border:solid 1px"> {{$index +1}} </td>
+                                                    <td style="border:solid 1px"> {{dm.hs.HopSo}} </td>
+                                                    <td style="border:solid 1px">
+                                                        {{dm.hs.SoHS}}
+                                                    </td>
+                                                    <td style="border:solid 1px"> {{dm.hs.HoTen}}</td>
+                                                    <td style="border:solid 1px">{{dm.hs.NguyenQuan}}</td>
+                                                    <td style="border:solid 1px">{{dm.dm.Ten}}</td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <label ng-show="dm.hs.IsLock == 1" class="label label-danger">
+                                                            <i class="fa fa-lock"></i> Đã khóa
+                                                        </label>
+                                                        <label ng-show="dm.hs.IsLock != 1" class="label label-primary">
+                                                            <i class="fa fa-unlock"></i> Đang mở
+                                                        </label>
+                                                    </td>
+                                                    <td style="border:solid 1px">{{dm.tb.NguoiGui}}</td>
+
+                                                    <td style="border:solid 1px" align="center">
+                                                        <label ng-show="dm.tb.TrangThai == 1" class="label label-warning"> Tiếp nhận </label>
+                                                        <label ng-show="dm.tb.TrangThai == 2" class="label label-success"> Đã xử lý </label>
+
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="MoKhoaHS(dm)" ng-show="dm.hs.IsLock == 1" title="Mở khóa hồ sơ"><i class="fa fa-key"></i></a>
+                                                        <a ng-click="KhoaHS(dm)" ng-show="dm.hs.IsLock != 1" title="Khóa hồ sơ"><i class="fa fa-lock"></i></a>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a title="Xóa" ng-click="Del(dm.tb.Id,LoadYCMoKhoaHS)"><i class="fa fa-trash font-red"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="pull-left col-md-3">
+                                    <div class="input-group col-md-12">
+                                        <span class="input-group-addon"> Hiển thị </span>
+                                        <select ng-model="Paging.pageSize"
+                                                ng-options="template.value as template.text for template in displayPage"
+                                                ng-change="LoadYCMoKhoaHS()" class="form-control select2"></select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <!--<div id="displayPage"></div>-->
+                                    <div class="pull-right" style="margin-top:-10px">
+                                        <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                                            <div class="pagination-panel">
+                                                Trang
+                                                <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                                           class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                                           maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadYCMoKhoaHS()"
+                                                           ng-model-options="{updateOn: 'change'}">
+                                                <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                                                <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        ComponentsSelect2.init();
+
+    });
+
+</script>
+
+

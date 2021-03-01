@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-md-4 range-label">
+        Hiển thị <b class="text-danger">{{ range.lower }}</b> - <b class="text-danger">{{ range.upper }}</b> trong tổng số <b class="text-danger">{{ range.total }}</b> bản ghi
+    </div>
+    <div class="col-md-8">
+        <div class="pull-right">
+            <ul class="pagination" ng-if="1 < pages.length || !autoHide">
+                <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(1)">Trang đầu</a>
+                </li>
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == 1 }">
+                    <a href="" ng-click="setCurrent(pagination.current - 1)">Trước</a>
+                </li>
+                <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }">
+                    <a href="" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+                </li>
+
+                <li ng-if="directionLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.current + 1)">Sau</a>
+                </li>
+                <li ng-if="boundaryLinks" ng-class="{ disabled : pagination.current == pagination.last }">
+                    <a href="" ng-click="setCurrent(pagination.last)">Trang cuối</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>

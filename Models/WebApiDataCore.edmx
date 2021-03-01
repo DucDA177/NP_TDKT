@@ -1,0 +1,2675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebApiDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FDescription" Type="nvarchar(max)" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="100" />
+          <Property Name="FUserEdit" Type="nvarchar" MaxLength="100" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="100" />
+          <Property Name="FUserDelete" Type="nvarchar" MaxLength="100" />
+          <Property Name="FIsDelete" Type="bit" />
+          <Property Name="FIsEdit" Type="bit" />
+          <Property Name="FIsUpdate" Type="bit" />
+          <Property Name="FViewTime" Type="datetime" />
+          <Property Name="FEditTime" Type="datetime" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FDeleteTime" Type="datetime" />
+          <Property Name="FLanguage" Type="nvarchar" MaxLength="100" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="Parent" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="SearchKey" Type="nvarchar(max)" />
+          <Property Name="IsUnit" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDVung" Type="bigint" />
+          <Property Name="IDKhuVuc" Type="bigint" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="50" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="FUpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AutoID">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Counter" Type="bigint" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DMDonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STT" Type="int" Nullable="false" />
+          <Property Name="MaDonVi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar(max)" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+          <Property Name="LoaiDonVi" Type="nvarchar(max)" />
+          <Property Name="IDDVCha" Type="int" />
+          <Property Name="NhomLoai" Type="nvarchar(max)" />
+          <Property Name="SoDiemTruong" Type="nvarchar(max)" />
+          <Property Name="TenLanhDao" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="IDTinh" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDHuyen" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDXa" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="DienThoai" Type="nvarchar(max)" />
+          <Property Name="Fax" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="LoaiHinh" Type="nvarchar(max)" />
+          <Property Name="IDLoaiTruong" Type="int" />
+          <Property Name="ThongTinKhac" Type="nvarchar(max)" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="TTGui" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FILE_DINH_KEM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="20" />
+          <Property Name="SearchKey" Type="nvarchar(max)" />
+          <Property Name="DuongDanFile" Type="nvarchar(max)" />
+          <Property Name="DocumentID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Group_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="CodeMenu" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeGroup" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Group_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Menu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FCreateTime" Type="datetime" />
+          <Property Name="FUpdateTime" Type="datetime" />
+          <Property Name="FUserCreate" Type="nvarchar" MaxLength="20" />
+          <Property Name="FUserApprove" Type="nvarchar" MaxLength="20" />
+          <Property Name="FApproveTime" Type="datetime" />
+          <Property Name="FStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="FIndex" Type="int" />
+          <Property Name="FLevel" Type="int" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="FBranchCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="MainMenu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentMenu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TemplateUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Permission" Type="nvarchar" MaxLength="200" />
+          <Property Name="FUserUpdate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdNguoigui" Type="bigint" />
+          <Property Name="Tinnhan" Type="nvarchar(max)" />
+          <Property Name="Thoigian" Type="datetime" />
+          <Property Name="IdNguoinhan" Type="bigint" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="NhatKySuDung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThaoTac" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TenBang" Type="nvarchar(max)" />
+          <Property Name="IdDonVi" Type="bigint" />
+          <Property Name="NgayGio" Type="datetime" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblDanhmuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STT" Type="int" />
+          <Property Name="Ma" Type="nvarchar(max)" />
+          <Property Name="Ten" Type="nvarchar(max)" />
+          <Property Name="Viettat" Type="nvarchar(max)" />
+          <Property Name="Maloai" Type="nvarchar(max)" />
+          <Property Name="IdCha" Type="int" />
+          <Property Name="TTKhac1" Type="nvarchar(max)" />
+          <Property Name="TTKhac2" Type="nvarchar(max)" />
+          <Property Name="TTKhac3" Type="nvarchar(max)" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+          <Property Name="FInUse" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblDoituong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hodem" Type="nvarchar(max)" />
+          <Property Name="Ten" Type="nvarchar(max)" />
+          <Property Name="Gioitinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngaysinh" Type="date" />
+          <Property Name="Dantoc" Type="nvarchar(max)" />
+          <Property Name="SoCMND" Type="nvarchar(max)" />
+          <Property Name="Diachi" Type="nvarchar(max)" />
+          <Property Name="Sdt" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Chucvu" Type="nvarchar(max)" />
+          <Property Name="Vitri" Type="nvarchar(max)" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+          <Property Name="IdDonvi" Type="int" />
+          <Property Name="Loai" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDoituongKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDoituong" Type="bigint" />
+          <Property Name="IdKhenthuong" Type="bigint" />
+          <Property Name="Ngaydenghi" Type="date" />
+          <Property Name="Ngayduyet" Type="date" />
+          <Property Name="Nam" Type="int" />
+          <Property Name="IdDonvi" Type="int" />
+          <Property Name="MaDanhhieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trangthai" Type="int" />
+          <Property Name="TieuchiDat" Type="nvarchar(max)" />
+          <Property Name="TieuchiKoDat" Type="nvarchar(max)" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDoituongThanhtich">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDoituong" Type="bigint" />
+          <Property Name="Ngaytao" Type="date" />
+          <Property Name="IdTieuchi" Type="int" />
+          <Property Name="Diem" Type="float" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblGiaytoDanhhieu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDanhhieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGiayto" Type="int" />
+        </EntityType>
+        <EntityType Name="tblGiaytoKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDTKT" Type="bigint" />
+          <Property Name="MaDanhhieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGiayto" Type="int" />
+          <Property Name="Duongdan" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" />
+          <Property Name="Nam" Type="int" />
+          <Property Name="Ngaydenghi" Type="date" />
+          <Property Name="Ngayduyet" Type="date" />
+          <Property Name="IdDonvi" Type="int" />
+          <Property Name="Trangthai" Type="int" />
+          <Property Name="Loai" Type="int" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblTieuchi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar(max)" />
+          <Property Name="Diem" Type="float" />
+          <Property Name="Ghichu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="NguoiDoc" Type="nvarchar(max)" />
+          <Property Name="DonViNhan" Type="nvarchar(max)" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="NguoiGui" Type="nvarchar(max)" />
+          <Property Name="NgayGui" Type="datetime" />
+          <Property Name="Loai" Type="int" />
+          <Property Name="TrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="UnreadMes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdNguoigui" Type="bigint" />
+          <Property Name="IdNguoinhan" Type="bigint" />
+          <Property Name="Count" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STT" Type="bigint" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+          <Property Name="FInUse" Type="bit" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="200" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="IDTinh" Type="nvarchar(max)" />
+          <Property Name="IDHuyen" Type="nvarchar(max)" />
+          <Property Name="IDXa" Type="nvarchar(max)" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChucVu" Type="nvarchar(max)" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+          <Property Name="IDDonVi" Type="bigint" />
+          <Property Name="DaiDien" Type="bit" />
+          <Property Name="LockScreenTime" Type="int" />
+          <Property Name="IsOnline" Type="bit" />
+          <Property Name="ConnId" Type="nvarchar(max)" />
+        </EntityType>
+        <Function Name="fConvertTV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="inputVar" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="SearchKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="DonVi" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SplitStringToTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="myString" Type="varchar(max)" Mode="In" />
+          <Parameter Name="deliminator" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="SplitItem" Type="varchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="WebApiDataModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoID" EntityType="Self.AutoID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DMDonVi" EntityType="Self.DMDonVi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FILE_DINH_KEM" EntityType="Self.FILE_DINH_KEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_Menu" EntityType="Self.Group_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_User" EntityType="Self.Group_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NhatKySuDung" EntityType="Self.NhatKySuDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDanhmuc" EntityType="Self.tblDanhmuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoituong" EntityType="Self.tblDoituong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoituongKhenthuong" EntityType="Self.tblDoituongKhenthuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoituongThanhtich" EntityType="Self.tblDoituongThanhtich" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGiaytoDanhhieu" EntityType="Self.tblGiaytoDanhhieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGiaytoKhenthuong" EntityType="Self.tblGiaytoKhenthuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKhenthuong" EntityType="Self.tblKhenthuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTieuchi" EntityType="Self.tblTieuchi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnreadMes" EntityType="Self.UnreadMes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebApiDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebApiDataEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="aspnet_AnyDataInTables">
+          <Parameter Name="TablesToCheck" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Applications_CreateApplication">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="ApplicationId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_CheckSchemaVersion">
+            <Parameter Name="Feature" Mode="In" Type="String" />
+            <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_ChangePasswordQuestionAndAnswer">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="NewPasswordQuestion" Mode="In" Type="String" />
+            <Parameter Name="NewPasswordAnswer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_CreateUser">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="PasswordSalt" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordQuestion" Mode="In" Type="String" />
+            <Parameter Name="PasswordAnswer" Mode="In" Type="String" />
+            <Parameter Name="IsApproved" Mode="In" Type="Boolean" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UniqueEmail" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordFormat" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_FindUsersByEmail">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="EmailToMatch" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_FindUsersByName">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserNameToMatch" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetAllUsers">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetNumberOfUsersOnline">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="MinutesSinceLastInActive" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetPassword">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="MaxInvalidPasswordAttempts" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordAttemptWindow" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="PasswordAnswer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetPasswordWithFormat">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="UpdateLastLoginActivityDate" Mode="In" Type="Boolean" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetUserByEmail">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetUserByName">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdateLastActivity" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_GetUserByUserId">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdateLastActivity" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_ResetPassword">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="NewPassword" Mode="In" Type="String" />
+            <Parameter Name="MaxInvalidPasswordAttempts" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordAttemptWindow" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordSalt" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="PasswordFormat" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordAnswer" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_SetPassword">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="NewPassword" Mode="In" Type="String" />
+            <Parameter Name="PasswordSalt" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="PasswordFormat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_UnlockUser">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_UpdateUser">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="IsApproved" Mode="In" Type="Boolean" />
+            <Parameter Name="LastLoginDate" Mode="In" Type="DateTime" />
+            <Parameter Name="LastActivityDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UniqueEmail" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Membership_UpdateUserInfo">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IsPasswordCorrect" Mode="In" Type="Boolean" />
+            <Parameter Name="UpdateLastLoginActivityDate" Mode="In" Type="Boolean" />
+            <Parameter Name="MaxInvalidPasswordAttempts" Mode="In" Type="Int32" />
+            <Parameter Name="PasswordAttemptWindow" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="LastLoginDate" Mode="In" Type="DateTime" />
+            <Parameter Name="LastActivityDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Paths_CreatePath">
+            <Parameter Name="ApplicationId" Mode="In" Type="Guid" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="PathId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Personalization_GetApplicationId">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="ApplicationId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAdministration_DeleteAllState">
+            <Parameter Name="AllUsersScope" Mode="In" Type="Boolean" />
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Count" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAdministration_FindState">
+            <Parameter Name="AllUsersScope" Mode="In" Type="Boolean" />
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAdministration_GetCountOfState">
+            <Parameter Name="Count" Mode="InOut" Type="Int32" />
+            <Parameter Name="AllUsersScope" Mode="In" Type="Boolean" />
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAdministration_ResetSharedState">
+            <Parameter Name="Count" Mode="InOut" Type="Int32" />
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAdministration_ResetUserState">
+            <Parameter Name="Count" Mode="InOut" Type="Int32" />
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAllUsers_GetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAllUsers_ResetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationAllUsers_SetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="PageSettings" Mode="In" Type="Binary" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationPerUser_GetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationPerUser_ResetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_PersonalizationPerUser_SetPageSettings">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Path" Mode="In" Type="String" />
+            <Parameter Name="PageSettings" Mode="In" Type="Binary" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_DeleteInactiveProfiles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="ProfileAuthOptions" Mode="In" Type="Int32" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_DeleteProfiles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserNames" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_GetNumberOfInactiveProfiles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="ProfileAuthOptions" Mode="In" Type="Int32" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_GetProfiles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="ProfileAuthOptions" Mode="In" Type="Int32" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="UserNameToMatch" Mode="In" Type="String" />
+            <Parameter Name="InactiveSinceDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_GetProperties">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Profile_SetProperties">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="PropertyNames" Mode="In" Type="String" />
+            <Parameter Name="PropertyValuesString" Mode="In" Type="String" />
+            <Parameter Name="PropertyValuesBinary" Mode="In" Type="Binary" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IsUserAnonymous" Mode="In" Type="Boolean" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_RegisterSchemaVersion">
+            <Parameter Name="Feature" Mode="In" Type="String" />
+            <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+            <Parameter Name="IsCurrentVersion" Mode="In" Type="Boolean" />
+            <Parameter Name="RemoveIncompatibleSchema" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Roles_CreateRole">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Roles_DeleteRole">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="DeleteOnlyIfRoleIsEmpty" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Roles_GetAllRoles">
+          <Parameter Name="ApplicationName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Roles_RoleExists">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Setup_RemoveAllRoleMembers">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Setup_RestorePermissions">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UnRegisterSchemaVersion">
+            <Parameter Name="Feature" Mode="In" Type="String" />
+            <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Users_CreateUser">
+            <Parameter Name="ApplicationId" Mode="In" Type="Guid" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IsUserAnonymous" Mode="In" Type="Boolean" />
+            <Parameter Name="LastActivityDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UserId" Mode="InOut" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_Users_DeleteUser">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="TablesToDeleteFrom" Mode="In" Type="Int32" />
+            <Parameter Name="NumTablesDeletedFrom" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_AddUsersToRoles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserNames" Mode="In" Type="String" />
+            <Parameter Name="RoleNames" Mode="In" Type="String" />
+            <Parameter Name="CurrentTimeUtc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_FindUsersInRole">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="UserNameToMatch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_GetRolesForUser">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_GetUsersInRoles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_IsUserInRole">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_UsersInRoles_RemoveUsersFromRoles">
+            <Parameter Name="ApplicationName" Mode="In" Type="String" />
+            <Parameter Name="UserNames" Mode="In" Type="String" />
+            <Parameter Name="RoleNames" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aspnet_WebEvent_LogEvent">
+            <Parameter Name="EventId" Mode="In" Type="String" />
+            <Parameter Name="EventTimeUtc" Mode="In" Type="DateTime" />
+            <Parameter Name="EventTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EventType" Mode="In" Type="String" />
+            <Parameter Name="EventSequence" Mode="In" Type="Decimal" />
+            <Parameter Name="EventOccurrence" Mode="In" Type="Decimal" />
+            <Parameter Name="EventCode" Mode="In" Type="Int32" />
+            <Parameter Name="EventDetailCode" Mode="In" Type="Int32" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="ApplicationPath" Mode="In" Type="String" />
+            <Parameter Name="ApplicationVirtualPath" Mode="In" Type="String" />
+            <Parameter Name="MachineName" Mode="In" Type="String" />
+            <Parameter Name="RequestUrl" Mode="In" Type="String" />
+            <Parameter Name="ExceptionType" Mode="In" Type="String" />
+            <Parameter Name="Details" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CountInspectByStatus" ReturnType="Collection(WebApiDataModel.CountInspectByStatus_Result)">
+          <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetActivityInspects" ReturnType="Collection(WebApiDataModel.GetActivityInspects_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllInspections" ReturnType="Collection(WebApiDataModel.GetAllInspections_Result)">
+            <Parameter Name="currentUser" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAreas" ReturnType="Collection(WebApiDataModel.GetAreas_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBMTT" ReturnType="Collection(WebApiDataModel.GetBMTT_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetChucDanh" ReturnType="Collection(WebApiDataModel.GetChucDanh_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDTTT" ReturnType="Collection(WebApiDataModel.GetDTTT_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetFinishedInspections">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="currentOrg" Mode="In" Type="String" />
+            <Parameter Name="currentUser" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetGioiTinh" ReturnType="Collection(WebApiDataModel.GetGioiTinh_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetInspectionByID" ReturnType="Collection(WebApiDataModel.GetInspectionByID_Result)">
+          <Parameter Name="Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetInspections" ReturnType="Collection(WebApiDataModel.GetInspections_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="currentUser" Mode="In" Type="String" />
+            <Parameter Name="DonVi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetInspectionsV2" ReturnType="Collection(WebApiDataModel.GetInspectionsV2_Result)">
+          <Parameter Name="FCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetKeHoachDuKien" ReturnType="Collection(WebApiDataModel.GetKeHoachDuKien_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLGT" ReturnType="Collection(WebApiDataModel.GetLGT_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLHDN" ReturnType="Collection(WebApiDataModel.GetLHDN_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLHTT" ReturnType="Collection(WebApiDataModel.GetLHTT_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetObjectByInspection" ReturnType="Collection(WebApiDataModel.GetObjectByInspection_Result)">
+          <Parameter Name="F_Inspection" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetObjectInSpections" ReturnType="Collection(WebApiDataModel.GetObjectInSpections_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPositions" ReturnType="Collection(WebApiDataModel.GetPositions_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetProjectInSpections" ReturnType="Collection(WebApiDataModel.GetProjectInSpections_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetTrangThai" ReturnType="Collection(WebApiDataModel.GetTrangThai_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetTypeInspections" ReturnType="Collection(WebApiDataModel.GetTypeInspections_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserReceived" ReturnType="Collection(WebApiDataModel.GetUserReceived_Result)">
+          <Parameter Name="curUser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUsers" ReturnType="Collection(WebApiDataModel.GetUsers_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="DonVi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Branch_Inspect_Khong_Trung">
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Branch_Inspect_Trung">
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_DemDoiTuongTrung" ReturnType="Collection(Int32)">
+            <Parameter Name="strFInspection" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="strPL" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_FILE_DOC" ReturnType="Collection(WebApiDataModel.Proc_FILE_DOC_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="DocID" Mode="In" Type="String" />
+            <Parameter Name="CodeIns" Mode="In" Type="String" />
+            <Parameter Name="Bien0" Mode="In" Type="String" />
+            <Parameter Name="Bien1" Mode="In" Type="String" />
+            <Parameter Name="Bien2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetAllInspectionByYear">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="recodperpage" Mode="In" Type="Int32" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="strBranhCode" Mode="In" Type="String" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="strPhanLoai" Mode="In" Type="String" />
+            <Parameter Name="strFPlan" Mode="In" Type="String" />
+            <Parameter Name="strStatusSend" Mode="In" Type="String" />
+            <Parameter Name="strapprove" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetAllPlanByYear" ReturnType="Collection(WebApiDataModel.Proc_GetAllPlanByYear_Result)">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="recodperpage" Mode="In" Type="Int32" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="strBranhCode" Mode="In" Type="String" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="strPhanLoai" Mode="In" Type="String" />
+            <Parameter Name="strUser" Mode="In" Type="String" />
+            <Parameter Name="strUid" Mode="In" Type="String" />
+            <Parameter Name="strStatusSend" Mode="In" Type="String" />
+            <Parameter Name="strapprove" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_GetObjByInspection">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="recodperpage" Mode="In" Type="Int32" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="strBranhCode" Mode="In" Type="String" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="strBien00" Mode="In" Type="String" />
+            <Parameter Name="strBien0" Mode="In" Type="String" />
+            <Parameter Name="strBien1" Mode="In" Type="String" />
+            <Parameter Name="strBien2" Mode="In" Type="String" />
+            <Parameter Name="strBien3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Inspection_Obj" ReturnType="Collection(WebApiDataModel.Proc_Inspection_Obj_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="FCodeOBJ" Mode="In" Type="String" />
+            <Parameter Name="Plan" Mode="In" Type="String" />
+            <Parameter Name="User" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_NDKiemTrung" ReturnType="Collection(WebApiDataModel.Proc_NDKiemTrung_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="FCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Obj_Inspect_Trung">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="SttSend" Mode="In" Type="String" />
+            <Parameter Name="FodeObj" Mode="In" Type="String" />
+            <Parameter Name="FOrg" Mode="In" Type="String" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+            <Parameter Name="LHTTCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_ObjectInspection">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="Pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="CodeArea" Mode="In" Type="String" />
+            <Parameter Name="TypeArea" Mode="In" Type="String" />
+            <Parameter Name="ParentArea" Mode="In" Type="String" />
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="searchKey" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="ListObjByInspection" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_OrgInspection">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="Pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="CodeArea" Mode="In" Type="Int32" />
+            <Parameter Name="TypeArea" Mode="In" Type="String" />
+            <Parameter Name="ParentArea" Mode="In" Type="String" />
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="searchKey" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="ListObjByInspection" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_ProjectInspection">
+            <Parameter Name="currPage" Mode="In" Type="Int32" />
+            <Parameter Name="Pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="strBranhCode" Mode="In" Type="String" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="strFOrg" Mode="In" Type="String" />
+            <Parameter Name="ListObjByInspection" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_Search_DonVi_Ins" ReturnType="Collection(WebApiDataModel.Proc_Search_DonVi_Ins_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="bien" Mode="In" Type="String" />
+            <Parameter Name="bien0" Mode="In" Type="String" />
+            <Parameter Name="Bien1" Mode="In" Type="String" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchDocument">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="SearchKeyDoc" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="String" />
+            <Parameter Name="strBranhCode" Mode="In" Type="String" />
+            <Parameter Name="ObjIns" Mode="In" Type="String" />
+            <Parameter Name="CodeIns" Mode="In" Type="String" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchDocumentAll" ReturnType="Collection(WebApiDataModel.Proc_SearchDocumentAll_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="Type" Mode="In" Type="String" />
+            <Parameter Name="FInspection" Mode="In" Type="String" />
+            <Parameter Name="FObj" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchDTTTkoTrung">
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchDTTTTrung">
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchInspection" ReturnType="Collection(WebApiDataModel.Proc_SearchInspection_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="strSearch" Mode="In" Type="String" />
+            <Parameter Name="strYear" Mode="In" Type="Int32" />
+            <Parameter Name="Plan" Mode="In" Type="String" />
+            <Parameter Name="strOrg" Mode="In" Type="String" />
+            <Parameter Name="FCodeUser" Mode="In" Type="String" />
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="stt" Mode="In" Type="String" />
+            <Parameter Name="LoaiIns" Mode="In" Type="String" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+            <Parameter Name="LHTTCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchObjectInspect" ReturnType="Collection(WebApiDataModel.Proc_SearchObjectInspect_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="TypeDb" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="DTThanhTra" Mode="In" Type="String" />
+            <Parameter Name="FCodeUser" Mode="In" Type="String" />
+            <Parameter Name="Bien1" Mode="In" Type="String" />
+            <Parameter Name="Bien2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchOrganization" ReturnType="Collection(WebApiDataModel.Proc_SearchOrganization_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="TypeDb" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="FCodeUser" Mode="In" Type="String" />
+            <Parameter Name="Bien1" Mode="In" Type="String" />
+            <Parameter Name="Bien2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchPlan" ReturnType="Collection(WebApiDataModel.Proc_SearchPlan_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="strYear" Mode="In" Type="String" />
+            <Parameter Name="strOrg" Mode="In" Type="String" />
+            <Parameter Name="FCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_SearchProjectInspect" ReturnType="Collection(WebApiDataModel.Proc_SearchProjectInspect_Result)">
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="TypeDb" Mode="In" Type="String" />
+            <Parameter Name="Value" Mode="In" Type="String" />
+            <Parameter Name="Org" Mode="In" Type="String" />
+            <Parameter Name="SearchKey" Mode="In" Type="String" />
+            <Parameter Name="FCode" Mode="In" Type="String" />
+            <Parameter Name="bien1" Mode="In" Type="String" />
+            <Parameter Name="bien2" Mode="In" Type="String" />
+            <Parameter Name="LHTT" Mode="In" Type="String" />
+            <Parameter Name="CodeLHTT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SplitStringToTable" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="myString" Mode="In" Type="String" />
+            <Parameter Name="deliminator" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Areas" EntityType="WebApiDataModel.Area" />
+          <EntitySet Name="AspNetUsers" EntityType="WebApiDataModel.AspNetUser" />
+          <EntitySet Name="AutoIDs" EntityType="WebApiDataModel.AutoID" />
+          <EntitySet Name="DMDonVis" EntityType="WebApiDataModel.DMDonVi" />
+          <EntitySet Name="FILE_DINH_KEM" EntityType="WebApiDataModel.FILE_DINH_KEM" />
+          <EntitySet Name="Group_Menu" EntityType="WebApiDataModel.Group_Menu" />
+          <EntitySet Name="Group_User" EntityType="WebApiDataModel.Group_User" />
+          <EntitySet Name="Groups" EntityType="WebApiDataModel.Group" />
+          <EntitySet Name="MainMenus" EntityType="WebApiDataModel.MainMenu" />
+          <EntitySet Name="Menus" EntityType="WebApiDataModel.Menu" />
+          <EntitySet Name="Messages" EntityType="WebApiDataModel.Message" />
+          <EntitySet Name="NhatKySuDungs" EntityType="WebApiDataModel.NhatKySuDung" />
+          <EntitySet Name="sysdiagrams" EntityType="WebApiDataModel.sysdiagram" />
+          <EntitySet Name="tblDanhmucs" EntityType="WebApiDataModel.tblDanhmuc" />
+          <EntitySet Name="tblDoituongs" EntityType="WebApiDataModel.tblDoituong" />
+          <EntitySet Name="tblDoituongKhenthuongs" EntityType="WebApiDataModel.tblDoituongKhenthuong" />
+          <EntitySet Name="tblDoituongThanhtiches" EntityType="WebApiDataModel.tblDoituongThanhtich" />
+          <EntitySet Name="tblGiaytoDanhhieux" EntityType="WebApiDataModel.tblGiaytoDanhhieu" />
+          <EntitySet Name="tblGiaytoKhenthuongs" EntityType="WebApiDataModel.tblGiaytoKhenthuong" />
+          <EntitySet Name="tblKhenthuongs" EntityType="WebApiDataModel.tblKhenthuong" />
+          <EntitySet Name="tblTieuchis" EntityType="WebApiDataModel.tblTieuchi" />
+          <EntitySet Name="ThongBaos" EntityType="WebApiDataModel.ThongBao" />
+          <EntitySet Name="UnreadMes" EntityType="WebApiDataModel.UnreadMe" />
+          <EntitySet Name="UserProfiles" EntityType="WebApiDataModel.UserProfile" />
+          </EntityContainer>
+        <ComplexType Name="CountInspectByStatus_Result">
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="NumberOfInspects" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetActivityInspects_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetAllInspections_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="F_Plan" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViChuTri" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ToGiamSat" Nullable="true" />
+          <Property Type="String" Name="SoQD" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="NgayBanHanh" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HoatDongTT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungTT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ListObjByInspec" Nullable="true" />
+          <Property Type="String" Name="LinhVuc" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAreas_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FDescription" Nullable="true" />
+          <Property Type="String" Name="Parent" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PhanLoai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DVCha" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetBMTT_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BMName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetChucDanh_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetDTTT_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetGioiTinh_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetInspectionByID_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DonViChuTri" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ToGiamSat" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetInspections_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="F_Plan" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViChuTri" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ToGiamSat" Nullable="true" />
+          <Property Type="String" Name="SoQD" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="NgayBanHanh" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HoatDongTT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungTT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ListObjByInspec" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetInspectionsV2_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="F_Plan" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViChuTri" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ToGiamSat" Nullable="true" />
+          <Property Type="String" Name="SoQD" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="NgayBanHanh" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetKeHoachDuKien_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TimeStart" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TimeEnd" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetLGT_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetLHDN_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetLHTT_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CheckLH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="KieuThanhTra" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenKieuTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetObjectByInspection_Result">
+          <Property Type="Int64" Name="Id" Nullable="true" />
+          <Property Type="String" Name="FCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="IdObj" Nullable="false" />
+          <Property Type="DateTime" Name="NgayBatDau" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NgayBatDauThucTe" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NgayKetThuc" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NgayKetThucThucTe" Nullable="true" Precision="23" />
+          <Property Type="String" Name="F_Inspection" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="Finish" Nullable="true" />
+          <Property Type="String" Name="Progress" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetObjectInSpections_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NoiCap" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DTThanhTra" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="NgayCap" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="LoaiHinhDN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenLoaiHinh" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProvinName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DistrictName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WardName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="NgayDoiGP" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NguoiDaiDien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChuSoHuu" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NganhChinh" Nullable="true" />
+          <Property Type="String" Name="NghanhKinhDoanh" Nullable="true" />
+          <Property Type="String" Name="PhanLoaiDoiTuong" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChucVu" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhanLoaiDV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FullAddress" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetPositions_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetProjectInSpections_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DTThanhTra" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ChuDauTu" Nullable="true" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="TimeStart" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ChuDauTu1" Nullable="true" />
+          <Property Type="DateTime" Name="TimeEnd" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrgFCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhanLoai" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FullAddress" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetTrangThai_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetTypeInspections_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetUserReceived_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="OrgCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetUsers_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="OrgCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Avatar" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DonVi" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="FDescription1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TenPB" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenDV" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenCV" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Proc_FILE_DOC_Result">
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int64" Name="DocumentID" Nullable="true" />
+          <Property Type="String" Name="DuongDanFile" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Proc_GetAllPlanByYear_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="Boolean" Name="FInUse" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="QuyetDinh" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="MaDinhKem" Nullable="true" MaxLength="2000" />
+          <Property Type="DateTime" Name="Ngay" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="PhanLoai" Nullable="true" />
+          <Property Type="String" Name="YKien" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ListInspect" Nullable="true" />
+          <Property Type="String" Name="YKienBS" Nullable="true" />
+          <Property Type="String" Name="UserApprove" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Proc_Inspection_Obj_Result">
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FUpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FUserCreate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserUpdate" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FUserApprove" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FApproveTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FStatus" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="FIndex" Nullable="true" />
+          <Property Type="Int32" Name="FLevel" Nullable="true" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TypeInspection" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiHinhTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhamViThanhTra" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="ThoiGianThucHien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViPhoiHop" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucBD" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ThoiGianChinhThucKT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TrangThai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="F_Plan" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DonViChuTri" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenLoaiTt" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenLHTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="tenDVCT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenStt" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="TenKh" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DVPH" Nullable="true" />
+          <Property Type="String" Name="TGTH" Nullable="true" />
+          <Property Type="String" Name="obj_Ins" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="NgayBatDau" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NgayKetThuc" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Progress" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Proc_NDKiemTrung_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FDescription" Nullable="true" />
+          <Property Type="String" Name="FParent" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SearchKey" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Proc_Search_DonVi_Ins_Result">
+          <Property Type="String" Name="InsCode" Nullable="true" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchDocumentAll_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="PhanLoai" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BieuMau" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="F_Obj" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SoQuyetDinh" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="NgayBanHanh" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchInspection_Result">
+          <Property Type="String" Name="RowNumberPrint" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Fcode" Nullable="false" MaxLength="500" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TTName" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TenLoaiTt" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenLHTT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="tenDVCT" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenKh" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DVPH" Nullable="true" />
+          <Property Type="String" Name="TGTH" Nullable="true" />
+          <Property Type="String" Name="DoiTuong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchObjectInspect_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NoiCap" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DTThanhTra" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NameDttt" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NgayCap" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="LoaiHinhDN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenLoaiHinh" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FCreateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NgayDoiGP" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NguoiDaiDien" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChuSoHuu" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NganhChinh" Nullable="true" />
+          <Property Type="String" Name="NghanhKinhDoanh" Nullable="true" />
+          <Property Type="String" Name="tenLHDN" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiGiayTo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChucVu" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LoaiObj" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TenDvi" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchOrganization_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="Provin" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Disctrict" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FParent" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProvinName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DistrictName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WardName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DvCha" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="dvc" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchPlan_Result">
+          <Property Type="String" Name="FCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FBranchCode" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="StatusSend" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OrgName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="Proc_SearchProjectInspect_Result">
+          <Property Type="String" Name="RowNum" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FDescription" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ChuDauTu" Nullable="true" />
+          <Property Type="DateTime" Name="TimeStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="TimeEnd" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Provin" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FUserCreate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FUserEdit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FUserDelete" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FIsDelete" Type="Boolean" />
+          <Property Name="FIsEdit" Type="Boolean" />
+          <Property Name="FIsUpdate" Type="Boolean" />
+          <Property Name="FViewTime" Type="DateTime" Precision="3" />
+          <Property Name="FEditTime" Type="DateTime" Precision="3" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FDeleteTime" Type="DateTime" Precision="3" />
+          <Property Name="FLanguage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="Parent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SearchKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsUnit" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDVung" Type="Int64" />
+          <Property Name="IDKhuVuc" Type="Int64" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FBranchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AutoID">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Counter" Type="Int64" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DMDonVi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="MaDonVi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenDonVi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiDonVi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDDVCha" Type="Int32" />
+          <Property Name="NhomLoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDiemTruong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenLanhDao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTinh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDHuyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDXa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiHinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDLoaiTruong" Type="Int32" />
+          <Property Name="ThongTinKhac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="TTGui" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FILE_DINH_KEM">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SearchKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DuongDanFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Group_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="CodeMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Group_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Menu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FCreateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="FUserCreate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FUserApprove" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FApproveTime" Type="DateTime" Precision="3" />
+          <Property Name="FStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FIndex" Type="Int32" />
+          <Property Name="FLevel" Type="Int32" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="FBranchCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MainMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Permission" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FUserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdNguoigui" Type="Int64" />
+          <Property Name="Tinnhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Thoigian" Type="DateTime" Precision="3" />
+          <Property Name="IdNguoinhan" Type="Int64" />
+          <Property Name="IsRead" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="NhatKySuDung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThaoTac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TenBang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonVi" Type="Int64" />
+          <Property Name="NgayGio" Type="DateTime" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblDanhmuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STT" Type="Int32" />
+          <Property Name="Ma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Viettat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Maloai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCha" Type="Int32" />
+          <Property Name="TTKhac1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TTKhac2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TTKhac3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblDoituong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hodem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngaysinh" Type="DateTime" Precision="0" />
+          <Property Name="Dantoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoCMND" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sdt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Chucvu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vitri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdDonvi" Type="Int32" />
+          <Property Name="Loai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblDoituongKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDoituong" Type="Int64" />
+          <Property Name="IdKhenthuong" Type="Int64" />
+          <Property Name="Ngaydenghi" Type="DateTime" Precision="0" />
+          <Property Name="Ngayduyet" Type="DateTime" Precision="0" />
+          <Property Name="Nam" Type="Int32" />
+          <Property Name="IdDonvi" Type="Int32" />
+          <Property Name="MaDanhhieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Trangthai" Type="Int32" />
+          <Property Name="TieuchiDat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuchiKoDat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDoituongThanhtich">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDoituong" Type="Int64" />
+          <Property Name="Ngaytao" Type="DateTime" Precision="0" />
+          <Property Name="IdTieuchi" Type="Int32" />
+          <Property Name="Diem" Type="Double" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGiaytoDanhhieu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDanhhieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGiayto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblGiaytoKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDTKT" Type="Int64" />
+          <Property Name="MaDanhhieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGiayto" Type="Int32" />
+          <Property Name="Duongdan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblKhenthuong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nam" Type="Int32" />
+          <Property Name="Ngaydenghi" Type="DateTime" Precision="0" />
+          <Property Name="Ngayduyet" Type="DateTime" Precision="0" />
+          <Property Name="IdDonvi" Type="Int32" />
+          <Property Name="Trangthai" Type="Int32" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Loai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblTieuchi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Diem" Type="Double" />
+          <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DonViNhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="NguoiGui" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayGui" Type="DateTime" Precision="3" />
+          <Property Name="Loai" Type="Int32" />
+          <Property Name="TrangThai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UnreadMe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdNguoigui" Type="Int64" />
+          <Property Name="IdNguoinhan" Type="Int64" />
+          <Property Name="Count" Type="Int64" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STT" Type="Int64" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FInUse" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDHuyen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDXa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IDDonVi" Type="Int64" />
+          <Property Name="DaiDien" Type="Boolean" />
+          <Property Name="LockScreenTime" Type="Int32" />
+          <Property Name="IsOnline" Type="Boolean" />
+          <Property Name="ConnId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebApiDataModelStoreContainer" CdmEntityContainer="WebApiDataEntities">
+          <FunctionImportMapping FunctionImportName="GetUsers" FunctionName="WebApiDataModel.Store.GetUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebApiDataModel.GetUsers_Result">
+                <ScalarProperty Name="RowNum" ColumnName="RowNum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrgCode" ColumnName="OrgCode" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Provin" ColumnName="Provin" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="FDescription1" ColumnName="FDescription1" />
+                <ScalarProperty Name="TenPB" ColumnName="TenPB" />
+                <ScalarProperty Name="TenDV" ColumnName="TenDV" />
+                <ScalarProperty Name="TenCV" ColumnName="TenCV" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SplitStringToTable" FunctionName="WebApiDataModel.Store.SplitStringToTable" />
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="WebApiDataModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="IDKhuVuc" ColumnName="IDKhuVuc" />
+                <ScalarProperty Name="IDVung" ColumnName="IDVung" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="IsUnit" ColumnName="IsUnit" />
+                <ScalarProperty Name="SearchKey" ColumnName="SearchKey" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FLanguage" ColumnName="FLanguage" />
+                <ScalarProperty Name="FDeleteTime" ColumnName="FDeleteTime" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FEditTime" ColumnName="FEditTime" />
+                <ScalarProperty Name="FViewTime" ColumnName="FViewTime" />
+                <ScalarProperty Name="FIsUpdate" ColumnName="FIsUpdate" />
+                <ScalarProperty Name="FIsEdit" ColumnName="FIsEdit" />
+                <ScalarProperty Name="FIsDelete" ColumnName="FIsDelete" />
+                <ScalarProperty Name="FUserDelete" ColumnName="FUserDelete" />
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="FUserEdit" ColumnName="FUserEdit" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="WebApiDataModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoIDs">
+            <EntityTypeMapping TypeName="WebApiDataModel.AutoID">
+              <MappingFragment StoreEntitySet="AutoID">
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMDonVis">
+            <EntityTypeMapping TypeName="WebApiDataModel.DMDonVi">
+              <MappingFragment StoreEntitySet="DMDonVi">
+                <ScalarProperty Name="TTGui" ColumnName="TTGui" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="ThongTinKhac" ColumnName="ThongTinKhac" />
+                <ScalarProperty Name="IDLoaiTruong" ColumnName="IDLoaiTruong" />
+                <ScalarProperty Name="LoaiHinh" ColumnName="LoaiHinh" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IDXa" ColumnName="IDXa" />
+                <ScalarProperty Name="IDHuyen" ColumnName="IDHuyen" />
+                <ScalarProperty Name="IDTinh" ColumnName="IDTinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenLanhDao" ColumnName="TenLanhDao" />
+                <ScalarProperty Name="SoDiemTruong" ColumnName="SoDiemTruong" />
+                <ScalarProperty Name="NhomLoai" ColumnName="NhomLoai" />
+                <ScalarProperty Name="IDDVCha" ColumnName="IDDVCha" />
+                <ScalarProperty Name="LoaiDonVi" ColumnName="LoaiDonVi" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FILE_DINH_KEM">
+            <EntityTypeMapping TypeName="WebApiDataModel.FILE_DINH_KEM">
+              <MappingFragment StoreEntitySet="FILE_DINH_KEM">
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="DuongDanFile" ColumnName="DuongDanFile" />
+                <ScalarProperty Name="SearchKey" ColumnName="SearchKey" />
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_Menu">
+            <EntityTypeMapping TypeName="WebApiDataModel.Group_Menu">
+              <MappingFragment StoreEntitySet="Group_Menu">
+                <ScalarProperty Name="CodeGroup" ColumnName="CodeGroup" />
+                <ScalarProperty Name="CodeMenu" ColumnName="CodeMenu" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_User">
+            <EntityTypeMapping TypeName="WebApiDataModel.Group_User">
+              <MappingFragment StoreEntitySet="Group_User">
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="CodeGroup" ColumnName="CodeGroup" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="WebApiDataModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Menu" ColumnName="Menu" />
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenus">
+            <EntityTypeMapping TypeName="WebApiDataModel.MainMenu">
+              <MappingFragment StoreEntitySet="MainMenu">
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="WebApiDataModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="FUserUpdate" ColumnName="FUserUpdate" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="TemplateUrl" ColumnName="TemplateUrl" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ParentMenu" ColumnName="ParentMenu" />
+                <ScalarProperty Name="MainMenu" ColumnName="MainMenu" />
+                <ScalarProperty Name="FBranchCode" ColumnName="FBranchCode" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="FLevel" ColumnName="FLevel" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="FApproveTime" ColumnName="FApproveTime" />
+                <ScalarProperty Name="FUserApprove" ColumnName="FUserApprove" />
+                <ScalarProperty Name="FUserCreate" ColumnName="FUserCreate" />
+                <ScalarProperty Name="FUpdateTime" ColumnName="FUpdateTime" />
+                <ScalarProperty Name="FCreateTime" ColumnName="FCreateTime" />
+                <ScalarProperty Name="FDescription" ColumnName="FDescription" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FCode" ColumnName="FCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="WebApiDataModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="IdNguoinhan" ColumnName="IdNguoinhan" />
+                <ScalarProperty Name="Thoigian" ColumnName="Thoigian" />
+                <ScalarProperty Name="Tinnhan" ColumnName="Tinnhan" />
+                <ScalarProperty Name="IdNguoigui" ColumnName="IdNguoigui" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NhatKySuDungs">
+            <EntityTypeMapping TypeName="WebApiDataModel.NhatKySuDung">
+              <MappingFragment StoreEntitySet="NhatKySuDung">
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="NgayGio" ColumnName="NgayGio" />
+                <ScalarProperty Name="IdDonVi" ColumnName="IdDonVi" />
+                <ScalarProperty Name="TenBang" ColumnName="TenBang" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ThaoTac" ColumnName="ThaoTac" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WebApiDataModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDanhmucs">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblDanhmuc">
+              <MappingFragment StoreEntitySet="tblDanhmuc">
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="TTKhac3" ColumnName="TTKhac3" />
+                <ScalarProperty Name="TTKhac2" ColumnName="TTKhac2" />
+                <ScalarProperty Name="TTKhac1" ColumnName="TTKhac1" />
+                <ScalarProperty Name="IdCha" ColumnName="IdCha" />
+                <ScalarProperty Name="Maloai" ColumnName="Maloai" />
+                <ScalarProperty Name="Viettat" ColumnName="Viettat" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoituongs">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblDoituong">
+              <MappingFragment StoreEntitySet="tblDoituong">
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="IdDonvi" ColumnName="IdDonvi" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Vitri" ColumnName="Vitri" />
+                <ScalarProperty Name="Chucvu" ColumnName="Chucvu" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
+                <ScalarProperty Name="Dantoc" ColumnName="Dantoc" />
+                <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh" />
+                <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Hodem" ColumnName="Hodem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoituongKhenthuongs">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblDoituongKhenthuong">
+              <MappingFragment StoreEntitySet="tblDoituongKhenthuong">
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="TieuchiKoDat" ColumnName="TieuchiKoDat" />
+                <ScalarProperty Name="TieuchiDat" ColumnName="TieuchiDat" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+                <ScalarProperty Name="MaDanhhieu" ColumnName="MaDanhhieu" />
+                <ScalarProperty Name="IdDonvi" ColumnName="IdDonvi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Ngayduyet" ColumnName="Ngayduyet" />
+                <ScalarProperty Name="Ngaydenghi" ColumnName="Ngaydenghi" />
+                <ScalarProperty Name="IdKhenthuong" ColumnName="IdKhenthuong" />
+                <ScalarProperty Name="IdDoituong" ColumnName="IdDoituong" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoituongThanhtiches">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblDoituongThanhtich">
+              <MappingFragment StoreEntitySet="tblDoituongThanhtich">
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Diem" ColumnName="Diem" />
+                <ScalarProperty Name="IdTieuchi" ColumnName="IdTieuchi" />
+                <ScalarProperty Name="Ngaytao" ColumnName="Ngaytao" />
+                <ScalarProperty Name="IdDoituong" ColumnName="IdDoituong" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGiaytoDanhhieux">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblGiaytoDanhhieu">
+              <MappingFragment StoreEntitySet="tblGiaytoDanhhieu">
+                <ScalarProperty Name="IdGiayto" ColumnName="IdGiayto" />
+                <ScalarProperty Name="MaDanhhieu" ColumnName="MaDanhhieu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGiaytoKhenthuongs">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblGiaytoKhenthuong">
+              <MappingFragment StoreEntitySet="tblGiaytoKhenthuong">
+                <ScalarProperty Name="Duongdan" ColumnName="Duongdan" />
+                <ScalarProperty Name="IdGiayto" ColumnName="IdGiayto" />
+                <ScalarProperty Name="MaDanhhieu" ColumnName="MaDanhhieu" />
+                <ScalarProperty Name="IdDTKT" ColumnName="IdDTKT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKhenthuongs">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblKhenthuong">
+              <MappingFragment StoreEntitySet="tblKhenthuong">
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+                <ScalarProperty Name="IdDonvi" ColumnName="IdDonvi" />
+                <ScalarProperty Name="Ngayduyet" ColumnName="Ngayduyet" />
+                <ScalarProperty Name="Ngaydenghi" ColumnName="Ngaydenghi" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTieuchis">
+            <EntityTypeMapping TypeName="WebApiDataModel.tblTieuchi">
+              <MappingFragment StoreEntitySet="tblTieuchi">
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Diem" ColumnName="Diem" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongBaos">
+            <EntityTypeMapping TypeName="WebApiDataModel.ThongBao">
+              <MappingFragment StoreEntitySet="ThongBao">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
+                <ScalarProperty Name="NguoiGui" ColumnName="NguoiGui" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="DonViNhan" ColumnName="DonViNhan" />
+                <ScalarProperty Name="NguoiDoc" ColumnName="NguoiDoc" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnreadMes">
+            <EntityTypeMapping TypeName="WebApiDataModel.UnreadMe">
+              <MappingFragment StoreEntitySet="UnreadMes">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdNguoinhan" ColumnName="IdNguoinhan" />
+                <ScalarProperty Name="IdNguoigui" ColumnName="IdNguoigui" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="WebApiDataModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="ConnId" ColumnName="ConnId" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="LockScreenTime" ColumnName="LockScreenTime" />
+                <ScalarProperty Name="DaiDien" ColumnName="DaiDien" />
+                <ScalarProperty Name="IDDonVi" ColumnName="IDDonVi" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="IDXa" ColumnName="IDXa" />
+                <ScalarProperty Name="IDHuyen" ColumnName="IDHuyen" />
+                <ScalarProperty Name="IDTinh" ColumnName="IDTinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FInUse" ColumnName="FInUse" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

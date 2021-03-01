@@ -1,0 +1,67 @@
+﻿<div class="logo">
+    <h2 style="color:white">
+        <abbr>PHẦN MỀM QUẢN LÝ THI ĐUA KHEN THƯỞNG</abbr>
+    </h2>
+</div>
+<!-- END LOGO -->
+<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+<div class="menu-toggler sidebar-toggler">
+</div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGIN -->
+<div class="content" style="background-color: bisque !important" ng-controller="LoginController">
+    <!-- BEGIN LOGIN FORM -->
+    <form class="login-form">
+        <h4 class="form-title" style="color:black!important">Đăng nhập</h4>
+        
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label" style="color:black!important">Tên đăng nhập</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input id="username" class="form-control form-control-solid placeholder-no-fix form-group form_login" maxlength="50"
+                       type="text" autocomplete="off" placeholder="Tên đăng nhập" name="username" ng-model="auth.username" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" style="color:black!important">Mật khẩu</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control form-control-solid placeholder-no-fix form-group form_login"  maxlength="50"
+                       type="password" autocomplete="off" placeholder="Mật khẩu" name="password" ng-model="auth.password" required />
+            </div>
+        </div>
+      
+        <div class="form-actions">
+            
+            <button type="submit" id="loginBtn" ng-click="fnLogin()" class="btn btn-sm blue pull-right" data-style="contract">
+                Đăng nhập <i ng-hide="show==1" class="m-icon-swapright m-icon-white"></i>
+                <img width="20px" height="20px" ng-show="show==1" src="../../giphy.gif" />
+            </button>
+            
+        </div>
+        <div class="create-account">
+            
+                <!--<a class="bold" ng-click="RequestPasswordReset()">Yêu cầu đặt lại mật khẩu!</a><br />-->
+                <span class="font-black">Nếu bạn chưa có tài khoản ,vui lòng liên hệ với quản trị viên để được cấp tài khoản!</span><br />
+                <a class="bold" target="_blank" href="https://ultraviewer.net/vi/download.html">Hỗ trợ trực tuyến!</a><br />
+                <a class="bold" target="_blank" href="/Help.pdf">Hướng dẫn sử dụng!</a>
+           
+        </div>
+    </form>
+
+</div>
+
+<div class="copyright">
+    <p>Copyright 2020 &copy; Phần mềm Nam Phong </p>
+</div>
+<script>
+    $("#username").focus();
+    $('.form_login').keypress(function (event) {
+        if (event.keyCode == 13) {
+            $('#loginBtn').click();
+        }
+    });
+    
+</script>
+

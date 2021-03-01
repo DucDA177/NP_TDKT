@@ -1,0 +1,115 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> DANH SÁCH CÁN BỘ NHÂN VIÊN</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+   
+
+    <div class="form-group ">
+        <div class="col-md-8">
+            <a class="btn btn-primary btn-sm" ng-click="openModal('','CanBoNhanVien')"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+        </div>
+
+        <div class="col-md-4">
+            <div class="input-group " style="margin-top:-3px">
+                <input type="text" ng-model="Paging.searchKey"
+                       ng-model-options="{updateOn: 'change'}"
+                       class="form-control input-sm " placeholder="Nhập từ khóa để tìm kiếm...">
+                <span class="input-group-btn">
+                    <a class="btn btn-default input-sm" ng-click="LoadCanBoNhanVien()">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="table-scrollable ">
+                <!-- BEGIN FORM-->
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead>
+                        <tr>
+                            <th align="center"> STT </th>
+                            <th> <div style="text-align:center">Ho và tên</div> </th>
+                            <th><div style="text-align:center">Ngày sinh</div>  </th>
+                            <th> <div style="text-align:center">Giới tính</div> </th>
+                            <th><div style="text-align:center">Chức vụ</div>  </th>
+                            <th><div style="text-align:center">Thuộc đơn vị</div>  </th>
+                            <th><div style="text-align:center">#</div>  </th>
+                            <th><div style="text-align:center">#</div> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX" ng-repeat="dm in CanBoNhanVien">
+                            <td align="center" width="1%"> {{$index + Paging.pageStart}} </td>
+                            <td> <a ng-click="openModal(dm,'CanBoNhanVien')"> {{dm.Hovaten}}</a> </td>
+                            <td>
+                                {{dm.Ngaysinh | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td> {{dm.Gioitinh}}</td>
+                            <td>{{dm.Chucvu}}</td>
+                            <td>
+
+                                <div style="text-align:center">
+                                    <select ng-model="dm.Macap" disabled style="
+                                                                    font-weight:bold;
+                                                                    color: black;
+                                                                    -webkit-appearance: none;">
+                                        <option value="0">SỞ VHTT&DL Hải Dương</option>
+                                        <option ng-repeat="lvh in LoaiVanHoa" value={{lvh.Code}}>Phòng {{lvh.Name}} - SỞ VHTT&DL Hải Dương</option>
+                                        <option ng-repeat="nl in District" value={{nl.FCode}}> Phòng VH {{nl.FName}}</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td><a ng-click="openModal(dm,'CanBoNhanVien')" title="Sửa"><i class="fa fa-edit"></i></a></td>
+                            <td><a ng-click="Del(dm.Id)" title="Xóa"><i class="fa fa-trash font-red"></i></a></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="LoadCanBoNhanVien()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!--<div id="displayPage"></div>-->
+            <!--<div class="pull-right" style="margin-top:-10px" id="show_paginator"></div>-->
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadCanBoNhanVien()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

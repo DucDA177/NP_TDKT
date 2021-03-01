@@ -1,0 +1,181 @@
+﻿<div ng-init="OnLoad()">
+    <div class="modal-header bg-color" style="background-color:#ccc">
+        <div class="modal-title">
+            <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin đơn vị</label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row margin-bottom-5">
+              
+                <div class="{{itemError.ModelState.MaDonVi[1]}}">
+                    <label class="control-label col-md-2">Mã <span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+                        <input ng-change="ValidMaDv()" ng-model-options="{updateOn: 'change'}" type="text" class="form-control input-sm" ng-model="item.MaDonVi">
+                        
+                    </div>
+                </div>
+                <div class="{{itemError.ModelState.TenDonVi[1]}}">
+                    <label class="control-label col-md-2">Tên đơn vị <span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" ng-model="item.TenDonVi">
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="row  margin-bottom-5">
+                <div class="{{itemError.ModelState.LoaiDonVi[1]}}">
+                    <label class="control-label col-md-2">Loại đơn vị <span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+
+                        <select ng-model="item.LoaiDonVi" class="form-control input-sm select2">
+                            <option ng-repeat="nl in LoaiDonVi" value="{{nl.Code}}">{{nl.Name}}</option>
+                        </select>
+                      
+                    </div>
+                </div>
+                <div>
+                    <label class="control-label col-md-2">Đơn vị cấp trên: </label>
+                    <div class="col-md-4">
+
+                        <select ng-model="item.IDDVCha" class="form-control input-sm select2" convert-to-number>
+                            <option ng-repeat="nl in DonVi" value={{nl.Id}}>{{nl.TenDonVi}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Quản lý: </label>
+                <div class="col-md-4">
+
+                    <select ng-model="item.NhomLoai" class="form-control input-sm select2">
+                        <option ng-repeat="nl in LoaiVanHoa" value="{{nl.Code}}">{{nl.Name}}</option>
+                    </select>
+                </div>
+                <label class="control-label col-md-2">Lãnh đạo: </label>
+                <div class="col-md-4">
+
+                    <input type="text" class="form-control input-sm" ng-model="item.TenLanhDao">
+                </div>
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+               
+                <label class="control-label col-md-2">SĐT:</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" ng-model="item.DienThoai">
+                </div>
+                <div>
+                    <label class="control-label col-md-2">Email:</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" ng-model="item.Email">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Số Fax:</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" ng-model="item.Fax">
+                </div>
+                <label class="control-label col-md-2">Website: </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" ng-model="item.Website">
+                </div>
+
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Địa chỉ:</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" ng-model="item.DiaChi">
+                </div>
+                <label class="control-label col-md-2">Tỉnh/Thành phố: </label>
+                <div class="col-md-4">
+                    <select ng-model="item.IDTinh" class="form-control input-sm select2" ng-change="LoadProvin(item.IDTinh,'0','0')" >
+                        <option ng-repeat="nl in Provin" value={{nl.FCode}}>{{nl.FName}}</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Quận/Huyện:</label>
+                <div class="col-md-4">
+                    <select ng-model="item.IDHuyen" class="form-control input-sm select2" ng-change="LoadProvin(item.IDTinh,item.IDHuyen,'0')" >
+                        <option ng-repeat="nl in District" value={{nl.FCode}}>{{nl.FName}}</option>
+                    </select>
+                </div>
+                <label class="control-label col-md-2">Xã/Phường: </label>
+                <div class="col-md-4">
+                    <select ng-model="item.IDXa" class="form-control input-sm select2" >
+                        <option ng-repeat="nl in Ward" value={{nl.FCode}}>{{nl.FName}}</option>
+                    </select>
+                </div>
+
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+          
+                <label class="control-label col-md-2"><i>Lưu ý: </i></label>
+
+                <div class="col-md-4">
+                    <div style="margin-top:7px"><i><span style="color:red">*</span> Bắt buộc nhập</i></div>
+                </div>
+                <label class="control-label col-md-2">Hiển thị:</label>
+                <div class="col-md-1">
+                    <input type="checkbox" class="input-sm" ng-model="item.FInUse">
+                </div>
+                <label class="control-label col-md-2">STT:</label>
+                <div class="col-md-1">
+                    <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control input-sm" ng-model="item.STT">
+
+                </div>
+
+
+            </div>
+      
+            <div class="row  margin-bottom-5">
+                
+              
+            </div>
+            <div class="row" >
+
+                
+
+            </div>
+
+            <div class="form-group " style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10 clearfix">
+                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </a>
+                    <a class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveAndNew()"><i class="fa fa-save"></i> Lưu và thêm </a>
+                    <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.btn').addClass('input-sm');
+        $('.form-control').addClass('input-sm');
+
+    })
+</script>
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+</script>

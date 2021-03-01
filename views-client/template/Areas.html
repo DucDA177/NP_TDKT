@@ -1,0 +1,55 @@
+﻿<!-- BEGIN PAGE HEADER-->
+
+<!--<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a ui-sref="dashboard">Trang chủ</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a ui-sref="formtools">Danh mục chung</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li class="bold">
+            <a ui-sref="formtools">Địa bàn</a>
+
+        </li>
+    </ul>
+
+</div>-->
+
+<!-- END PAGE HEADER-->
+<div ng-controller="AreasController">
+    <div class="row">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="col-md-12">
+                    <a href="javascript:;" class="btn btn-primary btn-outline sbold" ng-click="openEditAreaModal()">
+                        <i class="fa fa-plus-circle"></i>&nbsp; Thêm mới
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <div class="col-md-12">
+                    <!--<table class="table table-hover table-light gtreetable" id="gtreetable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nested Tree Table
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>-->
+                    <div id="tree_3" class="tree-demo"> </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- END MAIN CONTENT -->

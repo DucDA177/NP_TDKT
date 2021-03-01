@@ -1,0 +1,73 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+        <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> LỊCH SỬ PHỤC HỒI DỮ LIỆU TỪ CÁC BẢN SAO LƯU </label></h4>
+
+    </div>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-hover"
+                           id="fixTable">
+
+                        <thead style="background-color:#eee">
+
+                            <tr style="border:solid 1px">
+                                <th style="border:solid 1px"> <div style="text-align:center">STT</div> </th>
+                                <th style="border:solid 1px">
+                                    <div style="text-align:center">Mã bản sao lưu</div>
+                                </th>
+                                <th style="border:solid 1px">
+                                    <div style="text-align:center">Thao tác</div>
+                                </th>
+                                <th style="border:solid 1px"> <div style="text-align:center">Thời gian</div> </th>
+                                <th style="border:solid 1px"> <div style="text-align:center">Người phục hồi</div> </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd gradeX" ng-repeat="dm in ListRsLog" ng-show="dm.TimeBackup">
+
+                                <td style="border:solid 1px" align="center"> {{$index +1}} </td>
+                                <td style="border:solid 1px" align="center">{{dm.TimeBackup | date:'HHmmss-ddMMyy'}} </td>
+                                <td style="border:solid 1px">
+                                    {{
+dm.LinkDatabase && dm.LinkDataNCC ? 'Phục hồi Toàn bộ':
+                                    dm.LinkDatabase && !dm.LinkDataNCC ? 'Phục hồi Cơ sở dữ liệu':
+                                    'Phục hồi Hồ sơ người có công'
+                                    }}
+                                </td>
+                                <td style="border:solid 1px"> {{dm.TimeRestore | date:'HH:mm - dd/MM/yyyy'}}</td>
+                                <td style="border:solid 1px">{{dm.UserName}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+</script>

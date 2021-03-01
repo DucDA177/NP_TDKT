@@ -1,0 +1,69 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+        <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cấu hình một số thông tin cơ bản - {{itemUser.HoTen}} </label></h4>
+
+    </div>
+</div>
+<form class="modal-body form">
+    <div class="form-body form-horizontal margin-top-10">
+        <!--<div class="row margin-bottom-5">
+
+            <label class="control-label col-md-4">Đường dẫn file đính kèm:</label>
+            <div class="col-md-8">
+                <input id="LinkFile" type="text" class="form-control input-sm" ng-model="item.LinkFile">
+
+            </div>
+           
+        </div>-->
+        <div class="row margin-bottom-5">
+
+            <label class="control-label col-md-4">Loại hồ sơ hay sử dùng:</label>
+            <div class="col-md-8">
+                <select ng-model="item.LoaiHoSo" class="form-control input-sm " multiple ng-disabled="checkAll">
+                    <option ng-repeat="nl in LoaiHoSo" value={{nl.Ma}}>{{nl.Ten}}</option>
+                </select>
+            </div>
+            <label class="control-label col-md-4"></label>
+            <div class="col-md-8">
+                <label> <input type="checkbox" ng-model="checkAll" ng-change="onCheckAll()" /> Chọn tất cả</label>
+            </div>
+        </div>
+        <!--<div class="row margin-bottom-5">
+
+            <label class="control-label col-md-4">Cán bộ quản lý<span style="color:red">*</span>:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control input-sm" ng-model="item.CanBo" required>
+            </div>
+
+        </div>-->
+        <div class="row margin-bottom-5">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+                <div style="margin-top:7px"><i>Lưu ý: <span style="color:red">*</span> Bắt buộc nhập</i></div>
+            </div>
+        </div>
+
+        <div class="form-group " style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-10 clearfix text-right">
+                <button type="submit" class="btn btn-sm btn-success btn-outline sbold" ng-click="SaveModal()"><i class="fa fa-save"></i> Lưu </button>
+                <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+   
+</script>

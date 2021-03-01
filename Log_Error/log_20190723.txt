@@ -1,0 +1,4 @@
+7/23/2019 9:42:47 AM: For Save ObjByInpspecSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at WebApiCore.Controllers.InspectionsController.SaveObjByInspection(List`1 objByInSpection, String CodeInspection, String Type) in E:\VSD\DuAn\ThanhTraKiemTra\ThanhTra_HaNam\WebApiCore\Controllers\InspectionsController.cs:line 387
+7/23/2019 9:44:20 AM: For Save ObjByInpspecSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at WebApiCore.Controllers.InspectionsController.SaveObjByInspection(List`1 objByInSpection, String CodeInspection, String Type) in E:\VSD\DuAn\ThanhTraKiemTra\ThanhTra_HaNam\WebApiCore\Controllers\InspectionsController.cs:line 387

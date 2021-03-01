@@ -1,0 +1,318 @@
+﻿<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> SAO LƯU VÀ PHỤC HỒI DỮ LIỆU</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+    <div class="tabbable-custom portlet box margin-top-10">
+        <ul class="nav nav-tabs ">
+            <li class="active">
+                <a id="clickTab1" data-target="#tab_1" data-toggle="tab" aria-expanded="true" class="bold">
+                  <i class="fa fa-send"></i>  Sao lưu dữ liệu
+                </a>
+            </li>
+            <li>
+                <a id="clickTab2" data-target="#tab_2" data-toggle="tab" aria-expanded="true" class="bold">
+                    <i class="fa fa-history"></i> Phục hồi dữ liệu tùy chỉnh
+                </a>
+            </li>
+
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active " id="tab_1" ng-controller="BackupController">
+
+                <div class="row">
+                    <div class="portlet light " style="margin-bottom:0">
+
+                        <div class="form-body form-horizontal col-md-12">
+                            <div class="form-group">
+
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Đường dẫn lưu</span>
+                                        <input type="text" ng-model="Paging.Folder"
+                                               ng-click="openModal(Paging,'ChonOCung','backup')"
+                                               class="form-control" placeholder="...">
+                                        <a title="Chọn ổ cứng" class="input-group-addon"
+                                           ng-click="openModal(Paging,'ChonOCung','backup')"><i class="fa fa-folder font-blue"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="control-label"><input id="dtb" type="checkbox" ng-model="Paging.dtb" />Cơ sở dữ liệu</label>
+                                    <label class="control-label"><input type="checkbox" ng-model="Paging.hsncc" /> Hồ sơ NCC</label>
+                                    <label class="control-label"><input type="checkbox" ng-model="Paging.IsLock" /> Tự động khóa thư mục sao lưu</label>
+
+                                </div>
+                                <!--<div class="col-md-4">
+            <div class="input-group" ng-show="Paging.AutoBackup">
+                <span class="input-group-addon">Tự động sao lưu sau </span>
+                <input type="number" ng-model="Paging.TimeBackup"
+                       class="form-control" placeholder="nhập số giờ...">
+                <span class="input-group-addon">giờ </span>
+            </div>
+        </div>-->
+                                <div class="col-md-4 text-right">
+                                    <a class="btn btn-primary" ng-click="BackUp()">
+                                        <i class="fa fa-send"></i> Tiến hành sao lưu
+                                    </a>
+                                    <a class="btn btn-success" ng-click="openModal(Paging,'SetBackupConfig')">
+                                        <i class="fa fa-clock-o"></i> Hẹn giờ sao lưu tự động
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="form-group" ng-show="CurConfig.isActive">
+
+                                <div class="col-md-12">
+                                    <b class="font-green-haze">
+                                        Đã đặt lịch tự động sao lưu lúc {{CurConfig.hour}} giờ {{CurConfig.min}} phút hàng ngày tại đường dẫn {{CurConfig.Folder}}
+                                    </b>
+
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-12">
+                                    <i class="font-red">
+                                        Lưu ý:
+                                        Quá trình sao lưu bao gồm sao lưu Hồ sơ NCC và sao lưu Cơ sở dữ liệu nếu có.
+                                        Tệp sao lưu Hồ sơ NCC sẽ được lưu theo đường dẫn "Đường dẫn/DataNCC/..."
+                                        Tệp sao lưu Cơ sở dữ liệu sẽ được lưu theo đường dẫn "Đường dẫn/Database/...".
+                                    </i>
+
+                                </div>
+
+
+                            </div>
+                            <div class="form-group" ng-show="progress">
+                                <div class="col-md-12">
+                                    <i> {{progress < 100 ? 'Vui lòng đợi trong quá trình sao lưu dữ liệu...' : 'Hoàn tất sao lưu...' }} </i>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+                                            <b> {{progress}} % </b>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="table-scrollable ">
+                                        <!-- BEGIN FORM-->
+                                        <table class="table table-striped table-bordered table-hover"
+                                               id="fixTable">
+                                            <caption>
+                                                <div class="col-md-2 text-left">
+                                                    <a ng-show="ListBakChecked.length > 0"
+                                                       ng-click="DeleteBak()"><i class="fa fa-trash font-red"></i>Xóa ({{ListBakChecked.length}})</a>
+                                                </div>
+                                                <div class="col-md-8"><center> <b>CÁC BẢN SAO LƯU DỮ LIỆU</b> </center></div>
+                                                <div class="col-md-2 text-right">
+                                                    <a ng-click="openModal('','RestoreLog')"><i class="fa fa-eye"></i>Lịch sử phục hồi</a>
+                                                </div>
+                                            </caption>
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px">
+                                                    <th style="border:solid 1px" width="1px">
+                                                        <div style="text-align:center">
+                                                            <input type="checkbox" ng-model="Check" ng-click="OnCheckAll()" />
+                                                        </div>
+                                                    </th>
+                                                    <th style="border:solid 1px" width="1px"> <div style="text-align:center">STT</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Mã</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Vị trí lưu Hồ sơ NCC</div> </th>
+                                                    <th style="border:solid 1px">
+
+                                                        <div style="text-align:center">Vị trí lưu Cơ sở dữ liệu</div>
+                                                    </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Thời gian</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">Người tạo</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+                                                    <th style="border:solid 1px"> <div style="text-align:center">#</div> </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd gradeX" ng-repeat="dm in ListLogBackup">
+                                                    <td style="border:solid 1px" align="center">
+                                                        <input type="checkbox" ng-model="dm.Check" ng-click="OnCheck(dm)" />
+                                                    </td>
+                                                    <td style="border:solid 1px"> {{$index +1}} </td>
+                                                    <td style="border:solid 1px"> {{dm.TimeBackup | date:'HHmmss-ddMMyy'}} </td>
+                                                    <td style="border:solid 1px"> {{dm.LinkDataNCC}} </td>
+                                                    <td style="border:solid 1px">
+                                                        {{dm.LinkDatabase ? dm.LinkDatabase : '---Không sao lưu hoặc Đã xóa---'}}
+                                                    </td>
+                                                    <td style="border:solid 1px"> {{dm.TimeBackup | date:'HH:mm - dd/MM/yyyy'}}</td>
+                                                    <td style="border:solid 1px">{{dm.UserName}}</td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="openModal(dm,'Restore')"><i class="fa fa-history"></i> Phục hồi</a>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="UnLockBackupFolder(dm)" title="Mở khóa thư mục sao lưu"><i class="fa fa-key"></i></a>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="LockBackupFolder(dm)" title="Khóa thư mục sao lưu"><i class="fa fa-lock"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="pull-left col-md-3">
+                                    <div class="input-group col-md-12">
+                                        <span class="input-group-addon"> Hiển thị </span>
+                                        <select ng-model="Paging.pageSize"
+                                                ng-options="template.value as template.text for template in displayPage"
+                                                ng-change="LoadLogBackup()" class="form-control select2"></select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <!--<div id="displayPage"></div>-->
+                                    <div class="pull-right" style="margin-top:-10px">
+                                        <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                                            <div class="pagination-panel">
+                                                Trang
+                                                <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                                           class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                                           maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="LoadLogBackup()"
+                                                           ng-model-options="{updateOn: 'change'}">
+                                                <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                                                <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="tab_2" ng-controller="RestoreController">
+                <div class="row">
+                    <div class="portlet light " style="margin-bottom:0">
+
+                        <div class="form-body form-horizontal col-md-12">
+                            <div class="form-group">
+
+                                <div class="col-md-5 dtb">
+                                    <div class="input-group ">
+                                        <span class="input-group-addon">Đường dẫn CSDL</span>
+                                        <input type="text" ng-model="Paging.LinkDatabase"
+                                               class="form-control" placeholder="Bỏ trống nếu không tiến hành phục hồi cơ sở dữ liệu">
+                                        <a title="Chọn ổ cứng" class="input-group-addon"
+                                           ng-click="openModal(Paging,'ChonOCung','restore_bak')"><i class="fa fa-folder font-blue"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Đường dẫn Hồ sơ NCC</span>
+                                        <input type="text" ng-model="Paging.LinkDataNCC"
+                                               class="form-control" placeholder="Bỏ trống nếu không tiến hành phục hồi Hồ sơ NCC">
+                                        <a title="Chọn ổ cứng" class="input-group-addon"
+                                           ng-click="openModal(Paging,'ChonOCung','restore_datancc')"><i class="fa fa-folder font-blue"></i></a>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <a class="btn btn-primary" ng-click="Restore()">
+                                        <i class="fa fa-history"></i> Phục hồi dữ liệu
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="progress">
+
+                                <div class="col-md-12">
+                                    <i> {{progress < 100 ? 'Vui lòng đợi trong quá trình sao lưu dữ liệu...' : 'Hoàn tất sao lưu...' }} </i>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress}}"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+                                            <b> {{progress}} % </b>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                          
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                        <div class="table-scrollable">
+                                            <table class="table table-striped table-bordered table-hover"
+                                                   id="fixTable">
+
+                                                <thead style="background-color:#eee">
+                                                    <caption>
+                                                        <center> <b>LỊCH SỬ PHỤC HỒI DỮ LIỆU</b> </center>
+                                                    </caption>
+                                                    <tr style="border:solid 1px">
+                                                        <th style="border:solid 1px"> <div style="text-align:center">STT</div> </th>
+                                                        
+                                                        <th style="border:solid 1px">
+                                                            <div style="text-align:center">Thao tác</div>
+                                                        </th>
+                                                        <th style="border:solid 1px"> <div style="text-align:center">Thời gian</div> </th>
+                                                        <th style="border:solid 1px"> <div style="text-align:center">Người phục hồi</div> </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd gradeX" ng-repeat="dm in ListRsLog" ng-show="!dm.TimeBackup">
+
+                                                        <td style="border:solid 1px" align="center"> {{$index +1}} </td>
+                                                        
+                                                        <td style="border:solid 1px">
+                                                            {{dm.LinkDatabase && dm.LinkDataNCC ? 'Phục hồi Toàn bộ': dm.LinkDatabase && !dm.LinkDataNCC ? 'Phục hồi Cơ sở dữ liệu': 'Phục hồi Hồ sơ người có công' }}
+                                                        </td>
+                                                        <td style="border:solid 1px"> {{dm.TimeRestore | date:'HH:mm - dd/MM/yyyy'}}</td>
+                                                        <td style="border:solid 1px">{{dm.UserName}}</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                   
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        ComponentsSelect2.init();
+
+    });
+
+</script>

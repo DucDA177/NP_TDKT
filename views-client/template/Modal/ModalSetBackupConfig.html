@@ -1,0 +1,70 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+        <h4> <label class=" uppercase font-white"><i class="fa fa-clock-o"></i> Đặt lịch sao lưu tự động </label></h4>
+
+    </div>
+</div>
+<div class="modal-body form">
+    <div class="form-body form-horizontal">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12 margin-bottom-10">
+                    <div class="input-group">
+                        <span class="input-group-addon">Đường dẫn lưu</span>
+                        <input type="text" ng-model="item.Folder"
+                               ng-click="openModal(item,'ChonOCung','backup')"
+                               class="form-control" placeholder="...">
+                        <a title="Chọn ổ cứng" class="input-group-addon"
+                           ng-click="openModal(item,'ChonOCung','backup')"><i class="fa fa-folder font-blue"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-bottom-10">
+                    <label class="control-label"><input id="dtb"  type="checkbox" ng-model="item.dtb" />Cơ sở dữ liệu</label>
+                    <label class="control-label"><input  type="checkbox" ng-model="item.hsncc" /> Hồ sơ NCC</label>
+                    <label class="control-label"><input  type="checkbox" ng-model="item.IsLock" /> Tự động khóa thư mục sao lưu</label>
+
+                </div>
+                <div class="col-md-12 margin-bottom-10">
+                    <label class="control-label">
+                        Thời gian tự động sao lưu hàng ngày
+                        <input type="text"
+                               placeholder="giờ:phút"
+                               datetime="HH:mm"
+                               ng-model="item.time"
+                               datetime-separator=",.-/" />
+                    </label>
+
+                </div>
+                <div class="col-md-12 ">
+                    <b>
+                        Trạng thái :
+                        <label ng-show="item.isActive" class="label label-success">Đã đặt lịch tự động sao lưu</label>
+                        <label ng-hide="item.isActive" class="label label-danger">Chưa đặt hoặc đã hủy lịch hẹn</label>
+                    </b>
+
+                </div>
+            </div>
+           
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-sm btn-success" ng-click="Save()"><i class="fa fa-save"></i> Lưu </a>
+            <a class="btn btn-sm btn-danger" ng-show="item.isActive" ng-click="CancelJob()"><i class="fa fa-times-circle"></i> Hủy lịch </a>
+            <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(document).ready(function () {
+        ComponentsSelect2.init();
+    });
+</script>

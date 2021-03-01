@@ -1,0 +1,44 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+        <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Tài liệu của hồ sơ {{item.HoTen}} </label></h4>
+
+    </div>
+</div>
+
+<div class="modal-body form" id="printDiv">
+   
+    <div class="form-body form-horizontal" style="text-align:center;height:500px;overflow-y:scroll">
+
+        <div id="pdf-viewer"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--<a class="btn btn-sm btn-primary" onclick="PrintElem('printDiv')"> <i class="fa fa-print"></i> In Tài liệu </a>-->
+    <a class="btn btn-sm grey-cascade" ng-click="cancelModal()">
+        <i class="fa fa-times-circle"></i> Đóng
+    </a>
+</div>
+
+<script>
+    function PrintElem(elem) {
+        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+        mywindow.document.write('<html><head><title>' + document.title + '</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write('<h1>' + document.title + '</h1>');
+        mywindow.document.write(document.getElementById(elem).innerHTML);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+</script>
+

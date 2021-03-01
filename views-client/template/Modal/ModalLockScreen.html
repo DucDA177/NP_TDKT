@@ -1,0 +1,64 @@
+﻿<style>
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+        .modal::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <div class="modal-title">
+        <h4> <label class=" uppercase font-white"><i class="fa fa-lock"></i> ĐÃ KHÓA MÀN HÌNH </label></h4>
+
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-5">
+            <br />
+            <div class="form-group">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                        <img src="{{user.Avatar != null ? '../FILE_DINH_KEM/' + user.Avatar : '../FILE_DINH_KEM/noavatar.jpg'}}" alt="" style="width: 200px; height: 200px;" />
+                    </div>
+                   
+                </div>
+            </div>
+
+        </div>
+        <div class=" col-md-7">
+            <h2>{{user.HoTen}}</h2>
+            <span class="email">
+                Tên đăng nhập : {{user.UserName}}
+            </span>
+          
+            <form class="form-inline">
+                <div class="input-group input-medium">
+                    <input type="password" ng-enter="UnLockScreen()" ng-model="item.password" class="form-control" placeholder="Nhập lại mật khẩu">
+                    <span class="input-group-btn">
+                        <a ng-click="UnLockScreen()" class="btn blue icn-only"><i class="m-icon-swapright m-icon-white"></i></a>
+                    </span>
+                </div>
+                <div class="relogin">
+                    <a href="login.html">
+                        Bạn không phải {{user.HoTen}} ?
+                    </a>
+                </div>
+            </form>
+            <i class="font-red">Lưu ý: Vui lòng nhập chính xác mật khẩu để tiếp tục phiên làm việc,
+            mọi thao tác cố tình khởi động lại hệ thống sẽ hủy bỏ phiên làm việc và yêu cầu đăng nhập lại</i>
+        </div>
+    </div>
+</div>

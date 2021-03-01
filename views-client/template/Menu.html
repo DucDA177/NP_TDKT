@@ -1,0 +1,100 @@
+﻿<div class="col-md-12">
+    <h3 class="font-blue">
+       <i class="fa fa-list"></i> Quản lý danh mục chức năng
+    </h3>
+    <!-- END PAGE HEADER-->
+
+    <div class="row" ng-controller="MenuController">
+        <div class="col-md-4">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption font-green">
+                        <i class="icon-folder font-green"></i>
+                        <span class="caption-subject bold uppercase">Menu</span>
+                    </div>
+                    <div class="actions">
+                        <a href="javascript:;" class="btn green-haze btn-outline sbold" ng-click="UpdateTree()">
+                            Cập nhật
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="input-group select2-bootstrap-prepend">
+                        <!--<span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-select2-open="single-prepend-text">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <select ng-model="CoCode" id="single-prepend-text" class="form-control green-haze select2 select2-hidden-accessible" ng-change="MainMenuChange()" tabindex="-1" aria-hidden="true">
+                            <option value="ALL">All Menu</option>
+                            <option ng-selected="CoCode == c.FCode" ng-repeat="c in MainMenu" value="{{c.FCode}}">{{c.FName }}</option>
+                        </select>-->
+                    </div>
+                    <div id="tree_3" class="tree-demo"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- BEGIN PORTLET-->
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption" data-toggle="collapse" data-target=".todo-project-list-content">
+                        <span class="caption-subject font-green bold uppercase">Danh sách</span>
+                        <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">click to view project list</span>
+                    </div>
+                    <div class="actions">
+                        <a href="javascript:;" class="btn green-haze btn-outline sbold" ng-click="openEditMenuModal()">
+                            <i class="fa fa-plus"></i>&nbsp; Thêm mới
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="table-scrollable">
+                        <!-- BEGIN FORM-->
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th align="center"> # </th>
+                                    <th> Tên </th>
+                                    <th> Mô tả </th>
+
+                                    <th> DM Cha</th>
+
+                                    <th> Url </th>
+
+                                    <th align="center"> # </th>
+                                    <th align="center"> # </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX" ng-repeat="Menu in MenuLevel | orderBy:['ParentMenu','FIndex']">
+
+                                    <td nowrap><i class="{{ Menu.Icon }}"></i></td>
+                                    <td nowrap> <a ng-click="openEditMenuModal(Menu)">{{ GetMenuName(Menu) }}</a> </td>
+                                    <td nowrap> {{ Menu.FDescription }} </td>
+
+                                    <td nowrap> {{ Menu.ParentMenu }} </td>
+                                    <td nowrap> {{ Menu.Url }} </td>
+
+
+                                    <td align="center" nowrap><a ng-click="openEditMenuModal(Menu)"> <i class="fa fa-edit"></i> </a></td>
+
+                                    <td align="center" nowrap> <a><i class="fa fa-times font-red" ng-click="DeleteMenu(Menu.Id,Menu.FCode);"></i></a> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- END FORM-->
+
+
+                    </div>
+                    <!--<dir-pagination-controls boundary-links="true"
+                                             direction-links="true"
+                                             template-url="views-client/dirPagination.tpl.html">
+                    </dir-pagination-controls>-->
+                </div>
+            </div>
+            <!-- END PORTLET-->
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

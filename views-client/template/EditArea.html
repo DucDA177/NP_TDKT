@@ -1,0 +1,151 @@
+﻿
+<div class="modal-header bg-color" style="background-color:#ccc">
+    <a title="Đóng" style="opacity:1 !important" ng-click="cancelModal()" class="close" aria-hidden="true"> </a>
+
+    <h4 ng-if="itemArea.Id!=null"> <label class=" uppercase font-white"><i class="fa fa-list"></i> Chỉnh sửa danh mục Đại bàn</label></h4>
+    <h4 ng-if="itemArea.Id==null"> <label class=" uppercase font-white"><i class="fa fa-list"></i> Thêm mới danh mục Địa bàn</label></h4>
+
+</div>
+<div class="modal-body form" ng-init="OnLoad()">
+
+    <div class="form-body form-horizontal margin-top-10">
+
+        <div class="row" style="display:none">
+            <label class="control-label col-md-2">Mã</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control input-sm green-haze" disabled="disabled" ng-model="itemArea.Id" name="Id">
+            </div>
+
+        </div>
+        <div class="row {{itemAreaError.ModelState.FCode[1]}}">
+            <label class="control-label col-md-2">Mã địa bàn (<span style="color:red">*</span>):</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm"
+                           autofocus
+                           ng-model="itemArea.FCode"
+                           ng-model-options="{updateOn: 'change'}" ng-disabled="read"
+                           id="FCode" name="FCode" ng-change="ValidOnlyCode(itemArea.FCode,'Area')">
+                    <span class="input-group-btn">
+                        <button class="btn input-sm green-haze btn-outline sbold"
+                                ng-disabled="read" type="button" ng-click="AutoID('MB');itemArea.FCode = objAutoID.FName;">
+                            Tạo mã
+                        </button>
+                    </span>
+
+                </div>
+                <span class="help-block"> {{ itemAreaError.ModelState.FCode[0] }} </span>
+            </div>
+            <label class="control-label col-md-2">Tên địa bàn (<span style="color:red">*</span>):</label>
+            <div class="col-md-4 ">
+                <input type="text" class="form-control input-sm" ng-model="itemArea.FName" id="FName" name="FCode">
+                <span class="help-block"> {{ itemAreaError.ModelState.FName[0] }} </span>
+            </div>
+        </div>
+        <div class="row {{itemAreaError.ModelState.FName[1]}} ">
+            <label class="control-label col-md-2">Cấp (<span style="color:red">*</span>):</label>
+            <div class="col-md-4 ">
+                <div class="input-group select2-bootstrap-prepend">
+
+                    <select ng-model="itemArea.Type" id="Type" class="form-control input-sm select2">
+                        <option ng-repeat="c in TypeArea" value="{{c.Code}}">{{c.Name}}</option>
+                    </select>
+                </div>
+                <span class="help-block"> {{ itemAreaError.ModelState.Type[0] }} </span>
+            </div>
+            <label class="control-label col-md-2">Đơn vị cha: </label>
+            <div class="col-md-4 ">
+                <div class="input-group select2-bootstrap-prepend">
+
+                    <select ng-model="itemArea.Parent" id="Parent" class="form-control input-sm select2">
+                        <option ng-repeat="c in DropArea" value="{{c.FCode}}">{{GetMenuName(c,$index) }}</option>
+                    </select>
+                </div>
+                <!--<span class="help-block"> {{ itemAreaError.ModelState.Type[0] }} </span>-->
+            </div>
+        </div>
+        <div class="row {{itemAreaError.ModelState.Type[1]}} margin-bottom-10">
+            <label class="control-label col-md-2">Vùng: </label>
+            <div class="col-md-4 ">
+                <div class="input-group select2-bootstrap-prepend">
+
+                    <select ng-model="itemArea.IDVung" id="Parent" class="form-control input-sm select2" convert-to-number>
+                        <option ng-repeat="c in DMVungDrop" value="{{c.Id}}">{{c.Ten}}</option>
+                    </select>
+                </div>
+                <!--<span class="help-block"> {{ itemAreaError.ModelState.Type[0] }} </span>-->
+            </div>
+            <label class="control-label col-md-2">Khu vực: </label>
+            <div class="col-md-4 ">
+                <div class="input-group select2-bootstrap-prepend">
+
+                    <select ng-model="itemArea.IDKhuVuc" id="Parent" class="form-control input-sm select2" convert-to-number>
+                        <option ng-repeat="c in DMKhuVucDrop" value="{{c.Id}}">{{c.Ten}}</option>
+                    </select>
+                </div>
+                <!--<span class="help-block"> {{ itemAreaError.ModelState.Type[0] }} </span>-->
+            </div>
+        </div>
+        <div class="row margin-bottom-5">
+            <label class="control-label col-md-2">Hiển thị:</label>
+            <div class="col-md-1">
+                <input type="checkbox" class="input-sm" ng-model="itemArea.FInUse">
+            </div>
+            <label class="control-label col-md-1">STT:</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control input-sm" allow-only-numbers ng-model="itemArea.Id">
+            </div>
+            <label class="control-label col-md-2"><i>Lưu ý: </i></label>
+
+            <div class="col-md-4">
+                <div style="margin-top:7px"><i><span style="color:red">*</span> Bắt buộc nhập</i></div>
+            </div>
+        </div>
+     
+
+    </div>
+</div>
+<div class="modal-footer">
+    <div style="margin-right:5px">
+        <button class="btn btn-success btn-outline sbold"  ng-click="SaveModal();cancelModal()"><i class="fa fa-save"></i> Lưu </button>
+        <button class="btn btn-success btn-outline sbold" ng-click="SaveModal(); itemArea = []"><i class="fa fa-save"></i> Lưu và thêm </button>
+        <button class="btn grey-cascade" ng-click="cancelModal()"> <i class="fa fa-times-circle"></i>Thoát </button>
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function () {
+        //ComponentsDateTimePickers.init();
+        $.fn.select2.defaults.set("theme", "bootstrap");
+
+        var placeholder = "Chọn";
+
+        $(".select2, .select2-multiple").select2({
+            placeholder: placeholder,
+            width: null
+        });
+
+        $(".select2-allow-clear").select2({
+            allowClear: true,
+            placeholder: placeholder,
+            width: null
+        });
+
+        $("button[data-select2-open]").click(function () {
+            $("#" + $(this).data("select2-open")).select2("open");
+        });
+
+
+        //if (jQuery().datepicker) {
+        //    $('.date-picker').datepicker({
+        //        rtl: App.isRTL(),
+        //        orientation: "left",
+        //        autoclose: true
+        //    });
+        //    //$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
+        //}
+
+    });
+
+
+</script>

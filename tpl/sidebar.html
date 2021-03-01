@@ -1,0 +1,39 @@
+﻿<style>
+    .page-sidebar .sidebar-search.sidebar-search-bordered, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-search.sidebar-search-bordered {
+        margin: -9px 0px;
+    }
+
+    .page-sidebar .sidebar-toggler, .page-sidebar-closed.page-sidebar-fixed .page-sidebar .sidebar-toggler {
+        margin-bottom: 6px;
+    }
+</style>
+<div class="page-sidebar navbar-collapse collapse">
+
+    <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': $settings.layout.pageSidebarClosed}">
+
+        <li class="nav-item"
+            ng-class="{'active open': m.FCode == $stateParams.param.ParentMenu || m.FCode == $stateParams.param.FCode }"
+            ng-repeat="m in menu | filter: { MainMenu : 'MAIN',FName : search} | orderBy : 'FIndex'" ng-init="m.Stt = $index + 1">
+            <a ui-sref="{{m.FCode}}({param:m,FCode:m.FCode})"
+               class="nav-link nav-toggle" >
+                <i class="{{m.icon}}"></i>
+                <span class="title">{{$index + 1}}. {{m.FName}}</span>
+                <span class="arrow"></span>
+                <span class="selected"></span>
+            </a>
+            <ul class="sub-menu">
+                <li ng-class="{'active': cm.FCode == $stateParams.param.FCode}"
+                    ui-sref-active="active"
+                  
+                    ng-repeat="cm in menu | filter: {ParentMenu: m.FCode,FName : search} | orderBy : 'FIndex'">
+                    <a ui-sref="{{cm.FCode}}({param:cm,FCode:cm.FCode})">
+                        {{m.Stt}}.{{$index + 1}}. {{cm.FName}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+    <!-- END SIDEBAR MENU -->
+    <!--ng-hide="cm.FCode != 'LHDT' && CurHoiDong == null && CurDonVi.LoaiDonVi == 'TRUONG'"-->
+</div>
