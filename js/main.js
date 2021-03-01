@@ -79,7 +79,7 @@ WebApiApp.factory('$settings', ['$rootScope', function ($rootScope) {
 
 WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '$http', '$uibModal', '$cookies', '$state', '$uibModalStack'
     , function ($stateParams, $scope, $rootScope, $http, $uibModal, $cookies, $state, $uibModalStack) {
-    
+    //HienMoon 
         $scope.LoaiDonVi = [
             { Code: 'ADMIN', Name: 'Quản trị hệ thống' },
             { Code: 'XD', Name: 'Đơn vị cấp xét duyệt' },
