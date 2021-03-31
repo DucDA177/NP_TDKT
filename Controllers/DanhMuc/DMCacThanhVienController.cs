@@ -18,6 +18,7 @@ namespace WebApiCore.Controllers.DanhMuc
         public IHttpActionResult Save([FromBody] tblDoituong ndkt)
         {
             ndkt.SearchKey = Commons.Common.RenderSearchKey(ndkt.Hodem, ndkt.Ten);
+            ndkt.Loai = "CANHAN";
             if (ndkt.Id == null || ndkt.Id == 0)
             {
 
@@ -40,7 +41,7 @@ namespace WebApiCore.Controllers.DanhMuc
         {
             var dt = db.tblDoituongs.Where(t => 
             (t.SearchKey.Contains(searchKey) || string.IsNullOrEmpty(searchKey))
-            && (t.IdDonvi == IdDonvi || IdDonvi == 0)
+            && (t.IdDonvi == IdDonvi || IdDonvi == 0) && t.Loai == "CANHAN"
             )
             .OrderByDescending(t => t.Id);
 
@@ -51,9 +52,34 @@ namespace WebApiCore.Controllers.DanhMuc
         [Route("api/DMCacThanhVien/Del")]
         public IHttpActionResult Del(int Id)
         {
+            var check = db.tblDoituongKhenthuongs.Where(t => t.IdDoituong == Id).Any();
+            if (check) return BadRequest("Không được phép xóa đối tượng này do có dữ liệu liên quan!");
+
             db.tblDoituongs.Remove(db.tblDoituongs.Find(Id));
 
             return Ok(db.SaveChanges());
+        }
+        [HttpGet]
+        [Route("api/DMCacThanhVien/LoadCaNhanByDonVi")]
+        public IHttpActionResult LoadCaNhanByDonVi(int IdDonvi)
+        {
+            var data = db.tblDoituongs.Where(t => t.IdDonvi == IdDonvi && t.Loai == "CANHAN");
+            
+            return Ok(data);
+
+        }
+        [HttpGet]
+        [Route("api/DMCacThanhVien/LoadCaNhanByDonViForTapThe")]
+        public IHttpActionResult LoadCaNhanByDonViForTapThe(int IdDonvi)
+        {
+            //var data = db.tblDoituongs.Where(t => t.IdDonvi == IdDonvi && t.Loai == "CANHAN");
+            var data = from dt in db.tblDoituongs
+                       join dttt in db.tblThanhvienTapthes on dt.Id equals dttt.IdCanhan into gr
+                       from tv in gr.DefaultIfEmpty()
+                       where dt.IdDonvi == IdDonvi && dt.Loai == "CANHAN" 
+                       select new { dt, tv };
+            return Ok(data);
+
         }
     }
 }

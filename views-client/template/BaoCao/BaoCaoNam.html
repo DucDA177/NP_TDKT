@@ -1,0 +1,182 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> TỔNG HỢP BÁO CÁO THI ĐUA KHEN THƯỞNG THEO NĂM</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Năm: </span>
+                <select class="form-control select2" ng-model="Paging.Nam" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListNam"
+                            value="{{y}}">
+                        {{y}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Đơn vị: </span>
+                <select class="form-control select2" ng-model="Paging.IdDonvi" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListDonVi "
+                            value="{{y.Id}}">
+                        {{y.TenDonVi}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4 text-right">
+
+            <a class="btn btn-sm btn-primary" onclick="tableToExcel('fixTable', 'Báo cáo theo năm')">
+                <i class="fa fa-file-excel-o"></i> Xuất Excel
+            </a>
+
+            <a class="btn btn-sm btn-primary" ng-show="!IsEdit" ng-click="IsEdit = !IsEdit">
+                <i class="fa fa-print"></i> Sửa và in
+            </a>
+            <a class="btn btn-sm btn-danger" ng-show="IsEdit" ng-click="IsEdit = !IsEdit">
+                <i class="fa fa-times"></i> Hủy sửa
+            </a>
+        </div>
+    </div>
+
+    <div class="form-group ">
+
+        <div class="col-md-12">
+            <div class="table-scrollable" id="fixTable" ng-show="!IsEdit">
+                <div style="text-align:center"><h4><strong>BÁO CÁO THI ĐUA KHEN THƯỞNG THEO NĂM</strong></h4></div>
+
+                <table class="table table-striped table-bordered table-hover">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px;">
+                            <td width="1px" style="border:solid 1px" rowspan="2">
+                                <div style="text-align:center;font-weight:bold">STT</div>
+                            </td>
+                            <td style="border:solid 1px" rowspan="2"><div style="text-align:center;font-weight:bold">Năm</div> </td>
+                            <td style="border:solid 1px" rowspan="2"><div style="text-align:center;font-weight:bold">Đơn vị</div></td>
+                            <td style="border:solid 1px" colspan="5"><div style="text-align:center;font-weight:bold">Số cá nhân</div></td>
+                            <td style="border:solid 1px" colspan="5"><div style="text-align:center;font-weight:bold">Số tập thể</div></td>
+
+                        </tr>
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đã trình</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đạt</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Không đạt</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">KT Định kỳ</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">KT Đột xuất</div></td>
+
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đã trình</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đạt</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Không đạt</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">KT Định kỳ</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">KT Đột xuất</div></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in Data " on-finish-render="ngRepeatFinished">
+                            <td align="center" style="border:solid 1px"> {{$index + Paging.pageStart}} </td>
+
+                            <td style="border:solid 1px" class="bold" align="center">
+                                {{dv.Nam}}
+
+                            </td>
+                            <td style="border:solid 1px" class="bold">
+                                {{dv.TenDonVi}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.CNDaTrinh}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.CNDat}}
+                            </td>
+                            <td  style="border:solid 1px" align="center">
+                                {{dv.CNKoDat}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.CNDinhKy}}
+                            </td>
+                            <td style="border: solid 1px;" align="center">
+                                {{dv.CNDotXuat}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.TTDaTrinh}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.TTDat}}
+                            </td>
+                            <td  style="border:solid 1px" align="center">
+                                {{dv.TTKoDat}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.TTDinhKy}}
+                            </td>
+                            <td style="border: solid 1px;" align="center">
+                                {{dv.TTDotXuat}}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <ng-ckeditor ng-model="item" ng-show="IsEdit"
+                         ng-config="config"></ng-ckeditor>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize" convert-to-number
+                        ng-change="Load()" class="form-control select2">
+                    <option value="0">Tất cả</option>
+                    <option ng-repeat="vl in displayPage" value="{{vl.value}}">{{vl.text}}</option>
+                </select>
+
+            </div>
+        </div>
+       
+        <div class="col-md-9">
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" 
+                                   class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                   maxlenght="5" style="text-align:center; margin: 0 5px;"
+                                   ng-change="Load()" 
+                                   ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " 
+                           ng-click="NextPage()" 
+                           title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+   
+</script>
+
+
+
+
+

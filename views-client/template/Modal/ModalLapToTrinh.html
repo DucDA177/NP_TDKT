@@ -1,0 +1,122 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> LẬP TỜ TRÌNH KHEN THƯỞNG </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Số tờ trình<span style="color:red">*</span>:</label>
+                <div class="col-md-10">
+                    <input type="text" class="input-sm form-control" ng-model="item.Sototrinh" />
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Ngày trình :</label>
+                <div class="col-md-4">
+                    <input type="text"
+                           datetime="dd/MM/yyyy"
+                           class="form-control input-sm"
+                           ng-model="item.Ngaytrinh"
+                           datetime-separator=",.-/" />
+                </div>
+                <label class="control-label col-md-2">Đột xuất :</label>
+                <div class="col-md-4">
+                    <input style="margin-top: 10px" type="checkbox"
+                           ng-model="item.Dotxuat" />
+                </div>
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Ghi chú:</label>
+                <div class="col-md-10">
+                    <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                </div>
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Các đối tượng:</label>
+                <div class="col-md-10">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-bordered table-hover"
+                               id="fixTable">
+                            <thead style="background-color:#eee">
+                                <tr style="border:solid 1px" class="bold">
+
+                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                    <td width="1px" style="border:solid 1px"> # </td>
+                                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                    <td style="border:solid 1px" width="30%"><div style="text-align:center">Danh hiệu</div></td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dv in SelectedDoiTuong | orderBy : 'dt.Loai'">
+                                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+                                    <td align="center" style="border:solid 1px">
+                                        <input type="checkbox" ng-model="dv.Check" />
+                                    </td>
+
+                                    <td style="border:solid 1px">
+                                        <span ng-show="dv.dt.Loai == 'CANHAN'">
+                                            {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                                        </span>
+                                        <span ng-show="dv.dt.Loai == 'TAPTHE'">
+                                            {{dv.dt.Ten}}
+                                        </span>
+                                    </td>
+                                    <td style="border:solid 1px">
+                                        {{dv.dt.Loai == 'CANHAN' ? 'Cá nhân': 'Tập thể'}}
+                                    </td>
+                                    <td style="border:solid 1px">
+                                        {{dv.dh.Ten}}
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+             
+
+
+            </div>
+            <div class="row">
+
+                <label class="control-label col-md-3"><i>Lưu ý: </i></label>
+
+                <div class="col-md-9">
+                    <div style="margin-top:7px">
+                        <i><span style="color:red">*</span> Bắt buộc nhập</i> <br />
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a ng-hide="other" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save()"><i class="fa fa-save"></i> Lưu </a>
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+<!--<script>
+    ComponentsSelect2.init();
+</script>-->

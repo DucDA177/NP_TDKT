@@ -1,0 +1,154 @@
+﻿<div class="page-header">
+    <!-- BEGIN HEADER TOP -->
+    <div class="page-header-top">
+        <div class="container-fluid">
+            
+            <div class="page-logo">
+
+                <a ui-sref="dashboard"
+                   class="uppercase bold"
+                   style="overflow: hidden;display: -webkit-box;
+                      -webkit-line-clamp: 2;-webkit-box-orient: vertical;
+                      color: black;margin: 0;position: absolute;
+                      top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);
+                      text-align:center
+                        ">
+                    {{CurDonVi.TenDonVi}}
+
+                </a>
+
+            </div>
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+
+                    <li class="dropdown dropdown-extended dropdown-notification"
+                        ng-show="isShowChat">
+                        <a href="#"
+                           ng-click="toggleChat()"
+                           class="dropdown-toggle"
+                           dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+
+                            <span class="badge badge-danger"> {{MessageUnread}} </span>
+                            <i class="fa fa-wechat font-blue"></i>
+                        </a>
+
+                    </li>
+
+                    <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                        <a href="#" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+
+                            <span class="badge badge-default"> {{TBLength}} </span>
+                            <i class="fa fa-globe font-blue"></i>
+                        </a>
+                        <ul class="dropdown-menu" ng-show="ThongBao.length != 0">
+                            
+                            <li class="external">
+                                <h3><span class="bold">{{TBLength}} tin chưa đọc</span></h3>
+                                <a ng-click="CheckReadAll()">Đọc tất cả</a>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 400px; overflow-y:scroll" data-handle-color="#637283">
+
+                                    <li ng-repeat="u in ThongBao | orderBy:'-Id'" ng-click="CheckReadTB(u)"
+                                        style="background-color: {{u.NguoiDoc.includes(user.UserName) == true ? '' : '#AAC9FF'}}">
+                                        <a>
+                                            <span class="details">
+                                                <span style="font-weight: {{u.NguoiDoc.includes(user.UserName) == true ? '' : 'bold'}};
+                                            overflow: hidden;
+                                            width:100%;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 3;
+                                            -webkit-box-orient: vertical;">-{{u.NoiDung}}</span><br />
+                                                <i>- Người gửi:{{u.NguoiGui}}</i><br />
+                                                <i>- Ngày gửi:{{u.NgayGui | date:'dd/MM/yyyy'}}</i>
+
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown dropdown-user">
+                        <a href="#" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+                            <img class="img-circle" alt="" src="{{user.Avatar != null ? '../FILE_DINH_KEM/' + user.Avatar : '../FILE_DINH_KEM/noavatar.jpg'}}" />
+                            <span class="username username-hide-on-mobile"> {{user.HoTen}} </span>
+
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a ui-sref="account">
+                                    <i class="icon-user"></i> Thông tin tài khoản
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" ui-sref="HTTT">
+                                    <i class="fa fa-question-circle"></i> Hỗ trợ trực tuyến
+                                </a>
+                            </li>
+                            <li class="divider"> </li>
+                            <li>
+                                <a href="javascript:;" ng-click="openEditItem('','Password')">
+                                    <i class="icon-key"></i> Đổi mật khẩu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="LockScreen()">
+                                    <i class="fa fa-lock"></i> Khóa màn hình
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" ng-click="LogOut()">
+                                    <i class="icon-logout"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+    <div class="page-header-menu">
+        <div class="container-fluid">
+            <div class="hor-menu ">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html">Dashboard</a>
+                    </li>
+
+                    <li class="menu-dropdown classic-menu-dropdown "
+                        ng-class="{'active': m.FCode == $stateParams.param.ParentMenu || m.FCode == $stateParams.param.FCode }"
+                        ng-repeat="m in menu | filter: { MainMenu : 'MAIN',FName : search} : true | orderBy : 'FIndex'" ng-init="m.Stt = $index + 1">
+                        <a data-toggle="dropdown" href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true"
+                           ui-sref="{{m.FCode}}({param:m,FCode:m.FCode})">
+                            <i class="{{m.icon}}"></i>
+                            <span class="title">{{$index + 1}}. {{m.FName}}</span>
+                            <span class="arrow"></span>
+                            <span class="selected"></span>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li ng-class="{'active': cm.FCode == $stateParams.param.FCode}"
+                                ui-sref-active="active"
+                                ng-repeat="cm in menu | filter: {ParentMenu: m.FCode,FName : search} : true | orderBy : 'FIndex'">
+                                <a ui-sref="{{cm.FCode}}({param:cm,FCode:cm.FCode})">
+                                    {{m.Stt}}.{{$index + 1}}. {{cm.FName}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+    </div>
+    <!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->

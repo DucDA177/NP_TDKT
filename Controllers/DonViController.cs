@@ -160,6 +160,14 @@ namespace WebApiCore.Controllers
 
         }
         [HttpGet]
+        [Route("api/DonVi/GetDonViDuocQuanLy")]
+        public IHttpActionResult GetDonViDuocQuanLy(int IDDVQuanLy)
+        {
+            var dt = db.DMDonVis.Where(t => t.FInUse == true && t.IDDVQuanLy == IDDVQuanLy);
+            return Ok(dt);
+
+        }
+        [HttpGet]
         [Route("api/DonVi/GetDonVi")]
         public List GetDonVi(int pageNumber, int pageSize, string searchKey, string LoaiDonVi, string DVCha, string LoaiTruong)//, string year, string plan, string FInspection, string Org, string TypeTT, string KieuTT)
         {

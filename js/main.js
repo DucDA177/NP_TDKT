@@ -10,6 +10,7 @@ var WebApiApp = angular.module("WebApiApp", [
     "angular.filter",
     "ngCookies",
     "ngStorage",
+    "ng.ckeditor",
     "datetime"
 ]).filter('unique', function () {
     return function (collection, primaryKey) { //no need for secondary key
@@ -39,7 +40,7 @@ WebApiApp.factory('httpResponseInterceptor', ['$q', '$rootScope', '$location', f
         responseError: function (rejection) {
             ////console.log(rejection)
             if (rejection.status === 401) {
-                
+
                 window.location.assign('/login.html');
             }
             return $q.reject(rejection);
@@ -79,12 +80,13 @@ WebApiApp.factory('$settings', ['$rootScope', function ($rootScope) {
 
 WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '$http', '$uibModal', '$cookies', '$state', '$uibModalStack'
     , function ($stateParams, $scope, $rootScope, $http, $uibModal, $cookies, $state, $uibModalStack) {
-    
+
         $scope.LoaiDonVi = [
             { Code: 'ADMIN', Name: 'Quản trị hệ thống' },
-            { Code: 'XD', Name: 'Đơn vị cấp xét duyệt' },
-            { Code: 'QL', Name: 'Đơn vị cấp quản lý' },
-            { Code: 'CS', Name: 'Đơn vị cấp cơ sở' },
+            { Code: 'XD', Name: 'Đơn vị xét duyệt' },
+            { Code: 'TT', Name: 'Đơn vị trình khen thưởng' },
+            { Code: 'CUM', Name: 'Đơn vị cụm thi đua' },
+            { Code: 'CS', Name: 'Đơn vị cơ sở' },
         ];
         $scope.TypeArea = [
             { Code: 'XA', Name: 'Xã/Phường' },
@@ -94,14 +96,21 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
         $scope.GioiTinh = [
             { Name: 'Nam' },
-            { Name: 'Nữ' }
-
+            { Name: 'Nữ' },
+            { Name: 'Không xác định' }
         ];
-        $scope.LoaiDanhHieu = [
-            { Code: 'CSTD', Name: 'Chiến sỹ thi đua' },
-            { Code: 'LDTT', Name: 'Lao động tiên tiến' },
+        $scope.TTKhenThuong = [
+            { Code: null, Name: 'Chưa gửi trình', Note: '' },
+            //{ Code: 1, Name: 'Đã đề nghị', Note: '' },
+            { Code: 4, Name: 'Đã trình', Note: '' },
+            { Code: 2, Name: 'Đã duyệt', Note: 'Đạt' },
+            { Code: 3, Name: 'Đã duyệt', Note: 'Không đạt' },
         ];
-        
+        $scope.TTTrinh = [
+            { Code: null, Name: 'Chưa trình', Note: '' },
+            { Code: 1, Name: 'Đã trình', Note: '' },
+            { Code: 2, Name: 'Đã duyệt', Note: '' }
+        ];
         $scope.DefaultArea = '30' // Tỉnh Hải Dương
         $scope.isHidePagebar = 0;
 
@@ -109,7 +118,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             $('body').toggleClass('page-quick-sidebar-open');
 
         }
-        
+
 
         $scope.CheckReadTB = function (u) {
             if (u.NguoiDoc == null || !u.NguoiDoc.includes($rootScope.user.UserName + '#'))
@@ -127,8 +136,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
                 , function (result) {
                     if (u.Link && result)
                         try {
-
-                            $state.go(u.Link, { param: u.IdHoso })
+                            $state.go(u.Link)
                         } catch{ }
                     else return;
                 }
@@ -174,7 +182,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             });
         }
 
-     
+
         $scope.displayPage = [
             //{
             //    "value": 0,
@@ -256,7 +264,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             });
 
         }
-  
+
         $scope.LoadProvin = function (ProvinId, DistrictId, WardId) {
             //ProvinId = ProvinId.toString();
             //DistrictId = DistrictId.toString();
@@ -323,7 +331,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
             }
         }
-        
+
         // Lấy danh sách Menu hệ thống
         $scope.LoadMenus = function () {
             $http({
@@ -461,9 +469,9 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
 
 
         }
-       
-        $scope.openModal = function (item, type, check) {
-           
+
+        $scope.openModal = function (item, type, check, other) {
+
             $scope.modalInstance = $uibModal.open({
                 ariaLabelledBy: 'modal-title',
                 animation: true,
@@ -471,15 +479,16 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
                 templateUrl: 'views-client/template/Modal/Modal' + type + '.html?bust=' + Math.random().toString(36).slice(2),
                 controller: 'Modal' + type + 'HandlerController',
                 controllerAs: 'vm',
-                scope: $scope ,
+                scope: $scope,
                 backdrop: 'static',
                 size: 'lg',
                 resolve: {
                     item: function () { return item },
-                    check: function () { return check }
+                    check: function () { return check },
+                    other: function () { return other }
                 }
             });
-           
+
         }
 
 
@@ -573,7 +582,7 @@ WebApiApp.controller('AppController', ['$stateParams', '$scope', '$rootScope', '
             });
             $rootScope.IsLockScreen = true;
         }
-      
+
 
     }]);//])
 
@@ -765,7 +774,7 @@ WebApiApp.controller('QuickSidebarController', function ($rootScope, $scope, $ht
 
         toastr.info(message, 'Thông báo');
         toastr.options.onclick = null;
-        
+
     };
 
 
@@ -804,7 +813,8 @@ WebApiApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', funct
 
 
     // Dashboard
-    $stateProvider.state('dashboard', {
+    $stateProvider
+        .state('dashboard', {
 
         url: "/dashboard",
         templateUrl: "views-client/dashboard.html?bust=" + Math.random().toString(36).slice(2),
@@ -843,7 +853,50 @@ WebApiApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', funct
                 }]
             }
         })
-  
+        .state('EditToTrinh', {
+
+            url: "/EditToTrinh/" + "?eraseCache=true",
+            templateUrl: "views-client/template/ToTrinh/EditToTrinh.html?bust=" + Math.random().toString(36).slice(2),
+            params: {
+                myParam: null,
+                param: { FCode: 'EditToTrinh' },
+            },
+            data: { pageTitle: 'Lập tờ trình' },
+            controller: "EditToTrinhController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'WebApiApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'js/controllers/ToTrinh/EditToTrinhController.js',
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('EditQuyetDinh', {
+
+            url: "/EditQuyetDinh/" + "?eraseCache=true",
+            templateUrl: "views-client/template/XetDuyetKhenThuong/EditQuyetDinh.html?bust=" + Math.random().toString(36).slice(2),
+            params: {
+                myParam: null,
+                param: { FCode: 'EditQuyetDinh' },
+            },
+            data: { pageTitle: 'Lập quyết định khen thưởng' },
+            controller: "EditQuyetDinhController",
+            resolve: {
+                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'WebApiApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'js/controllers/XetDuyetKhenThuong/EditQuyetDinhController.js',
+                        ]
+                    });
+                }]
+            }
+        })
 }]);
 WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies', "$state", "$stateParams",
     function ($q, $rootScope, $http, $urlRouter, $settings, $cookies, $state, $stateParams, ) {
@@ -856,7 +909,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
         $rootScope.$settings = $settings; // state to be accessed from view
         $rootScope.$stateParams = $stateParams;
         $rootScope.avatar = [];
-        
+
         if ($cookies.get('username') == 'undefined' || $cookies.get('username') == null)
             window.location.assign('/login.html');
         else {
@@ -872,6 +925,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
         }).then(function successCallback(response) {
             //console.log(response.data)
             $rootScope.user = response.data;
+            $rootScope.CurYear = $cookies.get('Nam');
 
             if ($rootScope.user.LockScreenTime == null) $rootScope.user.LockScreenTime = 10;
 
@@ -902,7 +956,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
 
             $http.defaults.transformRequest.push(onStartInterceptor);
             $http.defaults.transformResponse.push(onCompleteInterceptor);
-            
+
             $cookies.put('DonVi', response.data.IDDonVi);
 
             if ($cookies.get('DonVi') != null)
@@ -930,7 +984,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
                 else $rootScope.checkAdmin = false;
 
                 $rootScope.CurUserGroup = response.data;
-               
+
             }, function errorCallback(response) {
 
             });
@@ -943,7 +997,7 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
             $rootScope.TBLength = 0
             $http({
                 method: 'GET',
-                url: 'api/ThongBao/GetThongBao?DonViNhan=' + $rootScope.user.Id
+                url: 'api/ThongBao/GetThongBao?DonViNhan=' + $rootScope.user.IDDonVi
             }).then(function successCallback(response) {
                 $rootScope.ThongBao = response.data;
                 angular.forEach($rootScope.ThongBao, function (value, key) {
@@ -958,13 +1012,13 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
         $rootScope.$settings.layout.pageBodySolid = false;
         $rootScope.$settings.layout.pageSidebarClosed = false;
         $rootScope.LoadMenu = function () {
-            
+
             $http({
                 method: 'POST',
                 url: '/api/getMenuByUser',
             }).then(function successCallback(response) {
                 $rootScope.menu = response.data;
-                
+               
                 angular.forEach($rootScope.menu, function (value, key) {
 
                     $stateProviderRef.state(value.FCode, {
@@ -1013,5 +1067,5 @@ WebApiApp.run(['$q', '$rootScope', '$http', '$urlRouter', '$settings', '$cookies
 
             });
         }
-        
+
     }]);

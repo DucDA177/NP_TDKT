@@ -147,7 +147,7 @@ namespace WebApiCore.Controllers
             UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(context);
             UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(store);
             //String userId = id;
-            String newPassword = "aBc@123";
+            String newPassword = Commons.Constants.defautPass;
             String hashedNewPassword = UserManager.PasswordHasher.HashPassword(newPassword);
             ApplicationUser cUser = await store.FindByNameAsync(username);
             await store.SetPasswordHashAsync(cUser, hashedNewPassword);
@@ -407,8 +407,8 @@ namespace WebApiCore.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            model.Password = "aBc@123";
-            model.ConfirmPassword = "aBc@123";
+            model.Password = Commons.Constants.defautPass;
+            model.ConfirmPassword = Commons.Constants.defautPass;
             validate(model);
             if ( !ModelState.IsValid )
             {

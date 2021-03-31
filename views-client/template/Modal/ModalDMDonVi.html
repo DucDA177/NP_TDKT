@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    <label class="control-label col-md-2">Đơn vị cấp trên: </label>
+                    <label class="control-label col-md-2">Đơn vị xét duyệt: </label>
                     <div class="col-md-4">
 
                         <select ng-model="item.IDDVCha" class="form-control input-sm select2" convert-to-number>
@@ -52,7 +52,7 @@
                 <label class="control-label col-md-2">Quản lý bởi: </label>
                 <div class="col-md-4">
                     <select ng-model="item.IDDVQuanLy" 
-                            ng-disabled="item.LoaiDonVi != 'CS'"
+                            
                             class="form-control input-sm select2" convert-to-number>
                         <option ng-repeat="nl in DonVi" value={{nl.Id}}>{{nl.TenDonVi}}</option>
                     </select>

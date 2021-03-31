@@ -22,13 +22,13 @@
             <div class="row margin-bottom-5">
 
                 <div class="{{itemError.ModelState.DonViNhan[1]}}">
-                    <label class="control-label col-md-2">Người nhận:</label>
+                    <label class="control-label col-md-2">Đơn vị nhận:</label>
                     <div class="col-md-10">
                         <select multiple name="sel-02" id="sel-02" class="select2 select2-selection--multiple" 
-                                data-placeholder="Chọn các người dùng được nhận thông báo" ng-model="CacDonVi">
+                                data-placeholder="Chọn các đơn vị được nhận thông báo" ng-model="CacDonVi">
 
-                            <option ng-repeat="dv in allUser" value="{{dv.Id}}">
-                                {{dv.HoTen}}
+                            <option ng-repeat="dv in ListDonVi" value="{{dv.Id}}">
+                                {{dv.TenDonVi}}
                             </option>
                         </select>
 
@@ -42,7 +42,7 @@
                
                     <label class="control-label col-md-2"></label>
                     <div class="col-md-10">
-                        <i> Bỏ trống nếu gửi đến tất cả các người dùng</i>
+                        <i> Bỏ trống nếu gửi đến tất cả các đơn vị</i>
                     </div>
                
 

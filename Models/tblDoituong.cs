@@ -29,7 +29,7 @@ namespace WebApiCore.Models
         public string Vitri { get; set; }
         public string Ghichu { get; set; }
         public Nullable<int> IdDonvi { get; set; }
-        public Nullable<int> Loai { get; set; }
+        public string Loai { get; set; }
         public string SearchKey { get; set; }
     }
 }

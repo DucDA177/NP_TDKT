@@ -422,13 +422,20 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
     <Compile Include="Controllers\AutoIDsController.cs" />
+    <Compile Include="Controllers\BaoCao\BaoCaoController.cs" />
     <Compile Include="Controllers\DanhMuc\DanhMucChungController.cs" />
     <Compile Include="Controllers\DanhMuc\DMCacThanhVienController.cs" />
+    <Compile Include="Controllers\DanhMuc\DMTapTheController.cs" />
+    <Compile Include="Controllers\DanhMuc\GiayToDanhHieuController.cs" />
     <Compile Include="Controllers\DonViController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HubStore\UserActivityHub.cs" />
+    <Compile Include="Controllers\KhenThuong\KhenThuongController.cs" />
+    <Compile Include="Controllers\KhenThuong\PhongTraoController.cs" />
+    <Compile Include="Controllers\KhenThuong\QuyetDinhController.cs" />
+    <Compile Include="Controllers\KhenThuong\ToTrinhController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -595,6 +602,9 @@
     <Compile Include="Models\tblDoituongThanhtich.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblDonviPhongtrao.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblGiaytoDanhhieu.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
@@ -604,7 +614,19 @@
     <Compile Include="Models\tblKhenthuong.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblPhongtrao.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblQuyetdinh.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblThanhvienTapthe.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblTieuchi.cs">
+      <DependentUpon>WebApiDataCore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTotrinh.cs">
       <DependentUpon>WebApiDataCore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThongBao.cs">
@@ -2696,6 +2718,7 @@
     <Content Include="assets\layouts\layout\css\custom.min.css" />
     <Content Include="assets\layouts\layout\css\layout.css" />
     <Content Include="assets\layouts\layout\css\layout.min.css" />
+    <Content Include="assets\layouts\layout\css\layout3.css" />
     <Content Include="assets\layouts\layout\css\themes\blue.css" />
     <Content Include="assets\layouts\layout\css\themes\blue.min.css" />
     <Content Include="assets\layouts\layout\css\themes\darkblue.css" />
@@ -2976,6 +2999,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CSS\dantri.min.css" />
     <Content Include="CSS\style-new.css" />
     <Content Include="favicon.ico" />
     <Content Include="FILE_DINH_KEM\noavatar.jpg" />
@@ -2987,8 +3011,14 @@
     <Content Include="js\ckeditor.js" />
     <Content Include="js\controllers\AccountController.js" />
     <Content Include="js\controllers\AreasController.js" />
+    <Content Include="js\controllers\BaoCao\BaoCaoCaNhanController.js" />
+    <Content Include="js\controllers\BaoCao\BaoCaoNamController.js" />
+    <Content Include="js\controllers\BaoCao\BaoCaoTapTheController.js" />
+    <Content Include="js\controllers\BaoCao\BaoCaoTongHopController.js" />
+    <Content Include="js\controllers\BaoCao\XepHangController.js" />
     <Content Include="js\controllers\DanhMuc\DMCacThanhVienController.js" />
     <Content Include="js\controllers\DanhMuc\DMChungController.js" />
+    <Content Include="js\controllers\DanhMuc\DMTapTheController.js" />
     <Content Include="js\controllers\DanhMuc\ThietLapGiayToController.js" />
     <Content Include="js\controllers\DashboardController.js" />
     <Content Include="js\controllers\DanhMuc\DMDiaBanController.js" />
@@ -2998,16 +3028,35 @@
     <Content Include="js\controllers\MainMenuController.js" />
     <Content Include="js\controllers\MenuController.js" />
     <Content Include="js\controllers\NhatKySuDungController.js" />
+    <Content Include="js\controllers\PhongTraoThiDua\DuyetPhongTraoController.js" />
+    <Content Include="js\controllers\PhongTraoThiDua\PhatDongPhongTraoController.js" />
+    <Content Include="js\controllers\PhongTraoThiDua\PhongTraoThamGiaController.js" />
+    <Content Include="js\controllers\PhongTraoThiDua\TongKetController.js" />
+    <Content Include="js\controllers\QuanLyKhenThuong\CaNhanController.js" />
+    <Content Include="js\controllers\QuanLyKhenThuong\TapTheController.js" />
+    <Content Include="js\controllers\QuanLyKhenThuong\TheoDoiController.js" />
+    <Content Include="js\controllers\ToTrinh\DSToTrinhController.js" />
+    <Content Include="js\controllers\ToTrinh\EditToTrinhController.js" />
+    <Content Include="js\controllers\ToTrinh\KhenThuongVuotCapController.js" />
+    <Content Include="js\controllers\ToTrinh\LapToTrinhController.js" />
     <Content Include="js\controllers\SaoLuuPhucHoiController.js" />
     <Content Include="js\controllers\TienIch\HDSDController.js" />
     <Content Include="js\controllers\TienIch\HoTroController.js" />
     <Content Include="js\controllers\TienIch\ThongBaoController.js" />
+    <Content Include="js\controllers\ToTrinh\TTDotXuatController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\DSQuyetDinhController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\EditQuyetDinhController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\XDCaNhanController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\XetDuyetController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\XDDotXuatController.js" />
+    <Content Include="js\controllers\XetDuyetKhenThuong\XDTapTheController.js" />
     <Content Include="js\controllers\XuLyYeuCauController.js" />
     <Content Include="js\customjs\angular-datetime.js" />
     <Content Include="js\customjs\angular-filter.js" />
     <Content Include="js\customjs\fn.js" />
     <Content Include="js\customjs\icon-messenger.js" />
     <Content Include="js\customjs\jquery.table.marge.js" />
+    <Content Include="js\customjs\ng-ckeditor.min.js" />
     <Content Include="js\customjs\ngStorage.js" />
     <Content Include="js\customjs\ngStorage.min.js" />
     <Content Include="js\customjs\select2.multi-checkboxes.js" />
@@ -3437,7 +3486,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="tpl\footer.html" />
+    <Content Include="tpl\header-dt.html" />
     <Content Include="tpl\header.html" />
+    <Content Include="tpl\header1.html" />
     <Content Include="tpl\quick-sidebar.html" />
     <Content Include="tpl\sidebar.html" />
     <Content Include="views-client\Account\login.html" />
@@ -3445,10 +3496,16 @@
     <Content Include="views-client\dashboard.html" />
     <Content Include="views-client\profile\account.html" />
     <Content Include="views-client\template\Areas.html" />
+    <Content Include="views-client\template\BaoCao\BaoCaoCaNhan.html" />
+    <Content Include="views-client\template\BaoCao\BaoCaoNam.html" />
+    <Content Include="views-client\template\BaoCao\BaoCaoTapThe.html" />
+    <Content Include="views-client\template\BaoCao\BaoCaoTongHop.html" />
+    <Content Include="views-client\template\BaoCao\XepHang.html" />
     <Content Include="views-client\template\DanhMuc\DMCacThanhVien.html" />
     <Content Include="views-client\template\DanhMuc\DMChung.html" />
     <Content Include="views-client\template\DanhMuc\DMDiaBan.html" />
     <Content Include="views-client\template\DanhMuc\DMDonVi.html" />
+    <Content Include="views-client\template\DanhMuc\DMTapThe.html" />
     <Content Include="views-client\template\DanhMuc\ThietLapGiayTo.html" />
     <Content Include="views-client\template\EditArea.html" />
     <Content Include="views-client\template\EditGroup.html" />
@@ -3459,6 +3516,13 @@
     <Content Include="views-client\template\Group.html" />
     <Content Include="views-client\template\MainMenu.html" />
     <Content Include="views-client\template\Menu.html" />
+    <Content Include="views-client\template\Modal\ModalDoiTuongVuotCap.html" />
+    <Content Include="views-client\template\Modal\ModalDuyetPhongTrao.html" />
+    <Content Include="views-client\template\Modal\ModalPhongTrao.html" />
+    <Content Include="views-client\template\Modal\ModalDoiTuongQuyetDinh.html" />
+    <Content Include="views-client\template\Modal\ModalInQuyetDinh.html" />
+    <Content Include="views-client\template\Modal\ModalInToTrinh.html" />
+    <Content Include="views-client\template\Modal\ModalDanhSachDeNghi.html" />
     <Content Include="views-client\template\Modal\ModalDMCacThanhVien.html" />
     <Content Include="views-client\template\Modal\ModalChonOCung.html" />
     <Content Include="views-client\template\Modal\ModalConfig.html" />
@@ -3466,20 +3530,44 @@
     <Content Include="views-client\template\Modal\ModalDMCha.html" />
     <Content Include="views-client\template\Modal\ModalDMChung.html" />
     <Content Include="views-client\template\Modal\ModalDMDonVi.html" />
+    <Content Include="views-client\template\Modal\ModalDMTapThe.html" />
+    <Content Include="views-client\template\Modal\ModalDoiTuongToTrinh.html" />
+    <Content Include="views-client\template\Modal\ModalDuyetDoiTuong.html" />
+    <Content Include="views-client\template\Modal\ModalLapToTrinh.html" />
     <Content Include="views-client\template\Modal\ModalLockScreen.html" />
     <Content Include="views-client\template\Modal\ModalRestore.html" />
     <Content Include="views-client\template\Modal\ModalRestoreLog.html" />
     <Content Include="views-client\template\Modal\ModalSetBackupConfig.html" />
+    <Content Include="views-client\template\Modal\ModalTepDinhKemDoiTuong.html" />
+    <Content Include="views-client\template\Modal\ModalThemDoiTuongToTrinh.html" />
     <Content Include="views-client\template\Modal\ModalThongBao.html" />
     <Content Include="views-client\template\Modal\ModalViewPDF.html" />
     <Content Include="views-client\template\NhatKySuDung.html" />
+    <Content Include="views-client\template\PhongTraoThiDua\DuyetPhongTrao.html" />
+    <Content Include="views-client\template\PhongTraoThiDua\PhatDongPhongTrao.html" />
+    <Content Include="views-client\template\PhongTraoThiDua\PhongTraoThamGia.html" />
+    <Content Include="views-client\template\PhongTraoThiDua\TongKet.html" />
+    <Content Include="views-client\template\QuanLyKhenThuong\CaNhan.html" />
+    <Content Include="views-client\template\QuanLyKhenThuong\TapThe.html" />
+    <Content Include="views-client\template\QuanLyKhenThuong\TheoDoi.html" />
+    <Content Include="views-client\template\ToTrinh\DSToTrinh.html" />
+    <Content Include="views-client\template\ToTrinh\EditToTrinh.html" />
+    <Content Include="views-client\template\ToTrinh\KhenThuongVuotCap.html" />
+    <Content Include="views-client\template\ToTrinh\LapToTrinh.html" />
     <Content Include="views-client\template\SaoLuuPhucHoi.html" />
     <Content Include="views-client\template\TienIch\HDSD.html" />
     <Content Include="views-client\template\TienIch\HoTro.html" />
     <Content Include="views-client\template\TienIch\ThongBao.html" />
+    <Content Include="views-client\template\ToTrinh\TTDotXuat.html" />
     <Content Include="views-client\template\User.html" />
     <Content Include="views-client\template\UserGroup.html" />
     <Content Include="views-client\template\UserManager.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\DSQuyetDinh.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\EditQuyetDinh.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\XDCaNhan.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\XetDuyet.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\XDDotXuat.html" />
+    <Content Include="views-client\template\XetDuyetKhenThuong\XDTapThe.html" />
     <Content Include="views-client\template\XuLyYeuCau.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -3502,11 +3590,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
-    <Folder Include="Controllers\BaoCao\" />
     <Folder Include="Help\" />
-    <Folder Include="js\controllers\BaoCao\" />
     <Folder Include="Uploads\" />
-    <Folder Include="views-client\template\BaoCao\" />
     <Folder Include="views-client\template\Form\" />
   </ItemGroup>
   <ItemGroup>

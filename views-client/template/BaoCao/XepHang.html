@@ -1,0 +1,327 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> XẾP HẠNG THÀNH TÍCH THI ĐUA KHEN THƯỞNG CỦA CÁC CÁ NHÂN, TẬP THỂ</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+    <div class="tabbable-custom portlet box margin-top-10">
+        <ul class="nav nav-tabs ">
+            <li class="active">
+                <a data-target="#tab_1" data-toggle="tab" aria-expanded="true" class="bold">
+                    CÁ NHÂN
+                </a>
+            </li>
+            <li>
+                <a data-target="#tab_2" data-toggle="tab" aria-expanded="true" class="bold">
+                    TẬP THỂ
+                </a>
+            </li>
+
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active " id="tab_1" ng-controller="XepHangCaNhanController">
+
+                <div class="row">
+                    <div class="portlet light ">
+                        <div class="form-body form-horizontal col-md-12">
+                            <div class="form-group ">
+
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Đơn vị: </span>
+                                        <select class="form-control select2" ng-model="Paging.IdDonvi" convert-to-number ng-change="LoadCN()">
+                                            <option value="0">
+                                                ---Tất cả---
+                                            </option>
+                                            <option ng-repeat="y in ListDonVi "
+                                                    value="{{y.Id}}">
+                                                {{y.TenDonVi}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group" style="margin-top:-3px">
+                                        <input type="text" placeholder="Nhập họ tên cá nhân..."
+                                               ng-model="Paging.searchKey"
+                                               ng-model-options="{updateOn: 'change'}"
+                                               ng-change="LoadCN()"
+                                               class="form-control input-sm" />
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default input-sm" ng-click="LoadCN()">
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+
+                                    <a class="btn btn-sm btn-primary" onclick="tableToExcel('fixTable', 'Báo cáo xếp hạng')">
+                                        <i class="fa fa-file-excel-o"></i> Xuất Excel
+                                    </a>
+
+                                    <a class="btn btn-sm btn-primary" ng-show="!IsEdit" ng-click="IsEdit = !IsEdit">
+                                        <i class="fa fa-print"></i> Sửa và in
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" ng-show="IsEdit" ng-click="IsEdit = !IsEdit">
+                                        <i class="fa fa-times"></i> Hủy sửa
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+
+                                <div class="col-md-12">
+                                    <div class="table-scrollable" id="fixTable1" ng-show="!IsEdit">
+                                        <div style="text-align:center"><h4><strong>BÁO CÁO XẾP HẠNG THI ĐUA KHEN THƯỞNG CÁ NHÂN</strong></h4></div>
+
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px;">
+                                                    <td width="1px" style="border:solid 1px" rowspan="2">
+                                                        <div style="text-align:center;font-weight:bold">STT</div>
+                                                    </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Cá nhân</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Chức vụ</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Vị trí</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đơn vị</div> </td>
+
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Tổng số danh hiệu đạt được </div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Số năm liên tiếp được khen thưởng</div></td>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="dv in Data " on-finish-render="ngRepeatFinished">
+                                                    <td align="center" style="border:solid 1px"> {{$index + Paging.pageStart}} </td>
+
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        {{dv.dt.Hodem}} {{dv.dt.Ten}}
+
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        {{dv.dt.Chucvu}}
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        {{dv.dt.Vitri}}
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        {{dv.dv.TenDonVi}}
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        {{dv.SoDanhHieu}}
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        {{dv.NamLienTiep}}
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <ng-ckeditor ng-model="item" ng-show="IsEdit"
+                                                 ng-config="config"></ng-ckeditor>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-left col-md-3">
+                                    <div class="input-group col-md-12">
+                                        <span class="input-group-addon"> Hiển thị </span>
+                                        <select ng-model="Paging.pageSize" convert-to-number
+                                                ng-change="LoadCN()" class="form-control select2">
+                                            <option value="0">Tất cả</option>
+                                            <option ng-repeat="vl in displayPage" value="{{vl.value}}">{{vl.text}}</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="pull-right" style="margin-top:-10px">
+                                        <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                                            <div class="pagination-panel">
+                                                Trang
+                                                <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                                           class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                                           maxlenght="5" style="text-align:center; margin: 0 5px;"
+                                                           ng-change="LoadCN()"
+                                                           ng-model-options="{updateOn: 'change'}">
+                                                <a href="#" class="btn btn-sm default next "
+                                                   ng-click="NextPage()"
+                                                   title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                                                <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="tab-pane" id="tab_2" ng-controller="XepHangTapTheController">
+                <div class="row">
+                    <div class="portlet light ">
+
+                        <div class="form-body form-horizontal col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Đơn vị: </span>
+                                        <select class="form-control select2" ng-model="Paging.IdDonvi" convert-to-number ng-change="LoadTT()">
+                                            <option value="0">
+                                                ---Tất cả---
+                                            </option>
+                                            <option ng-repeat="y in ListDonVi "
+                                                    value="{{y.Id}}">
+                                                {{y.TenDonVi}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group" style="margin-top:-3px">
+                                        <input type="text" placeholder="Nhập tên tập thể..."
+                                               ng-model="Paging.searchKey"
+                                               ng-model-options="{updateOn: 'change'}"
+                                               ng-change="LoadTT()"
+                                               class="form-control input-sm" />
+                                        <span class="input-group-btn">
+                                            <a class="btn btn-default input-sm" ng-click="LoadTT()">
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+
+                                    <a class="btn btn-sm btn-primary" onclick="tableToExcel('fixTable', 'Báo cáo xếp hạng tập thể')">
+                                        <i class="fa fa-file-excel-o"></i> Xuất Excel
+                                    </a>
+
+                                    <a class="btn btn-sm btn-primary" ng-show="!IsEdit" ng-click="IsEdit = !IsEdit">
+                                        <i class="fa fa-print"></i> Sửa và in
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" ng-show="IsEdit" ng-click="IsEdit = !IsEdit">
+                                        <i class="fa fa-times"></i> Hủy sửa
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+
+                                <div class="col-md-12">
+                                    <div class="table-scrollable" id="fixTable2" ng-show="!IsEdit">
+                                        <div style="text-align:center"><h4><strong>BÁO CÁO XẾP HẠNG THI ĐUA KHEN THƯỞNG TẬP THỂ</strong></h4></div>
+
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px;">
+                                                    <td width="1px" style="border:solid 1px" rowspan="2">
+                                                        <div style="text-align:center;font-weight:bold">STT</div>
+                                                    </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Tập thể</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đơn vị</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Tổng số danh hiệu đạt được </div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Số năm liên tiếp được khen thưởng</div></td>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="dv in Data " on-finish-render="ngRepeatFinished">
+                                                    <td align="center" style="border:solid 1px"> {{$index + Paging.pageStart}} </td>
+
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        {{dv.dt.Ten}}
+
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        {{dv.dv.TenDonVi}}
+
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        {{dv.SoDanhHieu}}
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        {{dv.NamLienTiep}}
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <ng-ckeditor ng-model="item" ng-show="IsEdit"
+                                                 ng-config="config"></ng-ckeditor>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-left col-md-3">
+                                    <div class="input-group col-md-12">
+                                        <span class="input-group-addon"> Hiển thị </span>
+                                        <select ng-model="Paging.pageSize" convert-to-number
+                                                ng-change="LoadTT()" class="form-control select2">
+                                            <option value="0">Tất cả</option>
+                                            <option ng-repeat="vl in displayPage" value="{{vl.value}}">{{vl.text}}</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9">
+                                    <div class="pull-right" style="margin-top:-10px">
+                                        <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                                            <div class="pagination-panel">
+                                                Trang
+                                                <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                                           class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                                           maxlenght="5" style="text-align:center; margin: 0 5px;"
+                                                           ng-change="LoadTT()"
+                                                           ng-model-options="{updateOn: 'change'}">
+                                                <a href="#" class="btn btn-sm default next "
+                                                   ng-click="NextPage()"
+                                                   title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                                                <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+
+</script>
+
+
+
+
+

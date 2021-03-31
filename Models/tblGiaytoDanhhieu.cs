@@ -17,5 +17,6 @@ namespace WebApiCore.Models
         public long Id { get; set; }
         public string MaDanhhieu { get; set; }
         public Nullable<int> IdGiayto { get; set; }
+        public Nullable<int> Nam { get; set; }
     }
 }

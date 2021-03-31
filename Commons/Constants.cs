@@ -14,6 +14,6 @@ namespace WebApiCore.Commons
         #region vai trò supper admin
         public const string SUPPER = "SUPER";
         #endregion
-
+        public const string defautPass = "abc123";
     }
 }

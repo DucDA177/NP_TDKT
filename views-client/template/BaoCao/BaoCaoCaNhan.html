@@ -1,0 +1,197 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> TỔNG HỢP BÁO CÁO THI ĐUA KHEN THƯỞNG THEO CÁ NHÂN</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-1">
+
+            <select class="form-control select2" ng-model="Paging.Nam" convert-to-number ng-change="Load()">
+                <option value="0" >
+                    -Năm-
+                </option>
+                <option ng-repeat="y in ListNam"
+                        value="{{y}}">
+                    {{y}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">Đơn vị: </span>
+                <select class="form-control select2" ng-model="Paging.IdDonvi" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListDonVi "
+                            value="{{y.Id}}">
+                        {{y.TenDonVi}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">Danh hiệu: </span>
+                <select class="form-control " select2 ng-model="Paging.MaDanhhieu" ng-change="Load()">
+                    <option value="">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListDanhHieu "
+                            value="{{y.Ma}}">
+                        {{y.Ten}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">Hình thức: </span>
+                <select class="form-control select2" ng-model="Paging.HTKT" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListHTKT "
+                            value="{{y.Id}}">
+                        {{y.Ten}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4 text-right">
+            <div class="input-group" style="margin-top:-3px">
+                <input type="text" placeholder="Nhập họ tên cá nhân..."
+                       ng-model="Paging.Searchkey"
+                       ng-model-options="{updateOn: 'change'}"
+                       ng-change="Load()"
+                       class="form-control" />
+                <span class="input-group-addon"><a ng-click="Load()"><i class="fa fa-search"></i></a> </span>
+
+                <span class="input-group-addon">
+                    <a onclick="tableToExcel('fixTable', 'Báo cáo theo cá nhân')">
+                        <i class="fa fa-file-excel-o"></i> Xuất Excel
+                    </a>
+                </span>
+                <span class="input-group-addon" ng-show="!IsEdit">
+                    <a ng-click="IsEdit = !IsEdit">
+                        <i class="fa fa-print"></i> Sửa và in
+                    </a>
+                </span>
+                <span class="input-group-addon" ng-show="IsEdit">
+                    <a class="font-red " ng-click="IsEdit = !IsEdit">
+                        <i class="fa fa-times"></i> Hủy sửa
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group ">
+
+        <div class="col-md-12">
+            <div class="table-scrollable" id="fixTable" ng-show="!IsEdit">
+                <div style="text-align:center"><h4><strong>BÁO CÁO THI ĐUA KHEN THƯỞNG THEO CÁ NHÂN</strong></h4></div>
+
+                <table class="table table-striped table-bordered table-hover">
+                    <thead style="background-color:#eee">
+                        
+                        <tr style="border:solid 1px">
+
+                            <td width="1px" style="border:solid 1px"><div style="text-align:center;font-weight:bold">STT</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Năm</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Cá nhân</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Đơn vị</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Danh hiệu</div></td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Hình thức khen thưởng</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Số QĐ</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center;font-weight:bold">Ngày QĐ</div></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in Data " on-finish-render="ngRepeatFinished">
+                            <td align="center" style="border:solid 1px"> {{$index + Paging.pageStart}} </td>
+
+                            <td style="border:solid 1px" class="bold" align="center">
+                                {{dv.dtkt.Nam}}
+
+                            </td>
+                            <td style="border:solid 1px" class="bold">
+
+                                {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                            </td>
+                            <td style="border:solid 1px" >
+                                {{dv.dv.TenDonVi}}
+                            </td>
+                            <td style="border:solid 1px" >
+                                {{dv.dh.Ten}}
+                            </td>
+                            <td  style="border:solid 1px">
+                                {{dv.htkt.Ten}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                {{dv.dtkt.SoQD}}
+                            </td>
+                            <td style="border: solid 1px;" align="center">
+                                {{dv.dtkt.Ngayduyet | date:'dd/MM/yyyy'}}
+                            </td>
+                            
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <ng-ckeditor ng-model="item" ng-show="IsEdit"
+                         ng-config="config"></ng-ckeditor>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize" convert-to-number
+                        ng-change="Load()" class="form-control select2">
+                    <option value="0">Tất cả</option>
+                    <option ng-repeat="vl in displayPage" value="{{vl.value}}">{{vl.text}}</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage"
+                                   class="pagination-panel-input form-control input-mini input-inline input-sm"
+                                   maxlenght="5" style="text-align:center; margin: 0 5px;"
+                                   ng-change="Load()"
+                                   ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next "
+                           ng-click="NextPage()"
+                           title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+
+</script>
+
+
+
+
+

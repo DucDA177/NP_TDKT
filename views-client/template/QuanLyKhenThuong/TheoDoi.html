@@ -1,0 +1,222 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> THEO DÕI THÔNG TIN KHEN THƯỞNG CÁC ĐƠN VỊ </label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">Năm: </span>
+                <select class="form-control select2" ng-model="Paging.Nam" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListNam"
+                            value="{{y}}">
+                        {{y}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group" ng-hide="CurDonVi.LoaiDonVi == 'TT' ">
+                <span class="input-group-addon">Đơn vị: </span>
+                <select class="form-control select2" ng-model="Paging.IdDonvi" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in ListDonVi "
+                            value="{{y.Id}}">
+                        {{y.TenDonVi}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">Loại hình: </span>
+                <select class="form-control select2" ng-model="Paging.Loaihinh" ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option value="CANHAN">
+                        Cá nhân
+                    </option>
+                    <option value="TAPTHE">
+                        Tập thể
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group">
+                <span class="input-group-addon">Trạng thái: </span>
+                <select class="form-control select2" ng-model="Paging.Trangthai" convert-to-number ng-change="Load()">
+                    <option value="0">
+                        ---Tất cả---
+                    </option>
+                    <option ng-repeat="y in TTKhenThuong "
+                            value="{{y.Code}}">
+                        {{y.Name}} {{y.Note}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group" style="margin-top:-3px">
+                <input type="text" placeholder="Nhập họ tên cá nhân hoặc tập thể"
+                       ng-model="Paging.Searchkey"
+                       ng-model-options="{updateOn: 'change'}"
+                       ng-change="Load()"
+                       class="form-control input-sm" />
+                <span class="input-group-btn">
+                    <a class="btn btn-default input-sm" ng-click="Load()">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </span>
+
+
+            </div>
+        </div>
+
+    </div>
+   
+    <div class="form-group ">
+        
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <tbody ng-repeat="dt in Data" style="border:solid 1px">
+                        <tr>
+                            <td style="border:solid 1px">
+                                <div class="row">
+                                    <label class="col-md-7 bold font-red" style="font-size:18px"> <i class="fa fa-list"></i> {{dt.DonVi.TenDonVi}}</label>
+                                    <div class="col-md-5 text-right">
+                                        Đã duyệt:
+                                        <label style="margin-top:6px; color:#0c9"> <i class="fa fa-square"></i> Đạt</label>
+                                        <label style="margin-top:6px; color:#ed6b75"> <i class="fa fa-square"></i> Không đạt</label>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr ng-repeat="dv in dt.ListKhenThuong" ng-init="dv.Stt = $index + 1">
+                            <td style="border:solid 1px">
+                                <span class="bold">{{$index + 1}}. {{dv.Khenthuong.Ten}} - {{dv.ListDoiTuong.length}} đối tượng</span> <br />
+                                <table class="table table-striped table-bordered table-hover"
+                                       id="fixTable">
+                                    <thead style="background-color:#eee">
+                                        <tr style="border:solid 1px" class="bold">
+                                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                            <td style="border:solid 1px" width="30%"><div style="text-align:center">Đối tượng</div> </td>
+                                            <td style="border:solid 1px" width="20%"><div style="text-align:center">Danh hiệu</div></td>
+                                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Giấy tờ</div></td>
+                                            <td style="border:solid 1px" width="20%"><div style="text-align:center">Loại hình</div></td>
+                                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Năm</div></td>
+                                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Trạng thái</div></td>
+                                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="dm in dv.ListDoiTuong">
+                                            <td style="border:solid 1px" align="center"> {{dv.Stt}}.{{$index + 1}}</td>
+                                            <td style="border:solid 1px"><span ng-show="dm.dt.Loai == 'CANHAN'"> {{dm.dt.Hodem}} </span> {{dm.dt.Ten}}</td>
+                                            <td style="border:solid 1px"> {{dm.dh.Ten}}</td>
+                                            <td style="border:solid 1px">
+                                                <a ng-click="openModal(dm.dtkt,'TepDinhKemDoiTuong',dm.dt.Loai,true)"><i class="fa fa-paperclip"></i> Xem đính kèm</a>
+                                            </td>
+                                            <td style="border:solid 1px">
+                                                {{dm.dt.Loai == 'CANHAN' ? 'Cá nhân' : 'Tập thể'}}
+                                            </td>
+                                            <td style="border:solid 1px">
+                                                {{dm.dtkt.Nam}}
+                                            </td>
+                                            <td style="border:solid 1px">
+                                                <div style="text-align: center;">
+
+                                                    <select ng-model="dm.dtkt.Trangthai"
+                                                            style=" {{dm.dtkt.Trangthai==1? 'background-color: #337ab7' :  dm.dtkt.Trangthai==2? 'background-color: #0c9' : 'background-color: #ed6b75'}} ;
+                                                    color: rgb(255, 255, 255);
+                                                    border-radius: 50px;
+                                                    text-align: center;
+                                                    box-shadow: 2px 2px 3px #999;
+                                                    -webkit-appearance: none; "
+                                                            convert-to-number
+                                                            disabled>
+                                                        <option ng-repeat="y in TTKhenThuong "
+                                                                value="{{y.Code}}"
+                                                                style="text-align: center;">
+                                                            {{y.Name}}
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+                                            </td>
+                                            <td style="border:solid 1px" align="center">
+                                                <a ng-show="dm.dtkt.Trangthai == 2 || dm.dtkt.Trangthai == 3"
+                                                   tooltip title="Xem chi tiết"
+                                                   ng-click="openModal(dm.dtkt,'DuyetDoiTuong',2,true)">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="Load()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!--<div id="displayPage"></div>-->
+            <!--<div class="pull-right" style="margin-top:-10px" id="show_paginator"></div>-->
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="Load()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

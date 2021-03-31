@@ -1,0 +1,26 @@
+﻿
+
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> CHỈNH SỬA VÀ IN TỜ TRÌNH </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row  margin-bottom-5">
+                <ng-ckeditor ng-model="item.Noidung"
+                             ng-disabled="check"
+                             ng-config="config"></ng-ckeditor>
+            </div>
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a class="btn btn-sm btn-success" ng-click="UpdateToTrinh()"><i class="fa fa-check"></i> Hoàn thành </a>
+
+    </div>
+</div>

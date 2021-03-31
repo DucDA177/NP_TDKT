@@ -1,0 +1,164 @@
+﻿<style>
+    .popover {
+        max-width: 1000px; /* Max Width of the popover (depending on the container!) */
+        width: 400px
+    }
+
+</style>
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> 
+        XÉT DUYỆT CÁC ĐỐI TƯỢNG ĐƯỢC ĐỀ NGHỊ KHEN THƯỞNG  {{Dotxuat == true ? 'ĐỘT XUẤT' : 'ĐỊNH KỲ'}}
+         </label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn đơn vị: </span>
+                <select class="form-control select2" ng-model="IdSelectedDV" convert-to-number ng-change="OnChangeDV()">
+                    <option ng-repeat="ds in ListDV" value="{{ds.Id}}">{{ds.TenDonVi}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn tờ trình: </span>
+                <select class="form-control select2" ng-model="IdDSDeNghi" convert-to-number ng-change="LoadDoiTuongKhenThuong()">
+                    <option ng-repeat="ds in DSDeNghi" value="{{ds.Id}}">{{ds.Sototrinh}} - Năm {{ds.Nam}}</option>
+                </select>
+                <span class="input-group-addon">
+                    <a tooltip title="Xem chi tiết tờ trình"
+                       ng-click="ViewToTrinh()"><i class="fa fa-eye"></i></a>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 text-right">
+            <label class="bold" style="margin-top:6px">
+                Lọc đối tượng chưa duyệt
+                <input type="checkbox" ng-model="Chuaduyet" ng-change="LoadDoiTuongKhenThuong()" />
+            </label>
+
+        </div>
+        <div class="col-md-3 text-right">
+            <button ng-disabled="!SelectedDoiTuong.length"
+                    class="btn btn-sm btn-success" ui-sref="EditQuyetDinh"> <i class="fa fa-graduation-cap"></i> Lập quyết định khen thưởng
+            <span ng-show="SelectedDoiTuong.length">({{SelectedDoiTuong.length}} đối tượng)</span>
+            </button>
+        </div>
+    </div>
+ 
+    <div class="form-group ">
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td width="1px" rowspan="2" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+
+                            <td style="border:solid 1px" rowspan="2"><div style="text-align:center">Đối tượng</div> </td>
+                            <td style="border:solid 1px" rowspan="2"><div style="text-align:center">Loại</div> </td>
+                            <td style="border:solid 1px" rowspan="2"><div style="text-align:center">Danh hiệu</div></td>
+                            <td style="border:solid 1px" rowspan="2" width="10%"><div style="text-align:center">Giấy tờ</div></td>
+                            <td style="border:solid 1px" rowspan="2" width="10%"><div style="text-align:center">Đánh giá</div></td>
+                         
+                            <td style="border:solid 1px" colspan="3" width="10%">
+                                <div style="text-align:center">
+                                    Duyệt
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td style="border:solid 1px">
+                                <div style="text-align:center" class="font-green">
+                                    Đạt
+                                </div>
+                            </td>
+                            <td style="border:solid 1px">
+                                <div style="text-align:center" class="font-red">
+                                    Không
+                                </div>
+                            </td>
+                            <td style="border:solid 1px">
+                                <div style="text-align:center" >
+                                    Hủy
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in ListDoiTuong ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                            <td style="border:solid 1px">
+                                <span ng-show="dv.dt.Loai == 'CANHAN'">
+                                    {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                                </span>
+                                <span ng-show="dv.dt.Loai == 'TAPTHE'">
+                                    {{dv.dt.Ten}}
+                                </span>
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.dt.Loai == 'CANHAN' ? 'Cá nhân': 'Tập thể'}}
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.dh.Ten}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="openModal(dv.dtkt,'TepDinhKemDoiTuong',dv.dt.Loai,1)"><i class="fa fa-paperclip"></i> Đính kèm</a>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="XemDanhGia(dv.dtkt)">
+                                    Xem đánh giá <i class="fa fa-eye "></i>
+                                </a>
+
+                            </td>
+
+                            <td align="center" style="border:solid 1px">
+                                <input type="radio" ng-model="dv.Check"
+                                       ng-hide="dv.dtkt.IdQuyetdinh"
+                                       ng-change="OnCheck(dv)" ng-value="true" />
+                                <i ng-show="dv.dtkt.IdQuyetdinh" class="font-blue fa fa-circle"></i>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+
+                                <input type="radio" ng-model="dv.Check" ng-change="OnCheck(dv)"
+                                       ng-hide="dv.dtkt.IdQuyetdinh"
+                                       ng-click="KoDuyetDoiTuong(dv)"
+                                       ng-value="false"
+                                       tooltip title="Tích chọn và xem/nhập lý do không đạt">
+
+                                </input>
+
+                            </td>
+                            <td style="border:solid 1px" align="center">
+
+                                <a ng-click="HuyDuyet(dv)">
+                                    <i class="fa fa-times font-red"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+
+</script>
+
+
+
+
+

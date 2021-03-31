@@ -89,8 +89,10 @@
                 <label class="control-label col-md-2">Nhóm chức năng: </label>
 
                 <div class="col-md-4">
-                    <select ng-model="itemGroup" class="form-control  select-checkbox-fa" multiple ng-disabled="checkDisable">
-                        <option ng-repeat="c in Group" value="{{c.FCode}}">
+                    <select ng-model="itemGroup" 
+                            class="form-control  select-checkbox-fa"
+                            multiple ng-disabled="checkDisable">
+                        <option ng-repeat="c in Group" value="{{c.FCode}}" ng-hide="c.FCode=='ADMIN' && CurDonVi.LoaiDonVi != 'ADMIN'">
                             {{c.FName }}
                         </option>
                     </select>

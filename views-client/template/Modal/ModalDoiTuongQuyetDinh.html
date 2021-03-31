@@ -1,0 +1,81 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> DANH SÁCH ĐỐI TƯỢNG ĐƯỢC KHEN THƯỞNG THUỘC QUYẾT ĐỊNH SỐ {{item.qd.SoQD}} </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+          
+            <div class="row margin-bottom-5">
+                <div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-hover"
+                           id="fixTable">
+                        <thead style="background-color:#eee">
+                            <tr style="border:solid 1px" class="bold">
+
+                                <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Danh hiệu</div></td>
+                                <td style="border:solid 1px"><div style="text-align:center">Hình thức KT</div></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="dv in item.CaNhan ">
+                                <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                <td style="border:solid 1px">
+                                    {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                                </td>
+                                <td style="border:solid 1px">
+                                    Cá nhân
+                                </td>
+                                <td style="border:solid 1px">
+                                   {{dv.dh.Ten}}
+                                </td>
+                                <td style="border: solid 1px;">
+                                    <select class="form-control" select2 convert-to-number ng-model="dv.dtkt.IdHinhthucKhenthuong" disabled>
+                                        <option ng-repeat="dh in HinhThucKhenThuong" value="{{dh.Id}}">{{dh.Ten}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dv in item.TapThe">
+                                <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                <td style="border:solid 1px">
+                                    {{dv.dt.Ten}}
+                                </td>
+                                <td style="border:solid 1px">
+                                    Tập thể
+                                </td>
+                                <td style="border:solid 1px">
+                                    {{dv.dh.Ten}}
+                                </td>
+                                <td style="border: solid 1px;">
+                                    <select class="form-control" select2 convert-to-number ng-model="dv.dtkt.IdHinhthucKhenthuong" disabled>
+                                        <option ng-repeat="dh in HinhThucKhenThuong" value="{{dh.Id}}">{{dh.Ten}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+
+

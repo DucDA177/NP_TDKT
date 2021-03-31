@@ -1,0 +1,150 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> QUẢN LÝ TẬP THỂ ĐƯỢC ĐỀ NGHỊ KHEN THƯỞNG</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-7">
+            <div class="input-group">
+                <span class="input-group-addon">Danh sách đề nghị khen thưởng: </span>
+                <select class="form-control select2" ng-model="IdDSDeNghi" convert-to-number ng-change="LoadListTapThe()">
+                    <option ng-repeat="ds in DSDeNghi" value="{{ds.Id}}">{{ds.Ten}} - Năm {{ds.Nam}}</option>
+                </select>
+                <span class="input-group-addon"> <a tooltip title="Thêm danh sách" ng-click="openModal('','DanhSachDeNghi','TAPTHE')"> <i class="fa fa-plus"></i> </a></span>
+                <span class="input-group-addon" ng-show="!CurDanhSach.Trangthai"> <a tooltip title="Sửa danh sách" ng-click="EditDSDeNghi()"> <i class="fa fa-edit"></i> </a></span>
+                <span class="input-group-addon" ng-show="!CurDanhSach.Trangthai"> <a tooltip title="Xóa danh sách" ng-click="DeleteDSDeNghi()" class="font-red"> <i class="fa fa-trash"></i> </a></span>
+                <span class="input-group-addon" ng-show="!CurDanhSach.Trangthai">
+                    <a ng-click="GuiDanhSach()"> <i class="fa fa-send"></i> Gửi </a>
+                </span>
+                <span class="input-group-addon" ng-show="CurDanhSach.Trangthai">
+                    Đã gửi
+                </span>
+
+            </div>
+        </div>
+        <div class="col-md-3 text-right">
+            Đã duyệt:
+            <label style="margin-top:6px; color:#0c9"> <i class="fa fa-square"></i> Đạt</label>
+            <label style="margin-top:6px; color:#ed6b75"> <i class="fa fa-square"></i> Không đạt</label>
+        </div>
+        <div class="col-md-2 text-right">
+            <a ui-sref="CTT" class="btn btn-sm btn-success"> <i class="fa fa-users"></i> Bổ sung tập thể </a>
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+
+                            <td style="border:solid 1px"><div style="text-align:center">Tập thể</div> </td>
+                            <td style="border:solid 1px" width="30%"><div style="text-align:center">Danh hiệu</div></td>
+                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Giấy tờ</div></td>
+                            <td width="5%" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+                            <td width="5%" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Trạng thái</div></td>
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in ListDoiTuong ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                            <td style="border:solid 1px" class="bold" align="center">
+                                <select class="form-control" select2 disabled convert-to-number
+                                        ng-model="dv.IdDoituong">
+                                    <option ng-repeat="cn in ListTapThe" value="{{cn.Id}}">{{cn.Ten}} </option>
+                                </select>
+
+                            </td>
+                            <td style="border:solid 1px" class="bold">
+                                <select class="form-control" select2 ng-model="dv.MaDanhhieu" ng-disabled="CurDanhSach.Trangthai">
+                                    <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                                </select>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="openModal(dv,'TepDinhKemDoiTuong','TAPTHE')"><i class="fa fa-paperclip"></i> Đính kèm</a>
+                            </td>
+                            <td align="center" style="border:solid 1px">
+                                <button ng-disabled="CurDanhSach.Trangthai" class="btn btn-sm btn-primary" ng-click="Save(dv)"><i class="fa fa-save"></i> Lưu</button>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <button ng-disabled="CurDanhSach.Trangthai" class="btn btn-sm btn-danger" ng-click="DeleteDoiTuongKhenThuong(dv.Id)"><i class="fa fa-trash"></i> Xóa</button>
+                            </td>
+                            <td style="border: solid 1px;">
+                                <div style="text-align: center;">
+                                    <select ng-model="dv.Trangthai"
+                                            style=" {{dv.Trangthai==1? 'background-color: #337ab7' :  dv.Trangthai==2? 'background-color: #0c9' : 'background-color: #ed6b75'}} ;
+                                                    color: rgb(255, 255, 255);
+                                                    border-radius: 50px;
+                                                    text-align: center;
+                                                    box-shadow: 2px 2px 3px #999;
+                                                    -webkit-appearance: none; "
+                                            convert-to-number
+                                            disabled>
+                                        <option ng-repeat="y in TTKhenThuong "
+                                                value="{{y.Code}}"
+                                                style="text-align: center;">
+                                            {{y.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-show="dv.Trangthai == 2 || dv.Trangthai == 3"
+                                   tooltip title="Xem chi tiết"
+                                   ng-click="openModal(dv,'DuyetDoiTuong',2,true)">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-show="IdDSDeNghi &&!CurDanhSach.Trangthai">
+                            <td align="center" style="border:solid 1px">{{ListDoiTuong.length  + 1}}</td>
+
+                            <td style="border:solid 1px" align="center">
+                                <select class="form-control " select2 convert-to-number
+                                        ng-model="itemKT.IdDoituong">
+                                    <option ng-repeat="cn in ListTapThe"
+                                            ng-disabled="cn.Check"
+                                            value="{{cn.Id}}">
+                                        {{cn.Ten}}
+                                    </option>
+                                </select>
+                            </td>
+                            <td style="border:solid 1px">
+                                <select class="form-control " select2 ng-model="itemKT.MaDanhhieu">
+                                    <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                                </select>
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a class="font-red" tooltip data-placement="bottom" title="Vui lòng lưu trước khi thêm tệp đính kèm"> Chưa lưu</a>
+                            </td>
+                            <td align="center" style="border:solid 1px"> <button class="btn btn-sm btn-primary" ng-click="Save(itemKT)"><i class="fa fa-save"></i> Lưu</button> </td>
+                            <td style="border:solid 1px" align="center">
+                                <button class="btn btn-sm btn-danger" ng-click="Reset()"><i class="fa fa-times"></i> Hủy</button>
+                            </td>
+                            <td style="border:solid 1px"></td>
+                            <td style="border:solid 1px"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

@@ -21,7 +21,7 @@ namespace WebApiCore.Models
         public Nullable<System.DateTime> Ngayduyet { get; set; }
         public Nullable<int> IdDonvi { get; set; }
         public Nullable<int> Trangthai { get; set; }
+        public string Loai { get; set; }
         public string Ghichu { get; set; }
-        public Nullable<int> Loai { get; set; }
     }
 }

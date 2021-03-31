@@ -1,0 +1,553 @@
+﻿<style>
+    .popover {
+        max-width: 1000px; /* Max Width of the popover (depending on the container!) */
+        width: 400px
+    }
+</style>
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> BIỂU MẪU CẬP NHẬT THÔNG TIN TỜ TRÌNH</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="portlet box blue" id="form_wizard_1">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>
+                <span class="step-title"> BƯỚC 1/2 : NHẬP THÔNG TIN TỜ TRÌNH </span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form action="#"
+                  class="form-horizontal"
+                  id="submit_form"
+                  method="POST">
+                <div class="form-wizard">
+                    <div class="form-body">
+                        <ul class="nav nav-pills nav-justified steps">
+                            <li>
+                                <a href="#tab1" data-toggle="tab" class="step">
+                                    <span class="number"> 1 </span>
+                                    <span class="desc">
+                                        <i class="fa fa-check"></i> NHẬP THÔNG TIN TỜ TRÌNH
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab" class="step">
+                                    <span class="number"> 2 </span>
+                                    <span class="desc">
+                                        <i class="fa fa-check"></i> NHẬP THÔNG TIN ĐỐI TƯỢNG
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div id="bar"
+                             class="progress progress-striped"
+                             role="progressbar">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+
+                                <div class="form-group">
+
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Số tờ trình<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text" name="Sototrinh" class="input-sm form-control" ng-model="item.Sototrinh" />
+                                        </div>
+                                        <label class="control-label col-md-2">Về việc<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text" name="Ten" class="input-sm form-control" ng-model="item.Ten" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Ngày trình<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text"
+                                                   name="Ngaytrinh"
+                                                   datetime="dd/MM/yyyy"
+                                                   class="form-control input-sm"
+                                                   ng-model="item.Ngaytrinh"
+                                                   datetime-separator=",.-/" />
+                                        </div>
+                                        <label class="control-label col-md-2">Khen thưởng đột xuất:</label>
+                                        <div class="col-md-4">
+                                            <input type="checkbox" style="margin-top:10px"
+                                                   ng-model="item.Dotxuat" />
+                                        </div>
+                                    </div>
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Ghi chú:</label>
+                                        <div class="col-md-10">
+                                            <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-sm btn-primary" ng-click="openModal(item,'ThemDoiTuongToTrinh')"><i class="fa fa-plug"></i> Thêm đối tượng</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="table-scrollable">
+                                        <table class="table table-striped table-bordered table-hover"
+                                               id="fixTable">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px" class="bold">
+
+                                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                                    <td style="border:solid 1px" width="30%"><div style="text-align:center">Danh hiệu</div></td>
+                                                    <td style="border:solid 1px" width="10%"><div style="text-align:center">Giấy tờ</div></td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Đánh giá</div></td>
+                                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="dv in SelectedDoiTuong ">
+                                                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        <span ng-show="dv.Loai == 'CANHAN'">
+                                                            {{dv.Hodem}} {{dv.Ten}} - Chức vụ : {{dv.Chucvu}} - {{dv.Vitri}}
+                                                        </span>
+                                                        <span ng-show="dv.Loai == 'TAPTHE'">
+                                                            {{dv.Ten}}
+                                                        </span>
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        {{dv.Loai == 'CANHAN' ? 'Cá nhân' : 'Tập thể'}}
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        <select class="form-control" select2 ng-model="dv.dtkt.MaDanhhieu"
+                                                                ng-change="SaveDoiTuongKhenThuong(dv.dtkt)">
+                                                            <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a ng-click="openModal(dv.dtkt,'TepDinhKemDoiTuong',dv.Loai)"><i class="fa fa-paperclip"></i> Đính kèm</a>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a data-placement="left" href="#" class="ng-scope " popover>
+                                                            Nhập đánh giá <i class="fa fa-edit "></i>
+                                                            <div id="popover-head" class="hide"><b>Đánh giá đối tượng</b></div>
+                                                            <div id="popover-content" class="hide">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <textarea rows="2"
+                                                                                  class="form-control"
+                                                                                  ng-change="SaveDoiTuongKhenThuong(dv.dtkt)"
+                                                                                  ng-model="dv.dtkt.Ghichu"
+                                                                                  ng-model-options="{updateOn:'change'}"></textarea>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <button class="btn btn-sm btn-danger" ng-click="DeleteDoiTuongKhenThuong(dv)"><i class="fa fa-trash"></i> Xóa</button>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions" style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <a href="javascript:;"
+                                   class="btn default btn-sm button-previous">
+                                    <i class="m-icon-swapleft"></i> Quay lại
+                                </a>
+                                <button href="javascript:;"
+                                        ng-click="SaveToTrinh()"
+                                        class="btn btn-sm blue button-next">
+                                    Tiếp tục
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </button>
+
+
+                                <a href="javascript:;"
+                                   ng-click="HuyToTrinh()"
+                                   class="btn btn-sm btn-danger button-submit">
+                                    Hủy tờ trình
+                                    <i class="fa fa-times-circle"></i>
+                                </a>
+
+                                <a href="javascript:;"
+                                   class="btn green btn-sm button-submit"
+                                   ng-click="SaveAndExit()">
+                                    Lưu tờ trình
+                                    <i class="fa fa-save"></i>
+                                </a>
+                                <a href="javascript:;"
+                                   class="btn blue btn-sm button-submit"
+                                   ng-click="GuiTrinh()">
+                                    Lưu & Gửi trình
+                                    <i class="fa fa-send"></i>
+                                </a>
+                                <a href="javascript:;"
+                                   class="btn btn-sm btn-default button-submit"
+                                   ng-click="InToTrinh()">
+                                    In tờ trình
+                                    <i class="fa fa-print"></i>
+                                </a>
+                                <a href="javascript:;"
+                                  onclick="window.history.back()"
+                                   class="btn btn-sm btn-default">
+                                    Đóng
+                                    <i class="fa fa-times"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<div id="Noidung" hidden>
+    <table align="center" border="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td>
+                    <p style="text-align:center; text-transform:uppercase">
+                        PHÒNG NỘI VỤ<br />
+                        <strong>{{CurDonVi.TenDonVi}}</strong>
+                    </p>
+                </td>
+                <td>
+                    <p style="text-align:center">
+                        <strong>
+                            CỘNG HO&Agrave; X&Atilde; HỘI CHỦ NGHĨA VIỆT NAM<br />
+                            Độc lập - Tự do - Hạnh ph&uacute;c
+                        </strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="text-align:center">Số: {{item.Sototrinh}}</p>
+                </td>
+                <td>
+                    <p style="text-align:right"><em>........, ng&agrave;y {{item.Ngaytrinh | date:'dd'}} th&aacute;ng {{item.Ngaytrinh | date:'MM'}} năm {{item.Ngaytrinh | date:'yyyy'}}</em></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p style="text-align:center"><strong>TỜ TR&Igrave;NH</strong></p>
+
+    <p style="text-align:center"><strong>Về việc {{item.Ten}}</strong></p>
+
+    <p>K&iacute;nh gửi: Phòng Nội Vụ</p>
+
+    <p>- Căn cứ Luật Thi đua, khen thưởng ng&agrave;y 26 th&aacute;ng 11 năm 2003; Luật sửa đổi, bổ sung một số điều của Luật Thi đua, khen thưởng ng&agrave;y 14 th&aacute;ng 6 năm 2005 v&agrave; Luật sửa đổi, bổ sung một số điều của Luật Thi đua, khen thưởng ng&agrave;y 16 th&aacute;ng 11 năm 2013;</p>
+
+    <p>{{CurDonVi.TenDonVi}} k&iacute;nh đề nghị Phòng Nội Vụ x&eacute;t, tặng khen thưởng cho {{SelectedDoiTuong.length}} tập thể, c&aacute; nh&acirc;n c&oacute; th&agrave;nh t&iacute;ch xuất sắc.</p>
+
+    <p><em>(C&oacute; danh s&aacute;ch k&egrave;m theo)</em></p>
+
+    <p>{{CurDonVi.TenDonVi}} k&iacute;nh đề nghị Phòng Nội Vụ xem x&eacute;t, quyết định.</p>
+
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td>
+                    <p>
+                        <strong><em>Nơi nhận:</em></strong><br />
+                        - Như tr&ecirc;n;
+                    </p>
+
+                    <p>- Lưu: VT, &hellip;</p>
+                </td>
+                <td>
+                    <p style="text-align:right"><strong>THỦ TRƯỞNG ĐƠN VỊ</strong></p>
+
+                    <p style="text-align:right"><em>(K&yacute;, đ&oacute;ng dấu (nếu c&oacute;), ghi r&otilde; họ t&ecirc;n)</em></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <div style="page-break-after:always"><span style="display:none">&nbsp;</span></div>
+
+    <p style="text-align:center"><strong>DANH S&Aacute;CH C&Aacute;C TẬP THỂ, C&Aacute; NH&Acirc;N ĐỀ NGHỊ KHEN THƯỞNG</strong></p>
+
+    <p style="text-align:center">
+        <em>
+            (k&egrave;m theo Tờ tr&igrave;nh số {{item.Sototrinh}}
+            ng&agrave;y {{item.Ngaytrinh | date:'dd'}} th&aacute;ng {{item.Ngaytrinh | date:'MM'}} năm {{item.Ngaytrinh | date:'yyyy'}} của {{CurDonVi.TenDonVi}})
+        </em>
+    </p>
+    <p>
+        <table width="100%" class="table table-striped table-bordered table-hover"
+               id="fixTable">
+            <thead style="background-color:#eee">
+                <tr style="border:solid 1px" class="bold">
+
+                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                    <td style="border:solid 1px" width="30%"><div style="text-align:center">Danh hiệu</div></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dv in SelectedDoiTuong ">
+                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                    <td style="border:solid 1px" class="bold" align="center">
+
+                        {{dv.Loai == 'CANHAN' ? dv.Hodem + ' ' + dv.Ten + ' - Chức vụ: ' + dv.Chucvu + ' - ' + dv.Vitri : dv.Ten}}
+                    </td>
+                    <td style="border:solid 1px" class="bold" align="center">
+                        {{dv.Loai == 'CANHAN' ? 'Cá nhân' : 'Tập thể'}}
+                    </td>
+                    <td style="border:solid 1px" class="bold">
+                        <div style="text-align:center">
+                            <select disabled
+                                    ng-model="dv.dtkt.MaDanhhieu">
+                                <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                            </select>
+                        </div>
+                       
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </p>
+</div>
+<script>
+    ComponentsSelect2.init();
+    var FormWizard = (function () {
+        return {
+            //main function to initiate the module
+            init: function () {
+                if (!jQuery().bootstrapWizard) {
+                    return;
+                }
+
+                function format(state) {
+                    if (!state.id) return state.text; // optgroup
+                    return (
+                        "<img class='flag' src='../../assets/global/img/flags/" +
+                        state.id.toLowerCase() +
+                        ".png'/>&nbsp;&nbsp;" +
+                        state.text
+                    );
+                }
+
+                var form = $("#submit_form");
+                var error = $(".alert-danger", form);
+                var success = $(".alert-success", form);
+
+                form.validate({
+                    doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
+                    errorElement: "span", //default input error message container
+                    errorClass: "help-block help-block-error", // default input error message class
+                    focusInvalid: false, // do not focus the last invalid input
+                    rules: {
+                        //account
+                        Sototrinh: {
+                            required: true,
+                        },
+                        Ngaytrinh: {
+                            required: true,
+                        },
+                        Ten: {
+                            required: true,
+                        },
+                    },
+
+                    invalidHandler: function (event, validator) {
+                        //display error alert on form submit
+                        success.hide();
+                        error.show();
+                        Metronic.scrollTo(error, -200);
+                    },
+
+                    highlight: function (element) {
+                        // hightlight error inputs
+                        $(element)
+                            .closest(".form-group")
+                            .removeClass("has-success")
+                            .addClass("has-error"); // set error class to the control group
+                    },
+
+                    unhighlight: function (element) {
+                        // revert the change done by hightlight
+                        $(element).closest(".form-group").removeClass("has-error"); // set error class to the control group
+                    },
+
+                    success: function (label) {
+                        if (
+                            label.attr("for") == "gender" ||
+                            label.attr("for") == "payment[]"
+                        ) {
+                            // for checkboxes and radio buttons, no need to show OK icon
+                            label
+                                .closest(".form-group")
+                                .removeClass("has-error")
+                                .addClass("has-success");
+                            label.remove(); // remove error label here
+                        } else {
+                            // display success icon for other inputs
+                            label
+                                .addClass("valid") // mark the current input as valid and display OK icon
+                                .closest(".form-group")
+                                .removeClass("has-error")
+                                .addClass("has-success"); // set success class to the control group
+                        }
+                    },
+
+                    submitHandler: function (form) {
+                        success.show();
+                        error.hide();
+                        //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+                    },
+                });
+
+                var displayConfirm = function () {
+                    $("#tab4 .form-control-static", form).each(function () {
+                        var input = $(
+                            '[name="' + $(this).attr("data-display") + '"]',
+                            form
+                        );
+                        if (input.is(":radio")) {
+                            input = $(
+                                '[name="' + $(this).attr("data-display") + '"]:checked',
+                                form
+                            );
+                        }
+                        if (input.is(":text") || input.is("textarea")) {
+                            $(this).html(input.val());
+                        } else if (input.is("select")) {
+                            $(this).html(input.find("option:selected").text());
+                        } else if (input.is(":radio") && input.is(":checked")) {
+                            $(this).html(input.attr("data-title"));
+                        } else if ($(this).attr("data-display") == "payment[]") {
+                            var payment = [];
+                            $('[name="payment[]"]:checked', form).each(function () {
+                                payment.push($(this).attr("data-title"));
+                            });
+                            $(this).html(payment.join("<br>"));
+                        }
+                    });
+                };
+
+                var handleTitle = function (tab, navigation, index) {
+                    var total = navigation.find("li").length;
+                    var current = index + 1;
+                    var curTitle = index == 0 ? 'NHẬP THÔNG TIN TỜ TRÌNH' : 'NHẬP THÔNG TIN ĐỐI TƯỢNG';
+                    // set wizard title
+                    $(".step-title", $("#form_wizard_1")).text(
+                        "BƯỚC " + (index + 1) + " / " + total + " : " + curTitle
+                    );
+                    // set done steps
+                    jQuery("li", $("#form_wizard_1")).removeClass("done");
+                    var li_list = navigation.find("li");
+                    for (var i = 0; i < index; i++) {
+                        jQuery(li_list[i]).addClass("done");
+                    }
+
+                    if (current == 1) {
+                        $("#form_wizard_1").find(".button-previous").hide();
+                    } else {
+                        $("#form_wizard_1").find(".button-previous").show();
+                    }
+
+                    if (current >= total) {
+                        $("#form_wizard_1").find(".button-next").hide();
+                        $("#form_wizard_1").find(".button-submit").show();
+                        displayConfirm();
+                    } else {
+                        $("#form_wizard_1").find(".button-next").show();
+                        $("#form_wizard_1").find(".button-submit").hide();
+                    }
+                    Metronic.scrollTo($(".page-title"));
+                };
+
+                // default form wizard
+                $("#form_wizard_1").bootstrapWizard({
+                    nextSelector: ".button-next",
+                    previousSelector: ".button-previous",
+                    onTabClick: function (tab, navigation, index, clickedIndex) {
+                        return false;
+                        /*
+                              success.hide();
+                              error.hide();
+                              if (form.valid() == false) {
+                                  return false;
+                              }
+                              handleTitle(tab, navigation, clickedIndex);
+                              */
+                    },
+                    onNext: function (tab, navigation, index) {
+                        success.hide();
+                        error.hide();
+
+                        if (form.valid() == false) {
+                            return false;
+                        }
+
+                        handleTitle(tab, navigation, index);
+                    },
+                    onPrevious: function (tab, navigation, index) {
+                        success.hide();
+                        error.hide();
+
+                        handleTitle(tab, navigation, index);
+                    },
+                    onTabShow: function (tab, navigation, index) {
+                        var total = navigation.find("li").length;
+                        var current = index + 1;
+                        var $percent = (current / total) * 100;
+                        $("#form_wizard_1")
+                            .find(".progress-bar")
+                            .css({
+                                width: $percent + "%",
+                            });
+                    },
+                });
+
+                $("#form_wizard_1").find(".button-previous").hide();
+                $("#form_wizard_1 .button-submit")
+                    .click(function () { })
+                    .hide();
+            },
+        };
+    })();
+    FormWizard.init();
+</script>
+
+
+
+
+
+

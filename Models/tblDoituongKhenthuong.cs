@@ -16,8 +16,11 @@ namespace WebApiCore.Models
     {
         public long Id { get; set; }
         public Nullable<long> IdDoituong { get; set; }
-        public Nullable<long> IdKhenthuong { get; set; }
+        public Nullable<long> IdQuyetdinh { get; set; }
+        public Nullable<int> IdTotrinh { get; set; }
+        public Nullable<int> IdCapKT { get; set; }
         public Nullable<System.DateTime> Ngaydenghi { get; set; }
+        public Nullable<System.DateTime> Ngaytrinh { get; set; }
         public Nullable<System.DateTime> Ngayduyet { get; set; }
         public Nullable<int> Nam { get; set; }
         public Nullable<int> IdDonvi { get; set; }
@@ -25,6 +28,9 @@ namespace WebApiCore.Models
         public Nullable<int> Trangthai { get; set; }
         public string TieuchiDat { get; set; }
         public string TieuchiKoDat { get; set; }
+        public string SoQD { get; set; }
+        public Nullable<int> IdHinhthucKhenthuong { get; set; }
+        public string Duongdan { get; set; }
         public string Ghichu { get; set; }
     }
 }

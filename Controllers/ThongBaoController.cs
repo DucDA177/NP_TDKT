@@ -89,8 +89,9 @@ namespace WebApiCore.Controllers
                     if ( string.IsNullOrEmpty(item.DonViNhan) ) ltb.Add(item);
                     else
                     {
-                        var rs = JsonConvert.DeserializeObject<List<string>>(item.DonViNhan);
-                        if ( rs.Contains(DonViNhan) || !rs.Any() ) ltb.Add(item);
+                        //var rs = JsonConvert.DeserializeObject<List<string>>(item.DonViNhan);
+                        //if ( rs.Contains(DonViNhan) || !rs.Any() ) ltb.Add(item);
+                        if (item.DonViNhan.Contains(DonViNhan)) ltb.Add(item);
                     }
 
                 }

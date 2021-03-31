@@ -1,0 +1,535 @@
+﻿<style>
+    .popover {
+        max-width: 1000px; /* Max Width of the popover (depending on the container!) */
+        width: 400px
+    }
+</style>
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> BIỂU MẪU CẬP NHẬT THÔNG TIN QUYẾT ĐỊNH KHEN THƯỞNG</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="portlet box blue" id="form_wizard_1">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>
+                <span class="step-title"> BƯỚC 1/2 : NHẬP THÔNG TIN QUYẾT ĐỊNH </span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form action="#"
+                  class="form-horizontal"
+                  id="submit_form"
+                  method="POST">
+                <div class="form-wizard">
+                    <div class="form-body">
+                        <ul class="nav nav-pills nav-justified steps">
+                            <li>
+                                <a href="#tab1" data-toggle="tab" class="step">
+                                    <span class="number"> 1 </span>
+                                    <span class="desc">
+                                        <i class="fa fa-check"></i> NHẬP THÔNG TIN QUYẾT ĐỊNH
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab" class="step">
+                                    <span class="number"> 2 </span>
+                                    <span class="desc">
+                                        <i class="fa fa-check"></i> NHẬP THÔNG TIN ĐỐI TƯỢNG
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div id="bar"
+                             class="progress progress-striped"
+                             role="progressbar">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+
+                                <div class="form-group">
+
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Số quyết định<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text" name="SoQuyetDinh" class="input-sm form-control" ng-model="item.SoQD" />
+                                        </div>
+                                        <label class="control-label col-md-2">Về việc<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text" name="Ten" class="input-sm form-control" ng-model="item.Ten" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Ngày quyết định<span style="color:red">*</span>:</label>
+                                        <div class="col-md-4">
+                                            <input type="text"
+                                                   name="Ngaytrinh"
+                                                   datetime="dd/MM/yyyy"
+                                                   class="form-control input-sm"
+                                                   ng-model="item.NgayQD"
+                                                   datetime-separator=",.-/" />
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row  margin-bottom-5">
+                                        <label class="control-label col-md-2">Ghi chú:</label>
+                                        <div class="col-md-10">
+                                            <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <div class="form-group">
+                                    <div class="table-scrollable">
+                                        <table class="table table-striped table-bordered table-hover"
+                                               id="fixTable">
+                                            <thead style="background-color:#eee">
+                                                <tr style="border:solid 1px" class="bold">
+
+                                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                                    <td style="border:solid 1px"><div style="text-align:center">Danh hiệu</div></td>
+                                                    <td style="border:solid 1px" width="30%"><div style="text-align:center">Hình thức khen thưởng</div></td>
+                                                    
+                                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="dv in SelectedDoiTuong ">
+                                                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        <span ng-show="dv.dt.Loai == 'CANHAN'">
+                                                            {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                                                        </span>
+                                                        <span ng-show="dv.dt.Loai == 'TAPTHE'">
+                                                            {{dv.dt.Ten}}
+                                                        </span>
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold" align="center">
+                                                        {{dv.dt.Loai == 'CANHAN' ? 'Cá nhân' : 'Tập thể'}}
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        {{dv.dh.Ten}}
+                                                    </td>
+                                                    <td style="border:solid 1px" class="bold">
+                                                        <select class="form-control" select2
+                                                                convert-to-number
+                                                                ng-model="dv.dtkt.IdHinhthucKhenthuong"
+                                                                ng-change="SaveDoiTuongKhenThuong(dv.dtkt)">
+                                                            <option ng-repeat="dh in HinhThucKhenThuong" value="{{dh.Id}}">{{dh.Ten}}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td style="border:solid 1px" align="center">
+                                                        <a class="btn btn-sm btn-danger"
+                                                                tooltip title="Xóa đối tượng khỏi quyết định"
+                                                                ng-click="DeleteDoiTuongKhenThuong(dv)"><i class="fa fa-trash"></i> Xóa</a>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions" style="position: sticky;bottom: 10px;z-index:500;background-color:white">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <a href="javascript:;"
+                                   class="btn default btn-sm button-previous">
+                                    <i class="m-icon-swapleft"></i> Quay lại
+                                </a>
+                                <button href="javascript:;"
+                                        ng-click="SaveQuyetDinh()"
+                                        class="btn btn-sm blue button-next">
+                                    Tiếp tục
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </button>
+
+
+                                <a href="javascript:;"
+                                   ng-click="HuyQuyetDinh()"
+                                   class="btn btn-sm btn-danger button-submit">
+                                    Hủy quyết định
+                                    <i class="fa fa-times-circle"></i>
+                                </a>
+
+                                <a href="javascript:;"
+                                   class="btn green btn-sm button-submit"
+                                   ng-click="SaveAndExit()">
+                                    Lưu quyết định
+                                    <i class="fa fa-save"></i>
+                                </a>
+                                
+                                <a href="javascript:;"
+                                   class="btn btn-sm btn-default button-submit"
+                                   ng-click="InQuyetDinh()">
+                                    In quyết định
+                                    <i class="fa fa-print"></i>
+                                </a>
+                                <a href="javascript:;"
+                                   onclick="window.history.back()"
+                                   class="btn btn-sm btn-default">
+                                    Đóng
+                                    <i class="fa fa-times"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<div id="Noidung" hidden>
+    <table align="center" border="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td>
+                    <p style="text-align:center; text-transform:uppercase">
+                        ỦY BAN NHÂN DÂN<br />
+                        .....................
+                    </p>
+                </td>
+                <td>
+                    <p style="text-align:center">
+                        <strong>
+                            CỘNG HO&Agrave; X&Atilde; HỘI CHỦ NGHĨA VIỆT NAM<br />
+                            Độc lập - Tự do - Hạnh ph&uacute;c
+                        </strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="text-align:center">Số: {{item.SoQD}}</p>
+                </td>
+                <td>
+                    <p style="text-align:right"><em>......., ng&agrave;y {{item.NgayQD | date:'dd'}} th&aacute;ng {{item.NgayQD | date:'MM'}} năm {{item.NgayQD | date:'yyyy'}}</em></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p style="text-align:center"><strong>QUYẾT ĐỊNH</strong></p>
+
+    <p style="text-align:center"><strong>Về việc {{item.Ten}}</strong></p>
+
+    <p style="text-align:center"><strong>CHỦ TỊCH ỦY BAN NHÂN DÂN ....</strong></p>
+
+    <p>Căn cứ luật tổ chức chính quyền năm 2015;</p>
+    <p>Căn cứ luật Luật Thi đua, khen thưởng;</p>
+
+    <p>
+        Căn cứ nghị định số 91/2017/NĐ-CP ngày 31 tháng 7 năm 2017 của Chính phủ quy định chi tiết thi hành một số điều Luật Thi Đua,
+        Khen thưởng và các văn bản hướng dẫn thi hành;
+    </p>
+    <p style="text-align:center"><strong>QUYẾT ĐỊNH</strong></p>
+    <p>Điều 1.....</p>
+    <p>Điều 2.....</p>
+    <p>Điều .......</p>
+    <p>..............</p>
+
+    <p><em>(C&oacute; danh s&aacute;ch khen thưởng k&egrave;m theo)</em></p>
+
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td>
+                    <p>
+                        <strong><em>Nơi nhận:</em></strong><br />
+                        - Như tr&ecirc;n;
+                    </p>
+
+                    <p>- Lưu: VT, &hellip;</p>
+                </td>
+                <td>
+                    <p style="text-align:right"><strong>CHỦ TỊCH</strong></p>
+
+                    <p style="text-align:right"><em>(K&yacute;, đ&oacute;ng dấu (nếu c&oacute;), ghi r&otilde; họ t&ecirc;n)</em></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+    <div style="page-break-after:always"><span style="display:none">&nbsp;</span></div>
+
+    <p style="text-align:center"><strong>DANH S&Aacute;CH C&Aacute;C TẬP THỂ, C&Aacute; NH&Acirc;N ĐƯỢC NHẬN QUYẾT ĐỊNH KHEN THƯỞNG</strong></p>
+
+    <p style="text-align:center">
+        <em>
+            (k&egrave;m theo Quyết định số {{item.SoQD}}
+            ng&agrave;y {{item.NgayQD | date:'dd'}} th&aacute;ng {{item.NgayQD | date:'MM'}} năm {{item.NgayQD | date:'yyyy'}} của .......)
+        </em>
+    </p>
+    <p>
+        <table width="100%" class="table table-striped table-bordered table-hover"
+               id="fixTable">
+            <thead style="background-color:#eee">
+                <tr style="border:solid 1px" class="bold">
+
+                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                    <td style="border:solid 1px"><div style="text-align:center">Danh hiệu</div> </td>
+                    <td style="border:solid 1px" width="30%"><div style="text-align:center">Hình thức khen thưởng</div></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dv in SelectedDoiTuong ">
+                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                    <td style="border:solid 1px" class="bold" align="center">
+
+                        {{dv.dt.Loai == 'CANHAN' ? dv.dt.Hodem + ' ' + dv.dt.Ten + ' - Chức vụ: ' + dv.dt.Chucvu + ' - ' + dv.dt.Vitri : dv.dt.Ten}}
+                    </td>
+                    <td style="border:solid 1px" class="bold" align="center">
+                        {{dv.dt.Loai == 'CANHAN' ? 'Cá nhân' : 'Tập thể'}}
+                    </td>
+                    <td style="border:solid 1px" class="bold" align="center">
+                        {{dv.dh.Ten}}
+                    </td>
+                    <td style="border:solid 1px" class="bold">
+                        <div style="text-align:center">
+                            <select disabled convert-to-number
+                                    ng-model="dv.dtkt.IdHinhthucKhenthuong">
+                                <option ng-repeat="dh in HinhThucKhenThuong" value="{{dh.Id}}">{{dh.Ten}}</option>
+                            </select>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </p>
+</div>
+<script>
+    ComponentsSelect2.init();
+    var FormWizard = (function () {
+        return {
+            //main function to initiate the module
+            init: function () {
+                if (!jQuery().bootstrapWizard) {
+                    return;
+                }
+
+                function format(state) {
+                    if (!state.id) return state.text; // optgroup
+                    return (
+                        "<img class='flag' src='../../assets/global/img/flags/" +
+                        state.id.toLowerCase() +
+                        ".png'/>&nbsp;&nbsp;" +
+                        state.text
+                    );
+                }
+
+                var form = $("#submit_form");
+                var error = $(".alert-danger", form);
+                var success = $(".alert-success", form);
+
+                form.validate({
+                    doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
+                    errorElement: "span", //default input error message container
+                    errorClass: "help-block help-block-error", // default input error message class
+                    focusInvalid: false, // do not focus the last invalid input
+                    rules: {
+                        //account
+                        SoQuyetDinh: {
+                            required: true,
+                        },
+                        Ngaytrinh: {
+                            required: true,
+                        },
+                        Ten: {
+                            required: true,
+                        },
+                    },
+
+                    invalidHandler: function (event, validator) {
+                        //display error alert on form submit
+                        success.hide();
+                        error.show();
+                        Metronic.scrollTo(error, -200);
+                    },
+
+                    highlight: function (element) {
+                        // hightlight error inputs
+                        $(element)
+                            .closest(".form-group")
+                            .removeClass("has-success")
+                            .addClass("has-error"); // set error class to the control group
+                    },
+
+                    unhighlight: function (element) {
+                        // revert the change done by hightlight
+                        $(element).closest(".form-group").removeClass("has-error"); // set error class to the control group
+                    },
+
+                    success: function (label) {
+                        if (
+                            label.attr("for") == "gender" ||
+                            label.attr("for") == "payment[]"
+                        ) {
+                            // for checkboxes and radio buttons, no need to show OK icon
+                            label
+                                .closest(".form-group")
+                                .removeClass("has-error")
+                                .addClass("has-success");
+                            label.remove(); // remove error label here
+                        } else {
+                            // display success icon for other inputs
+                            label
+                                .addClass("valid") // mark the current input as valid and display OK icon
+                                .closest(".form-group")
+                                .removeClass("has-error")
+                                .addClass("has-success"); // set success class to the control group
+                        }
+                    },
+
+                    submitHandler: function (form) {
+                        success.show();
+                        error.hide();
+                        //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+                    },
+                });
+
+                var displayConfirm = function () {
+                    $("#tab4 .form-control-static", form).each(function () {
+                        var input = $(
+                            '[name="' + $(this).attr("data-display") + '"]',
+                            form
+                        );
+                        if (input.is(":radio")) {
+                            input = $(
+                                '[name="' + $(this).attr("data-display") + '"]:checked',
+                                form
+                            );
+                        }
+                        if (input.is(":text") || input.is("textarea")) {
+                            $(this).html(input.val());
+                        } else if (input.is("select")) {
+                            $(this).html(input.find("option:selected").text());
+                        } else if (input.is(":radio") && input.is(":checked")) {
+                            $(this).html(input.attr("data-title"));
+                        } else if ($(this).attr("data-display") == "payment[]") {
+                            var payment = [];
+                            $('[name="payment[]"]:checked', form).each(function () {
+                                payment.push($(this).attr("data-title"));
+                            });
+                            $(this).html(payment.join("<br>"));
+                        }
+                    });
+                };
+
+                var handleTitle = function (tab, navigation, index) {
+                    var total = navigation.find("li").length;
+                    var current = index + 1;
+                    var curTitle = index == 0 ? 'NHẬP THÔNG TIN TỜ TRÌNH' : 'NHẬP THÔNG TIN ĐỐI TƯỢNG';
+                    // set wizard title
+                    $(".step-title", $("#form_wizard_1")).text(
+                        "BƯỚC " + (index + 1) + " / " + total + " : " + curTitle
+                    );
+                    // set done steps
+                    jQuery("li", $("#form_wizard_1")).removeClass("done");
+                    var li_list = navigation.find("li");
+                    for (var i = 0; i < index; i++) {
+                        jQuery(li_list[i]).addClass("done");
+                    }
+
+                    if (current == 1) {
+                        $("#form_wizard_1").find(".button-previous").hide();
+                    } else {
+                        $("#form_wizard_1").find(".button-previous").show();
+                    }
+
+                    if (current >= total) {
+                        $("#form_wizard_1").find(".button-next").hide();
+                        $("#form_wizard_1").find(".button-submit").show();
+                        displayConfirm();
+                    } else {
+                        $("#form_wizard_1").find(".button-next").show();
+                        $("#form_wizard_1").find(".button-submit").hide();
+                    }
+                    Metronic.scrollTo($(".page-title"));
+                };
+
+                // default form wizard
+                $("#form_wizard_1").bootstrapWizard({
+                    nextSelector: ".button-next",
+                    previousSelector: ".button-previous",
+                    onTabClick: function (tab, navigation, index, clickedIndex) {
+                        return false;
+                        /*
+                              success.hide();
+                              error.hide();
+                              if (form.valid() == false) {
+                                  return false;
+                              }
+                              handleTitle(tab, navigation, clickedIndex);
+                              */
+                    },
+                    onNext: function (tab, navigation, index) {
+                        success.hide();
+                        error.hide();
+
+                        if (form.valid() == false) {
+                            return false;
+                        }
+
+                        handleTitle(tab, navigation, index);
+                    },
+                    onPrevious: function (tab, navigation, index) {
+                        success.hide();
+                        error.hide();
+
+                        handleTitle(tab, navigation, index);
+                    },
+                    onTabShow: function (tab, navigation, index) {
+                        var total = navigation.find("li").length;
+                        var current = index + 1;
+                        var $percent = (current / total) * 100;
+                        $("#form_wizard_1")
+                            .find(".progress-bar")
+                            .css({
+                                width: $percent + "%",
+                            });
+                    },
+                });
+
+                $("#form_wizard_1").find(".button-previous").hide();
+                $("#form_wizard_1 .button-submit")
+                    .click(function () { })
+                    .hide();
+            },
+        };
+    })();
+    FormWizard.init();
+</script>
+
+
+
+
+
+

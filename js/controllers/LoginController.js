@@ -5,7 +5,7 @@ WebApiApp.controller('LoginController', ['$rootScope', '$scope', '$http', '$cook
         $scope.auth = JSON.parse(readUserConfig())
         if (!$scope.auth.remember) $scope.auth.password = ''
     } catch{ }
-
+    $scope.Nam = new Date().getFullYear();
     $scope.$on('$viewContentLoaded', function () {
         // initi    ize core components
         App.initAjax();
@@ -44,7 +44,11 @@ WebApiApp.controller('LoginController', ['$rootScope', '$scope', '$http', '$cook
             $scope.show = 0;
             return;
         }
-
+        if (!$scope.Nam) {
+            toastr.error('Chưa chọn năm tiến hành !', 'Đăng nhập');
+            $scope.show = 0;
+            return;
+        }
 
 
         var data = "grant_type=password&username=" + $scope.auth.username + "&password=" + $scope.auth.password;
@@ -56,13 +60,10 @@ WebApiApp.controller('LoginController', ['$rootScope', '$scope', '$http', '$cook
 
                 $cookies.put('token_type', response.token_type);
                 $cookies.put('token', response.access_token);
-
-                try {
-                    writeToFile($scope.auth)
-                } catch{ }
-
+                $cookies.put('Nam', $scope.Nam);
+                
                 toastr.success('Đăng nhập thành công !', 'Đăng nhập');
-                window.location.assign('/home.html#dashboard');
+                window.location.assign('/home.html');
 
             }).error(function (err, status) {
                 

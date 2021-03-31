@@ -1,1 +1,87 @@
 ﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> THIẾT LẬP GIẤY TỜ ĐÍNH KÈM DANH HIỆU {{SltDanhHieu.Ten}} NĂM {{SelectedYear}}</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn năm</span>
+                <select class="select2" convert-to-number ng-model="SelectedYear" ng-change="OnSelectDanhHieu(SltDanhHieu)">
+                    <option ng-repeat="y in ListYear " value="{{y}}">
+                        {{y}}
+                    </option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-md-4">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                            <td style="border:solid 1px"> <div style="text-align:center">Danh hiệu</div> </td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in LoaiDanhHieu" style="{{SltDanhHieu.Ma == dv.Ma ? 'background-color: yellow' : ''}} ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="OnSelectDanhHieu(dv)"> <i class="fa fa-trophy"></i> {{dv.Ten}}</a>
+                            </td>
+                            
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <i class="font-red"> Click chọn một danh hiệu và tích chọn những giấy tờ tương ứng ở cột bên phải !</i>
+        </div>
+        <div class="col-md-8">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                            <td style="border:solid 1px" width="1px"> <div style="text-align:center">Chọn</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Các loại giấy tờ thuộc danh hiệu {{SltDanhHieu.Ten}}</div></td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="dv in LoaiGiayTo ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+                            <td style="border:solid 1px" align="center">
+                                <input type="checkbox" ng-change="Save(dv)" ng-model="dv.Check" />
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.Ten}}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

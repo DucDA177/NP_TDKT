@@ -1,0 +1,134 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> DANH SÁCH ĐỐI TƯỢNG THUỘC TỜ TRÌNH SỐ {{item.ToTrinh.Sototrinh}} </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            Đã duyệt:
+            <label style="color:#0c9"> <i class="fa fa-square"></i> Đạt</label>
+            <label style="color:#ed6b75"> <i class="fa fa-square"></i> Không đạt</label>
+            <div class="row margin-bottom-5">
+                <div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-hover"
+                           id="fixTable">
+                        <thead style="background-color:#eee">
+                            <tr style="border:solid 1px" class="bold">
+
+                                <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                <td style="border:solid 1px"><div style="text-align:center">Danh hiệu</div></td>
+                                <td style="border:solid 1px"><div style="text-align:center">Trạng thái</div></td>
+                                <td style="border:solid 1px" width="1px">#</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="dv in item.CaNhan ">
+                                <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                <td style="border:solid 1px">
+                                    {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                                </td>
+                                <td style="border:solid 1px">
+                                    Cá nhân
+                                </td>
+                                <td style="border:solid 1px">
+                                    <select class="form-control" select2 ng-model="dv.dtkt.MaDanhhieu" disabled>
+                                        <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                                    </select>
+                                </td>
+                                <td style="border: solid 1px;">
+                                    <div style="text-align: center;">
+                                        <select ng-model="dv.dtkt.Trangthai"
+                                                style=" {{dv.dtkt.Trangthai==1? 'background-color: #337ab7' :  dv.dtkt.Trangthai==2? 'background-color: #0c9' : dv.dtkt.Trangthai==3? 'background-color: #ed6b75' :'background-color: grey'}} ;
+                                                    color: rgb(255, 255, 255);
+                                                    border-radius: 50px;
+                                                    text-align: center;
+                                                    box-shadow: 2px 2px 3px #999;
+                                                    -webkit-appearance: none; "
+                                                convert-to-number
+                                                disabled>
+                                            <option ng-repeat="y in TTKhenThuong "
+                                                    value="{{y.Code}}"
+                                                    style="text-align: center;">
+                                                {{y.Name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td style="border:solid 1px" align="center">
+                                    <a ng-show="dv.dtkt.Trangthai == 2 || dv.dtkt.Trangthai == 3"
+                                       tooltip title="Xem chi tiết"
+                                       ng-click="openModal(dv.dtkt,'DuyetDoiTuong',2,true)">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dv in item.TapThe">
+                                <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                <td style="border:solid 1px">
+                                    {{dv.dt.Ten}}
+                                </td>
+                                <td style="border:solid 1px">
+                                    Tập thể
+                                </td>
+                                <td style="border:solid 1px">
+                                    <select class="form-control" select2 ng-model="dv.dtkt.MaDanhhieu" disabled>
+                                        <option ng-repeat="dh in LoaiDanhHieu" value="{{dh.Ma}}">{{dh.Ten}}</option>
+                                    </select>
+                                </td>
+                                <td style="border: solid 1px;">
+                                    <div style="text-align: center;">
+                                        <select ng-model="dv.dtkt.Trangthai"
+                                                style=" {{dv.dtkt.Trangthai==1? 'background-color: #337ab7' :  dv.dtkt.Trangthai==2? 'background-color: #0c9' : dv.dtkt.Trangthai==3? 'background-color: #ed6b75' :'background-color: grey'}} ;
+                                                    color: rgb(255, 255, 255);
+                                                    border-radius: 50px;
+                                                    text-align: center;
+                                                    box-shadow: 2px 2px 3px #999;
+                                                    -webkit-appearance: none; "
+                                                convert-to-number
+                                                disabled>
+                                            <option ng-repeat="y in TTKhenThuong "
+                                                    value="{{y.Code}}"
+                                                    style="text-align: center;">
+                                                {{y.Name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td style="border:solid 1px" align="center">
+                                    <a ng-show="dv.dtkt.Trangthai == 2 || dv.dtkt.Trangthai == 3"
+                                       tooltip title="Xem chi tiết"
+                                       ng-click="openModal(dv.dtkt,'DuyetDoiTuong',2,true)">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+
+

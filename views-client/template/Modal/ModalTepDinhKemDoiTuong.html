@@ -1,0 +1,75 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật tệp đính kèm </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row margin-bottom-20" ng-repeat="gt in DMGiayto">
+                <span class="bold col-md-12">{{gt[0].Ten}}:</span>
+                <div class="col-md-6">
+                    <input type="file"
+                           id="ngexcelfile"
+                           multiple
+                           placeholder="Chọn tệp đính kèm từ máy tính"
+                           class="form-control input-sm"
+                           ng-hide="other"
+                           ng-files="getTheFiles($files, gt)" />
+
+                    <table>
+                        <tbody>
+                            <tr ng-repeat="f in gt" ng-show="f.Tentep">
+                                <td>
+                                    <a href="{{f.Duongdan}}" target="_blank"> {{f.Tentep}}</a>
+                                </td>
+                                <td>
+                                    <a ng-click="RemoveFile(f.Tentep,f.Duongdan,gt)" ng-show="!CurDanhSach.Trangthai" ng-hide="other">
+                                        <i class="fa fa-times-circle font-red"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-2">
+                    <a class="btn btn-sm btn-primary btn-outline sbold"
+                       ng-hide="other"
+                       ng-click="uploadFiles(gt)">
+                        <i class="fa fa-upload"></i> Tải lên
+                    </a>
+
+                </div>
+                <div class="col-md-4  margin-top-10" ng-show="gt.progress">
+                    <i class="font-green-haze bold" ng-show="gt.progress == 100"> Hoàn tất tải lên </i>
+                    <div class="progress" ng-hide="gt.progress == 100">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{gt.progress}}"
+                             aria-valuemin="0" aria-valuemax="100" style="width:{{gt.progress}}%">
+                            <b> {{gt.progress}} % </b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <i class="bold font-red col-md-12">Lưu ý: Các tên tệp trong cùng một loại giấy tờ phải khác nhau</i>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a class="btn btn-sm btn-success btn-outline sbold" ng-click="cancelModal()"><i class="fa fa-check"></i> Xác nhận </a>
+
+
+    </div>
+</div>
+
+
+

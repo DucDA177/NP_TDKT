@@ -1,0 +1,153 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin đối tượng khen thưởng vượt cấp </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+
+            <div class="row margin-bottom-5">
+
+                <div>
+                    <label class="control-label col-md-2 ">Cấp KT<span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+                        <select select2 ng-model="item.IdCapKT" convert-to-number>
+                            <option ng-repeat="c in CapKT" value="{{c.Id}}">{{c.Ten}}</option>
+                        </select>
+                    </div>
+                    <label class="control-label col-md-2 ">Danh hiệu<span style="color:red">*</span>:</label>
+                    <div class="col-md-4">
+                        <select select2 ng-model="item.MaDanhhieu">
+                            <option ng-repeat="c in DanhHieu" value="{{c.Ma}}">{{c.Ten}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2 ">Hình thức KT<span style="color:red">*</span>:</label>
+                <div class="col-md-4">
+                    <select select2 ng-model="item.IdHinhthucKhenthuong" convert-to-number>
+                        <option ng-repeat="c in HTKT" value="{{c.Id}}">{{c.Ten}}</option>
+                    </select>
+                </div>
+
+
+                <label class="control-label col-md-2">Ngày KT<span style="color:red">*</span>: </label>
+                <div class="col-md-4">
+                    <input type="text"
+                           datetime="dd/MM/yyyy"
+                           class="form-control input-sm"
+                           ng-model="item.Ngayduyet"
+                           datetime-separator=",.-/" />
+                </div>
+
+
+            </div>
+
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Số quyết định KT:</label>
+                <div class="col-md-10">
+                    <input type="text"
+                           class="form-control input-sm"
+                           ng-model="item.SoQD" />
+                </div>
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Ghi chú:</label>
+                <div class="col-md-10">
+                    <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                </div>
+
+
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Các đối tượng:</label>
+                <div class="col-md-10">
+                    <input type="text"
+                           class="form-control input-sm"
+                           ng-change="LoadListDoiTuong()"
+                           ng-model="Searchkey" placeholder="Nhập họ tên cá nhân hoặc tên đối tượng để tìm kiếm..." /><br />
+                    <div class="table-scrollable">
+
+                        <table class="table table-striped table-bordered table-hover"
+                               id="fixTable">
+                            <thead style="background-color:#eee">
+                                <tr style="border:solid 1px" class="bold">
+
+                                    <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                                    <td width="1px" style="border:solid 1px">
+                                        <div style="text-align:center">
+                                            <input type="checkbox" ng-model="IsCheckAll" ng-change="OnCheckAll()" />
+                                        </div>
+                                    </td>
+                                    <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                                    <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dv in ListDoiTuong ">
+                                    <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                                    <td style="border:solid 1px" align="center">
+                                        <input type="checkbox" ng-model="dv.Check" />
+                                    </td>
+                                    <td style="border:solid 1px">
+                                        <span ng-show="dv.Loai == 'CANHAN'">
+                                            {{dv.Hodem}} {{dv.Ten}} - Chức vụ : {{dv.Chucvu}} - {{dv.Vitri}}
+                                        </span>
+                                        <span ng-show="dv.Loai == 'TAPTHE'">
+                                            {{dv.Ten}}
+                                        </span>
+                                    </td>
+                                    <td style="border:solid 1px">
+                                        {{dv.Loai == 'CANHAN' ? 'Cá nhân': 'Tập thể'}}
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            
+            <div class="row">
+
+                <label class="control-label col-md-3"><i>Lưu ý: </i></label>
+
+                <div class="col-md-9">
+                    <div style="margin-top:7px">
+                        <i><span style="color:red">*</span> Bắt buộc nhập</i> <br />
+                        
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save()"><i class="fa fa-save"></i> Lưu </a>
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save(1)"><i class="fa fa-save"></i> Lưu và thêm </a>
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+
+

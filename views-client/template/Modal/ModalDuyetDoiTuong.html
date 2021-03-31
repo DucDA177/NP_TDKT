@@ -1,0 +1,77 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> CHI TIẾT DUYỆT ĐỐI TƯỢNG KHEN THƯỞNG </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-3">Trạng thái duyệt :</label>
+                <span class="col-md-3" style="margin-top:5px">
+                    {{IsDat ? 'Đạt' : 'Không đạt'}}
+                </span>
+
+            </div>
+            <div ng-show="check == 2">
+
+                <div class="row  margin-bottom-5">
+                    <label class="control-label col-md-3">Số quyết định:</label>
+                    <div class="col-md-3">
+                        <input type="text" disabled ng-model="item.SoQD" placeholder="Nhập quyết định..." class="form-control input-sm" />
+                    </div>
+                    <label class="control-label col-md-3">Ngày quyết định:</label>
+                    <div class="col-md-3">
+                        <input type="text" disabled
+                               datetime="dd/MM/yyyy"
+                               class="form-control input-sm"
+                               ng-model="item.Ngayduyet"
+                               datetime-separator=",.-/" />
+                    </div>
+                </div>
+                <div class="row  margin-bottom-5">
+                    <label class="control-label col-md-3">Hình thức khen thưởng:</label>
+                    <div class="col-md-9">
+                        <select select2 convert-to-number disabled ng-model="item.IdHinhthucKhenthuong">
+                            <option ng-repeat="ht in HinhThucKhenThuong" value="{{ht.Id}}">{{ht.Ten}}</option>
+                        </select>
+                    </div>
+
+                </div>
+             
+            </div>
+      
+            <div class="row  margin-bottom-5" ng-show="check == 3">
+                <label class="control-label col-md-3">Lý do không đạt:</label>
+                <div class="col-md-9">
+                    <textarea disabled placeholder="Nhập nội dung..." class="form-control input-sm" ng-model="item.TieuchiKoDat"></textarea>
+                </div>
+            </div>
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-3">Đánh giá:</label>
+                <div class="col-md-9">
+                    <textarea disabled placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+        
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+<!--<script>
+    ComponentsSelect2.init();
+</script>-->

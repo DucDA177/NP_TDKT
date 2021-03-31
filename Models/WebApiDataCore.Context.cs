@@ -14,7 +14,8 @@ namespace WebApiCore.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Threading.Tasks;
+
     public partial class WebApiDataEntities : DbContext
     {
         public WebApiDataEntities()
@@ -27,6 +28,12 @@ namespace WebApiCore.Models
 
             AddBaseInfomation();
             return base.SaveChanges();
+        }
+        public override Task<int> SaveChangesAsync()
+        {
+
+            AddBaseInfomation();
+            return base.SaveChangesAsync();
         }
         public void AddBaseInfomation()
         {
@@ -58,7 +65,6 @@ namespace WebApiCore.Models
             object o = objectStateEntry.EntityKey.EntityKeyValues[0].Value;
             return o;
         }
-
         private bool inExcludeList(string prop)
         {
             string[] excludeList = { "props", "to", "exclude" };
@@ -109,6 +115,7 @@ namespace WebApiCore.Models
             }
         }
 
+
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AutoID> AutoIDs { get; set; }
@@ -123,16 +130,21 @@ namespace WebApiCore.Models
         public virtual DbSet<NhatKySuDung> NhatKySuDungs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblDanhmuc> tblDanhmucs { get; set; }
-        public virtual DbSet<tblDoituong> tblDoituongs { get; set; }
-        public virtual DbSet<tblDoituongKhenthuong> tblDoituongKhenthuongs { get; set; }
         public virtual DbSet<tblDoituongThanhtich> tblDoituongThanhtiches { get; set; }
         public virtual DbSet<tblGiaytoDanhhieu> tblGiaytoDanhhieux { get; set; }
-        public virtual DbSet<tblGiaytoKhenthuong> tblGiaytoKhenthuongs { get; set; }
-        public virtual DbSet<tblKhenthuong> tblKhenthuongs { get; set; }
         public virtual DbSet<tblTieuchi> tblTieuchis { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<UnreadMe> UnreadMes { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<tblDoituong> tblDoituongs { get; set; }
+        public virtual DbSet<tblThanhvienTapthe> tblThanhvienTapthes { get; set; }
+        public virtual DbSet<tblKhenthuong> tblKhenthuongs { get; set; }
+        public virtual DbSet<tblGiaytoKhenthuong> tblGiaytoKhenthuongs { get; set; }
+        public virtual DbSet<tblTotrinh> tblTotrinhs { get; set; }
+        public virtual DbSet<tblQuyetdinh> tblQuyetdinhs { get; set; }
+        public virtual DbSet<tblDonviPhongtrao> tblDonviPhongtraos { get; set; }
+        public virtual DbSet<tblPhongtrao> tblPhongtraos { get; set; }
+        public virtual DbSet<tblDoituongKhenthuong> tblDoituongKhenthuongs { get; set; }
     
         [DbFunction("WebApiDataEntities", "SplitStringToTable")]
         public virtual IQueryable<string> SplitStringToTable(string myString, string deliminator)

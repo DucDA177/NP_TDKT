@@ -1,0 +1,132 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> LẬP TỜ TRÌNH KHEN THƯỞNG ĐỊNH KỲ</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-2 ">
+            <button class="btn btn-primary btn-sm"
+                    ng-disabled="SelectedDoiTuong.length == 0"
+                    ui-sref="EditToTrinh()">
+                <i class="fa fa-ticket"></i> Lập tờ trình <b>({{SelectedDoiTuong.length}} đối tượng)</b>
+            </button>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">Loại đối tượng: </span>
+                <select class="select2" ng-model="Paging.Loai" ng-change="Load()">
+                    <option value="0">---Tất cả---</option>
+                    <option value="CANHAN">Cá nhân</option>
+                    <option value="TAPTHE">Tập thể</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="input-group" style="margin-top:-3px">
+                <input type="text" placeholder="Nhập họ tên cá nhân hoặc tên tập thể..."
+                       ng-model="Paging.Searchkey"
+                       ng-model-options="{updateOn: 'change'}"
+                       ng-change="Load()"
+                       class="form-control input-sm" />
+                <span class="input-group-btn"><a class="btn btn-default input-sm" ng-click="Load()"><i class="fa fa-search"></i></a> </span>
+
+            </div>
+
+        </div>
+        <div class="col-md-3 text-right">
+            <a class="btn btn-primary btn-sm" ng-click="openModal('','DMCacThanhVien', CurDonVi.Id)"><i class="fa fa-user"></i> Bổ sung cá nhân</a>
+            <a class="btn btn-primary btn-sm" ng-click="openModal('','DMTapThe',CurDonVi.Id)"><i class="fa fa-users"></i> Bổ sung tập thể</a>
+
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                            <td width="1px" style="border:solid 1px">
+                                <div style="text-align:center">
+                                    <input type="checkbox" ng-model="Paging.Check" ng-change="OnCheckAll()" />
+                                </div>
+                            </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Đối tượng</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in ListDoiTuong ">
+                            <td align="center" style="border:solid 1px"> {{$index + Paging.pageStart}} </td>
+                            <td align="center" style="border:solid 1px">
+                                <input type="checkbox" ng-model="dv.Check" ng-change="OnCheck(dv)" />
+                            </td>
+
+                            <td style="border:solid 1px">
+                                <span ng-show="dv.Loai == 'CANHAN'">
+                                    {{dv.Hodem}} {{dv.Ten}} - Chức vụ : {{dv.Chucvu}} - {{dv.Vitri}}
+                                </span>
+                                <span ng-show="dv.Loai == 'TAPTHE'">
+                                    {{dv.Ten}}
+                                </span>
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.Loai == 'CANHAN' ? 'Cá nhân': 'Tập thể'}}
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="Load()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!--<div id="displayPage"></div>-->
+            <!--<div class="pull-right" style="margin-top:-10px" id="show_paginator"></div>-->
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="Load()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+
+

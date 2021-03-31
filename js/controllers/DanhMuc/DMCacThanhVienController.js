@@ -35,7 +35,7 @@
                 $rootScope.Load();
             }, function errorCallback(response) {
                 //$scope.itemError = response.data;
-                toastr.error('Có lỗi trong quá trình xóa dữ liệu !', 'Thông báo');
+                toastr.error('Lỗi ! ' + response.data.Message , 'Thông báo');
             });
 
     }
@@ -46,6 +46,8 @@
             if ($scope.Paging.currentPage < 1)
                 $scope.Paging.currentPage = 1
         }
+        if ($rootScope.CurDonVi.NhomLoai != 'ADMIN')
+            $scope.Paging.IdDonvi = $rootScope.CurDonVi.Id;
 
         $http({
             method: 'GET',
@@ -71,7 +73,7 @@
     $scope.LoadDonViCoSo = function () {
             $http({
                 method: 'GET',
-                url: 'api/DonVi/GetDonViTheoLoai?LoaiDV=CS',
+                url: 'api/DonVi/GetDonViTheoLoai?LoaiDV=TT',
             }).then(function successCallback(response) {
                 $scope.ListDonVi = response.data;
             }, function errorCallback(response) {

@@ -1,0 +1,112 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> XÉT DUYỆT CÁC CÁ NHÂN ĐƯỢC ĐỀ NGHỊ KHEN THƯỞNG</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn đơn vị: </span>
+                <select class="form-control select2" ng-model="IdSelectedDV" convert-to-number ng-change="OnChangeDV()">
+                    <option ng-repeat="ds in ListDV" value="{{ds.Id}}">{{ds.TenDonVi}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">Chọn tờ trình: </span>
+                <select class="form-control select2" ng-model="IdDSDeNghi" convert-to-number ng-change="LoadDoiTuongKhenThuong()">
+                    <option ng-repeat="ds in DSDeNghi" value="{{ds.Id}}">{{ds.Sototrinh}} - Năm {{ds.Nam}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="col-md-2 text-right">
+            <label class="bold" style="margin-top:6px">
+                Lọc đối tượng chưa duyệt
+                <input type="checkbox" ng-model="Chuaduyet" ng-change="LoadDoiTuongKhenThuong()" />
+            </label>
+
+        </div>
+        <div class="col-md-2 text-right">
+            Đã duyệt:
+            <label style="margin-top:6px; color:#0c9"> <i class="fa fa-square"></i> Đạt</label>
+            <label style="margin-top:6px; color:#ed6b75"> <i class="fa fa-square"></i> Không đạt</label>
+        </div>
+       
+    </div>
+    <div class="form-group ">
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+
+                            <td style="border:solid 1px"><div style="text-align:center">Cá nhân</div> </td>
+                            <td style="border:solid 1px" width="30%"><div style="text-align:center">Danh hiệu</div></td>
+                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Giấy tờ</div></td>
+                            <td style="border:solid 1px" width="10%"><div style="text-align:center">Trạng thái</div></td>
+                            <td width="5%" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in ListDoiTuong ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                            <td style="border:solid 1px" >
+                                {{dv.dt.Hodem}} {{dv.dt.Ten}} - Chức vụ : {{dv.dt.Chucvu}} - {{dv.dt.Vitri}}
+                            </td>
+                            <td style="border:solid 1px" >
+                               {{dv.dh.Ten}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="openModal(dv.dtkt,'TepDinhKemDoiTuong','CANHAN')"><i class="fa fa-paperclip"></i> Đính kèm</a>
+                            </td>
+                            <td style="border: solid 1px;">
+                                <div style="text-align: center;">
+                                    <select ng-model="dv.dtkt.Trangthai"
+                                            style=" {{dv.dtkt.Trangthai==1? 'background-color: #337ab7' :  dv.dtkt.Trangthai==2? 'background-color: #0c9' : dv.dtkt.Trangthai==3? 'background-color: #ed6b75' :'background-color: grey'}} ;
+                                                    color: rgb(255, 255, 255);
+                                                    border-radius: 50px;
+                                                    text-align: center;
+                                                    box-shadow: 2px 2px 3px #999;
+                                                    -webkit-appearance: none; "
+                                            convert-to-number
+                                            disabled>
+                                        <option ng-repeat="y in TTKhenThuong "
+                                                value="{{y.Code}}"
+                                                style="text-align: center;">
+                                            {{y.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td align="center" style="border:solid 1px">
+                                <button class="btn btn-sm btn-primary"
+                                        ng-click="openModal(dv.dtkt,'DuyetDoiTuong',2)">
+                                <i class="fa fa-check"></i> Duyệt</button>
+                            </td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+

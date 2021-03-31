@@ -15,9 +15,11 @@ namespace WebApiCore.Models
     public partial class tblGiaytoKhenthuong
     {
         public long Id { get; set; }
-        public Nullable<long> IdDTKT { get; set; }
-        public string MaDanhhieu { get; set; }
+        public Nullable<long> IdDoituongKhenthuong { get; set; }
         public Nullable<int> IdGiayto { get; set; }
+        public string Tentep { get; set; }
         public string Duongdan { get; set; }
+        public Nullable<int> Nam { get; set; }
+        public string Loai { get; set; }
     }
 }

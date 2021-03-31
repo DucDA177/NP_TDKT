@@ -1,0 +1,118 @@
+﻿
+<div class="col-md-12">
+    <h4> <label class=" uppercase font-green"><i class="fa fa-list"></i> DANH SÁCH TỜ TRÌNH KHEN THƯỞNG ĐÃ LẬP</label></h4>
+</div>
+<div class="form-body form-horizontal col-md-12">
+
+    <div class="form-group ">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-3 text-right">
+            <label class="control-label">
+                <input type="checkbox" ng-change="Load()" ng-model="Paging.Dotxuat" />
+                Chỉ hiển thị tờ trình đột xuất
+            </label>
+        </div>
+        <div class="col-md-5 text-right">
+            <div class="input-group " style="margin-top:-3px">
+                <input type="text" ng-model="Paging.searchKey"
+                       ng-model-options="{updateOn: 'change'}"
+                       ng-change="Load()"
+                       class="form-control input-sm " placeholder="Nhập số tờ trình để tìm kiếm...">
+                <span class="input-group-btn">
+                    <a class="btn btn-default input-sm" ng-click="Load()">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-md-12">
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover"
+                       id="fixTable">
+                    <thead style="background-color:#eee">
+                        <tr style="border:solid 1px" class="bold">
+
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">STT</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Số tờ trình</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Ngày trình</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Loại</div> </td>
+                            <td style="border:solid 1px"><div style="text-align:center">Số đối tượng</div> </td>
+                            <td width="1px" style="border:solid 1px"> <div style="text-align:center">#</div> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dv in ListToTrinh ">
+                            <td align="center" style="border:solid 1px"> {{$index + 1}} </td>
+
+                            <td style="border:solid 1px">
+                                {{dv.ToTrinh.Sototrinh}}
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.ToTrinh.Ngaytrinh | date:'dd/MM/yyyy'}}
+                            </td>
+                            <td style="border:solid 1px">
+                                {{dv.ToTrinh.Dotxuat ? 'Đột xuất' : 'Định kỳ'}}
+                            </td>
+                            <td style="border:solid 1px" align="center">
+                                <a ng-click="openModal(dv,'DoiTuongToTrinh')"> <b> {{dv.CaNhan.length}} Cá nhân -  {{dv.TapThe.length}} Tập thể </b></a>
+                            </td>
+
+
+                            <td align="center" style="border:solid 1px">
+                                <a tooltip
+                                   ng-click="Del(dv.ToTrinh.Id)"
+                                   title="Xóa tờ trình"><i class="font-red fa fa-trash"></i></a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="pull-left col-md-3">
+            <div class="input-group col-md-12">
+                <span class="input-group-addon"> Hiển thị </span>
+                <select ng-model="Paging.pageSize"
+                        ng-options="template.value as template.text for template in displayPage"
+                        ng-change="Load()" class="form-control select2"></select>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <!--<div id="displayPage"></div>-->
+            <!--<div class="pull-right" style="margin-top:-10px" id="show_paginator"></div>-->
+            <div class="pull-right" style="margin-top:-10px">
+                <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_products_paginate">
+                    <div class="pagination-panel">
+                        Trang
+                        <a href="#" class="btn btn-sm default prev " ng-click="PrePage()" title="Trang trước">
+                            <i class="fa fa-angle-left"></i>
+                        </a><input type="text" allow-only-numbers ng-model="Paging.currentPage" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;" ng-change="Load()" ng-model-options="{updateOn: 'change'}">
+                        <a href="#" class="btn btn-sm default next " ng-click="NextPage()" title="Trang tiếp theo"><i class="fa fa-angle-right"></i></a> của
+                        <span class="pagination-panel-total">{{Paging.totalPage}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ComponentsSelect2.init();
+</script>
+
+
+
+
+
+

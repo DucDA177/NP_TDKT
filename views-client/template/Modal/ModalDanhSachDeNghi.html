@@ -1,0 +1,60 @@
+﻿
+<div>
+    <div class="modal-header" style="background-color:#ccc">
+        <div class="modal-title">
+            <h4> <label class=" uppercase font-white"><i class="fa fa-list"></i> Cập nhật thông tin {{item.Ten}} </label></h4>
+
+        </div>
+    </div>
+    <div class="modal-body form">
+        <div class="form-body form-horizontal margin-top-10">
+
+            <div class="row margin-bottom-5">
+
+                <div>
+                    <label class="control-label col-md-2 ">Tên danh sách<span style="color:red">*</span>:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="Hovaten" autofocus placeholder="Nhập tên danh sách..." maxlength="100"
+                               class=" form-control input-sm " ng-model="item.Ten">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row  margin-bottom-5">
+                <label class="control-label col-md-2">Ghi chú:</label>
+                <div class="col-md-10">
+                    <textarea placeholder="Nhập ghi chú..." class="form-control input-sm" ng-model="item.Ghichu"></textarea>
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <label class="control-label col-md-2"><i>Lưu ý: </i></label>
+
+                <div class="col-md-4">
+                    <div style="margin-top:7px"><i><span style="color:red">*</span> Bắt buộc nhập</i></div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class=" modal-footer">
+
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save()"><i class="fa fa-save"></i> Lưu </a>
+        <a ng-hide="IsHideBtn" class="btn btn-sm btn-success btn-outline sbold" ng-click="Save(1)"><i class="fa fa-save"></i> Lưu và thêm </a>
+        <a class="btn btn-sm grey-cascade" ng-click="cancelModal()"><i class="fa fa-times-circle"></i> Đóng </a>
+
+
+    </div>
+</div>
+
+
+

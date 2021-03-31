@@ -13,7 +13,7 @@
             <i class="font-red" ng-hide="Paging.IdDonvi">Chọn đơn vị trước khi nhấn thêm mới</i>
         </div>
         <div class="col-md-4">
-            <div class="input-group">
+            <div class="input-group" ng-hide="CurDonVi.NhomLoai != 'ADMIN'">
                 <span class="input-group-addon">Chọn đơn vị: </span>
                 <select class="form-control input-sm select2" ng-model="Paging.IdDonvi"
                         convert-to-number
